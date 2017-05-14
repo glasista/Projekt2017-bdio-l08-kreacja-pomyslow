@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaCreationManagement", "IdeaCreationManagement\IdeaCreationManagement.csproj", "{9E78E0A3-F551-456A-8FDD-3B41601B32AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaCreationManagement.Tests", "IdeaCreationManagement.Tests\IdeaCreationManagement.Tests.csproj", "{35A17982-1D22-4361-BA69-6B6913C057EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E78E0A3-F551-456A-8FDD-3B41601B32AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E78E0A3-F551-456A-8FDD-3B41601B32AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E78E0A3-F551-456A-8FDD-3B41601B32AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E78E0A3-F551-456A-8FDD-3B41601B32AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35A17982-1D22-4361-BA69-6B6913C057EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35A17982-1D22-4361-BA69-6B6913C057EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35A17982-1D22-4361-BA69-6B6913C057EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35A17982-1D22-4361-BA69-6B6913C057EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
