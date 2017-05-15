@@ -19,6 +19,17 @@ namespace IdeaCreationManagement.Models
         {
         }
 
+        protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Project>()
+                .HasRequired(x => x.State)
+                .WithMany(x => x.Projects)
+                .HasForeignKey(x => x.StateId)
+                .WillCascadeOnDelete(false);
+        }
+
         public static AppContext Create()
         {
             return new AppContext();
