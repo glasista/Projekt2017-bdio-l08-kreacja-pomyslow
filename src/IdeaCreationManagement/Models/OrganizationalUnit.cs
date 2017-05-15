@@ -2,7 +2,7 @@
 {
     public class OrganizationalUnit
     {
-        public int OrganizationalUnitId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
