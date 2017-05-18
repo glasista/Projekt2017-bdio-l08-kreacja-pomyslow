@@ -39,6 +39,26 @@ namespace IdeaCreationManagement.Migrations
                 new State() { Name = "rozwi¹zany" },
                 new State() { Name = "nierozwi¹zany" }
             );
+
+            context.Categories.AddOrUpdate(
+                c => c.Name,
+                new Category() { Name = "Stan ³azienek", Type = ProjectType.Problem },
+                new Category() { Name = "Stan pod³óg", Type = ProjectType.Problem },
+                new Category() { Name = "Organizacja studiów", Type = ProjectType.Idea },
+                new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Idea }
+            );
+
+            context.FieldsOfStudies.AddOrUpdate(
+                f => f.Name,
+                new FieldOfStudy() { Name = "Informatyka" },
+                new FieldOfStudy() { Name = "Zarz¹dzanie" }
+            );
+
+            context.OrganizationalUnits.AddOrUpdate(
+                o => o.Name,
+                new OrganizationalUnit() { Name = "Wydzia³ informatyki" },
+                new OrganizationalUnit() { Name = "Wydzia³ zarz¹dzania" }
+            );
         }
     }
 }
