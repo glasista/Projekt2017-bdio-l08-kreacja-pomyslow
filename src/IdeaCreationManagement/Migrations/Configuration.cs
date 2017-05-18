@@ -1,4 +1,5 @@
 using IdeaCreationManagement.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Migrations
 {
@@ -58,6 +59,13 @@ namespace IdeaCreationManagement.Migrations
                 o => o.Name,
                 new OrganizationalUnit() { Name = "Wydzia³ informatyki" },
                 new OrganizationalUnit() { Name = "Wydzia³ zarz¹dzania" }
+            );
+
+            context.Roles.AddOrUpdate(
+                r => r.Name,
+                new IdentityRole("student"),
+                new IdentityRole("employee"),
+                new IdentityRole("admin")
             );
         }
     }
