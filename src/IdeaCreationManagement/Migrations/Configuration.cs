@@ -1,3 +1,5 @@
+using IdeaCreationManagement.Models;
+
 namespace IdeaCreationManagement.Migrations
 {
     using System;
@@ -26,6 +28,17 @@ namespace IdeaCreationManagement.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.States.AddOrUpdate(
+                s => s.Name,
+                new State() { Name = "oczekuj¹cy" },
+                new State() { Name = "odrzucony" },
+                new State() { Name = "przydzielony" },
+                new State() { Name = "zrealizowany" },
+                new State() { Name = "niezrealizowany" },
+                new State() { Name = "rozwi¹zany" },
+                new State() { Name = "nierozwi¹zany" }
+            );
         }
     }
 }
