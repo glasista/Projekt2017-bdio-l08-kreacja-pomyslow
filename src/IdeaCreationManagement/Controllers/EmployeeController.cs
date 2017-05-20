@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace IdeaCreationManagement.Controllers
 {
-    public class ProjectController : Controller
+    public class EmployeeController : Controller
     {
         private AppContext _repository = new AppContext();
 
