@@ -13,7 +13,7 @@ kategoria-
 średnia ocena-
 
 autor-
-data dodania
+data dodania-
 opis-
 oceny według kategorii*@
 
@@ -39,6 +39,14 @@ oceny według kategorii*@
         <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time):
+        </dt>
+        <dd>
+            @*do poprawy, gdy będzie odwołanie do obiektu*@
+        @Html.DisplayFor(model => model.Time)
+    </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.State):
