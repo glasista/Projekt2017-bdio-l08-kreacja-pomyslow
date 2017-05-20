@@ -66,7 +66,72 @@ namespace IdeaCreationManagement.Migrations
                 new IdentityRole("student"),
                 new IdentityRole("employee"),
                 new IdentityRole("admin")
+            );            
+
+            context.Users.AddOrUpdate(
+                r => r.Email,
+                new User {
+                    FieldOfStudyId = 1,
+                    OrganizationalUnitId = 1,
+                    Surname = "Kowalski",
+                    StudentNumber = 10010,
+                    Email = "email1@mail.com",
+                    EmailConfirmed = false,
+                    PasswordHash = "AJbhCiDRViukYOcL9E05michPMIBGfOr2Bsj4zkkJRpLbDe5y1b4Gd922uCBevfzFA==",  //Has³o6zn
+                    SecurityStamp = "c1c09534-086f-448f-95c4-e775ad6d8cd7",
+                    PhoneNumber = "465675485",
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 0,
+                    UserName = "Jan"
+                },
+                new User
+                {
+                    FieldOfStudyId = 1,
+                    OrganizationalUnitId = 1,
+                    Surname = "Polak",
+                    StudentNumber = 10011,
+                    Email = "email2@mail.com",
+                    EmailConfirmed = false,
+                    PasswordHash = "AJbhCiDRViukYOcL9E05michPMIBGfOr2Bsj4zkkJRpLbDe5y1b4Gd922uCBevfzFA==",  //Has³o6zn
+                    SecurityStamp = "c1c09534-086f-448f-95c4-e775ad6d8cd7",
+                    PhoneNumber = "987876765",
+                    PhoneNumberConfirmed = false,
+                    TwoFactorEnabled = false,
+                    LockoutEnabled = false,
+                    AccessFailedCount = 0,
+                    UserName = "Adam"
+                }
             );
+
+            context.SaveChanges();
+
+            context.Projects.AddOrUpdate(
+                r => r.Id,
+                new Project
+                {
+                    Title = "Tytu³1",
+                    Description = "Opis 1",
+                    AuthorId = context.Users.ToArray()[0].Id,
+                    AssigneeId = context.Users.ToArray()[1].Id,
+                    Type = ProjectType.Idea,
+                    StateId = 3,
+                    CategoryId = 1
+                },
+                new Project
+                {
+                    Title = "Tytu³2",
+                    Description = "Opis 2",
+                    AuthorId = context.Users.ToArray()[0].Id,
+                    AssigneeId = context.Users.ToArray()[1].Id,
+                    Type = ProjectType.Idea,
+                    StateId = 3,
+                    CategoryId = 1
+                }
+            );
+
+
         }
     }
 }
