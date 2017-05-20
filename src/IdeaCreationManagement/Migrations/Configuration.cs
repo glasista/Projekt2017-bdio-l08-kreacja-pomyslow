@@ -120,7 +120,8 @@ namespace IdeaCreationManagement.Migrations
                     Assignee = users[1],
                     Type = ProjectType.Idea,
                     StateId = 3,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Time = DateTime.Now
                 },
                 new Project
                 {
@@ -130,7 +131,8 @@ namespace IdeaCreationManagement.Migrations
                     Assignee = users[1],
                     Type = ProjectType.Idea,
                     StateId = 3,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Time = DateTime.Now
                 }
             };
 
