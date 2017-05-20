@@ -66,8 +66,10 @@ namespace IdeaCreationManagement.Migrations
                 new IdentityRole("student"),
                 new IdentityRole("employee"),
                 new IdentityRole("admin")
-            );            
+            );
 
+            //do dodania:
+            //Category, Claims, Logins, OrganizationalU…, Roles
             context.Users.AddOrUpdate(
                 r => r.Email,
                 new User {
@@ -84,10 +86,11 @@ namespace IdeaCreationManagement.Migrations
                     TwoFactorEnabled = false,
                     LockoutEnabled = false,
                     AccessFailedCount = 0,
-                    UserName = "Jan"
+                    UserName = "Jan",
+
                 },
                 new User
-                {
+                { 
                     FieldOfStudyId = 1,
                     OrganizationalUnitId = 1,
                     Surname = "Polak",
