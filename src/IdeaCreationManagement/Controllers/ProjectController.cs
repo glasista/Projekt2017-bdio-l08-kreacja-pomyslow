@@ -16,5 +16,20 @@ namespace IdeaCreationManagement.Controllers
         {
             return View(_repository.Projects.ToArray());
         }
+
+        public ActionResult Details(int projectId)
+        {
+            var model = _repository.Projects.Find(projectId);
+            if (model == null)
+            {
+                return null;
+            }
+            else
+            {
+                return View(model);
+            }
+            //Project model = _repository.Projects.Where(p => p.Id == projectId).First();
+            
+        }
     }
 }
