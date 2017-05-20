@@ -1,0 +1,42 @@
+﻿@using IdeaCreationManagement.Models
+@model IEnumerable<Project>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista projektów</h2>
+
+<div class="row panel-body">
+    <table class="well table table-hover table-bordered">
+        <tr>
+            <th class="col-md-5">@Html.DisplayNameFor(model => model.Title).ToString()</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => model.State).ToString()</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => model.Category.Name).ToString()</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => model.AverageGrade).ToString()</th>
+
+        </tr>
+        @foreach (var p in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(p.Title, "Details", new { projectId = p.Id})</td>
+                <td>@p.StateId </td>    @*do poprawy, gdy będzie odwołanie do obiektu*@  
+                <td>@p.CategoryId</td>  @*do poprawy, gdy będzie odwołanie do obiektu*@
+                <td>@p.AverageGrade </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+@*@foreach (var p in Model)
+{
+    <div>
+        <h3>@p.Title</h3>
+        @p.Description
+        <h4>@p.Author</h4>
+    </div>
+}*@
+

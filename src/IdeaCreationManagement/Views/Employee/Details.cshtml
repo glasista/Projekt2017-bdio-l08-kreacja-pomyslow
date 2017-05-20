@@ -1,0 +1,73 @@
+﻿@model IdeaCreationManagement.Models.Project
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły projektu</h2>
+
+@*tytuł-
+stan projektu-
+kategoria-
+średnia ocena-
+
+autor-
+data dodania-
+opis-
+oceny według kategorii*@
+
+<div class="panel-body">
+    <dl class="dl-horizontal well">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author):
+        </dt>
+        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@ 
+            @Html.DisplayFor(model => model.Author.UserName)    
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category):
+        </dt>
+        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time):
+        </dt>
+        <dd>
+            @*do poprawy, gdy będzie odwołanie do obiektu*@
+        @Html.DisplayFor(model => model.Time)
+    </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State):
+        </dt>
+        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@
+            @Html.DisplayFor(model => model.State.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageGrade):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageGrade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>

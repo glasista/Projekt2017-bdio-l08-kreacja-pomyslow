@@ -66,10 +66,14 @@ namespace IdeaCreationManagement.Migrations
                 new IdentityRole("student"),
                 new IdentityRole("employee"),
                 new IdentityRole("admin")
-            );            
+            );
 
-            context.Users.AddOrUpdate(
-                r => r.Email,
+            //do dodania:
+            //Category, Claims, Logins, OrganizationalU…, Roles
+
+            
+            var users = new User[]
+            {
                 new User {
                     FieldOfStudyId = 1,
                     OrganizationalUnitId = 1,
@@ -84,10 +88,11 @@ namespace IdeaCreationManagement.Migrations
                     TwoFactorEnabled = false,
                     LockoutEnabled = false,
                     AccessFailedCount = 0,
-                    UserName = "Jan"
+                    UserName = "Jan",
+
                 },
                 new User
-                {
+                { 
                     FieldOfStudyId = 1,
                     OrganizationalUnitId = 1,
                     Surname = "Polak",
@@ -103,32 +108,42 @@ namespace IdeaCreationManagement.Migrations
                     AccessFailedCount = 0,
                     UserName = "Adam"
                 }
-            );
+            };
 
-            context.SaveChanges();
-
-            context.Projects.AddOrUpdate(
-                r => r.Id,
+            var projects = new Project[]
+            {
                 new Project
                 {
                     Title = "Tytu³1",
                     Description = "Opis 1",
-                    AuthorId = context.Users.ToArray()[0].Id,
-                    AssigneeId = context.Users.ToArray()[1].Id,
+                    Author = users[0],
+                    Assignee = users[1],
                     Type = ProjectType.Idea,
                     StateId = 3,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Time = DateTime.Now
                 },
                 new Project
                 {
                     Title = "Tytu³2",
                     Description = "Opis 2",
-                    AuthorId = context.Users.ToArray()[0].Id,
-                    AssigneeId = context.Users.ToArray()[1].Id,
+                    Author = users[0],
+                    Assignee = users[1],
                     Type = ProjectType.Idea,
                     StateId = 3,
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Time = DateTime.Now
                 }
+            };
+
+            context.Users.AddOrUpdate(
+                r => r.Email,
+                users
+            );
+
+            context.Projects.AddOrUpdate(
+                r => r.Title,
+                projects
             );
 
 
