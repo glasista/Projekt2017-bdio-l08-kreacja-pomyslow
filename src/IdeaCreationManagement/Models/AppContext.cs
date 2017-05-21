@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Web.DynamicData;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Models
@@ -15,7 +16,7 @@ namespace IdeaCreationManagement.Models
         public DbSet<State> States { get; set; }
 
         public AppContext()
-            : base("SqlServerFile", throwIfV1Schema: false)
+            : base("SqlServerFile")
         {
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdeaCreationManagement.Models
 {
@@ -62,8 +63,16 @@ namespace IdeaCreationManagement.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterStudentViewModel
     {
+        [Required]
+        [Display(Name = "Imię")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string SurName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -72,13 +81,51 @@ namespace IdeaCreationManagement.Models
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
+        [Display(Name = "Potwierdź hasło")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [ForeignKey("FieldOfStudy")]
+        [Display(Name = "Kierunek studiów")]
+        public int Id { get; set; }
+        [Display(Name = "Kierunek studiów")]
+        public virtual FieldOfStudy Name { get; set; }
+    }
+
+    public class RegisterEmployeeViewModel
+    {
+        [Required]
+        [Display(Name = "Imię")]
+        public string UserName { get; set; }
+
+        [Required]
+        [Display(Name = "Nazwisko")]
+        public string SurName { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Hasło")]
+        public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Potwierdź hasło")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+        [ForeignKey("OrganizationalUnit")]
+        [Display(Name = "Katedra/Zakład")]
+        public int Id { get; set; }
+        public virtual OrganizationalUnit Name { get; set; }
     }
 
     public class ResetPasswordViewModel

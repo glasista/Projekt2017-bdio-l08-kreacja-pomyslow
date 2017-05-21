@@ -15,6 +15,7 @@ namespace IdeaCreationManagement.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        AppContext db = new AppContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -134,11 +135,20 @@ namespace IdeaCreationManagement.Controllers
             }
         }
 
-        //
-        // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
+            return View();
+        }
+
+
+
+        //
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult RegisterStudent()
+        {
+            ViewBag.Id = new SelectList(db.FieldsOfStudies, "Id", "Name");
             return View();
         }
 
@@ -147,11 +157,11 @@ namespace IdeaCreationManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> RegisterStudent(RegisterStudentViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, FieldOfStudyId = model.Id };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -169,6 +179,7 @@ namespace IdeaCreationManagement.Controllers
             }
 
             // If we got this far, something failed, redisplay form
+            ViewBag.Id = new SelectList(db.FieldsOfStudies, "Id", "Name");
             return View(model);
         }
 
