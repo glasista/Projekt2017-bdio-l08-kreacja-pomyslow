@@ -135,6 +135,8 @@ namespace IdeaCreationManagement.Controllers
             }
         }
 
+
+        //Account/Register
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -144,7 +146,7 @@ namespace IdeaCreationManagement.Controllers
 
 
         //
-        // GET: /Account/Register
+        // GET: /Account/RegisterStudent
         [AllowAnonymous]
         public ActionResult RegisterStudent()
         {
@@ -153,7 +155,7 @@ namespace IdeaCreationManagement.Controllers
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/RegisterStudent
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -180,6 +182,47 @@ namespace IdeaCreationManagement.Controllers
 
             // If we got this far, something failed, redisplay form
             ViewBag.Id = new SelectList(db.FieldsOfStudies, "Id", "Name");
+            return View(model);
+        }
+
+
+        //
+        // GET: /Account/RegisterEmployee
+        [AllowAnonymous]
+        public ActionResult RegisterEmployee()
+        {
+            ViewBag.Id = new SelectList(db.OrganizationalUnits, "Id", "Name");
+            return View();
+        }
+
+        //
+        // POST: /Account/RegisterEmployee
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterEmployee(RegisterEmployeeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, OrganizationalUnitId = model.Id};
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            ViewBag.Id = new SelectList(db.OrganizationalUnits, "Id", "Name");
             return View(model);
         }
 

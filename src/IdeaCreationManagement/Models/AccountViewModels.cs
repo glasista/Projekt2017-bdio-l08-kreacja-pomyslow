@@ -123,7 +123,6 @@ namespace IdeaCreationManagement.Models
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("OrganizationalUnit")]
-        [Display(Name = "Katedra/Zakład")]
         public int Id { get; set; }
         public virtual OrganizationalUnit Name { get; set; }
     }
