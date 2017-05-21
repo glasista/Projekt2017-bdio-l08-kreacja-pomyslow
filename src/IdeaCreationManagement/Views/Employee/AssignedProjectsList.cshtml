@@ -20,9 +20,9 @@
         @foreach (var p in Model)
             {
             <tr>
-                <td>@Html.ActionLink(p.Title, "Details", new { projectId = p.Id})</td>
-                <td>@p.StateId </td>    @*do poprawy, gdy będzie odwołanie do obiektu*@  
-                <td>@p.CategoryId</td>  @*do poprawy, gdy będzie odwołanie do obiektu*@
+                <td>@Html.ActionLink(p.Title, "AssignedProjectsDetails", new { projectId = p.Id})</td>
+                <td>@p.State.Name </td>    @*do poprawy, gdy będzie odwołanie do obiektu*@  
+                <td>@p.Category.Name</td>  @*do poprawy, gdy będzie odwołanie do obiektu*@
                 <td>@p.AverageGrade </td>
             </tr>
         }

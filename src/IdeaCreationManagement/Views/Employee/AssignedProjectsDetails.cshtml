@@ -29,14 +29,14 @@ oceny według kategorii*@
         <dt>
             @Html.DisplayNameFor(model => model.Author):
         </dt>
-        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@ 
-            @Html.DisplayFor(model => model.Author.UserName)    
+        <dd> 
+            @Html.DisplayFor(model => model.Author.UserName) @Html.DisplayFor(model => model.Author.Surname)      
         </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Category):
         </dt>
-        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@
+        <dd>
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
 
@@ -44,14 +44,13 @@ oceny według kategorii*@
             @Html.DisplayNameFor(model => model.Time):
         </dt>
         <dd>
-            @*do poprawy, gdy będzie odwołanie do obiektu*@
-        @Html.DisplayFor(model => model.Time)
-    </dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.State):
         </dt>
-        <dd>@*do poprawy, gdy będzie odwołanie do obiektu*@
+        <dd>
             @Html.DisplayFor(model => model.State.Name)
         </dd>
 

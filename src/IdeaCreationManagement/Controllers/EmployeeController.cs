@@ -4,32 +4,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using System.Net;
 
 namespace IdeaCreationManagement.Controllers
 {
     public class EmployeeController : Controller
     {
-        private AppContext _repository = new AppContext();
+        private AppContext db = new AppContext();
 
         // GET: Project
-        public ActionResult List()
+        public ActionResult AssignedProjectsList()
         {
-            return View(_repository.Projects.ToArray());
+            //TODO: zwrócenie projektów przydzielone do pracownika
+            var assignedProjects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State);
+            return View(assignedProjects.ToList());
         }
 
-        public ActionResult Details(int projectId)
+        public ActionResult AssignedProjectsDetails(int? projectId)
         {
-            var model = _repository.Projects.Find(projectId);
-            if (model == null)
+            if (projectId == null)
             {
-                return null;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            if (project == null)
             {
-                return View(model);
+                return HttpNotFound();
             }
-            //Project model = _repository.Projects.Where(p => p.Id == projectId).First();
-            
+            return View(project);
+
         }
     }
 }
