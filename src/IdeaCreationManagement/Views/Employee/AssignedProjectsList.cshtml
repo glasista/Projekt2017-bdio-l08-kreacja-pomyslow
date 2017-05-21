@@ -21,22 +21,10 @@
             {
             <tr>
                 <td>@Html.ActionLink(p.Title, "AssignedProjectsDetails", new { projectId = p.Id})</td>
-                <td>@p.State.Name </td>    @*do poprawy, gdy będzie odwołanie do obiektu*@  
-                <td>@p.Category.Name</td>  @*do poprawy, gdy będzie odwołanie do obiektu*@
+                <td>@p.State.Name </td>  
+                <td>@p.Category.Name</td>
                 <td>@p.AverageGrade </td>
             </tr>
         }
     </table>
 </div>
-
-
-
-@*@foreach (var p in Model)
-{
-    <div>
-        <h3>@p.Title</h3>
-        @p.Description
-        <h4>@p.Author</h4>
-    </div>
-}*@
-
