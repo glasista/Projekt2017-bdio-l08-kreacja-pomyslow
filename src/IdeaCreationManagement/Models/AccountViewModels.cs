@@ -90,7 +90,6 @@ namespace IdeaCreationManagement.Models
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("FieldOfStudy")]
-        [Display(Name = "Kierunek studiów")]
         public int Id { get; set; }
         [Display(Name = "Kierunek studiów")]
         public virtual FieldOfStudy Name { get; set; }
@@ -124,6 +123,7 @@ namespace IdeaCreationManagement.Models
 
         [ForeignKey("OrganizationalUnit")]
         public int Id { get; set; }
+        [Display(Name = "Zakład/Katedra")]
         public virtual OrganizationalUnit Name { get; set; }
     }
 

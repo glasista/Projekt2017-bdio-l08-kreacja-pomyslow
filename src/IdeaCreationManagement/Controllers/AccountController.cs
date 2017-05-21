@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IdeaCreationManagement.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -165,6 +166,12 @@ namespace IdeaCreationManagement.Controllers
             {
                 var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, FieldOfStudyId = model.Id };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                // Roles
+                var userStore = new UserStore<User>(db);
+                var userManager = new UserManager<User>(userStore);
+                userManager.AddToRole(user.Id, "student");
+
+                //
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -206,6 +213,14 @@ namespace IdeaCreationManagement.Controllers
             {
                 var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, OrganizationalUnitId = model.Id};
                 var result = await UserManager.CreateAsync(user, model.Password);
+
+
+                // Roles
+                var userStore = new UserStore<User>(db);
+                var userManager = new UserManager<User>(userStore);
+                userManager.AddToRole(user.Id, "employee");
+
+                //
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
