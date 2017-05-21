@@ -16,7 +16,7 @@ namespace IdeaCreationManagement.Models
         public DbSet<State> States { get; set; }
 
         public AppContext()
-            : base("SqlServerFile")
+            : base("SqlServerFile", throwIfV1Schema: false)
         {
         }
 
