@@ -288,7 +288,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Employee\AssignedProjectsList.cshtml" />
+    <Content Include="Views\Employee\AssignedProjects.cshtml" />
     <Content Include="Views\Employee\AssignedProjectsDetails.cshtml" />
     <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />

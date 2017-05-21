@@ -7,6 +7,8 @@ namespace IdeaCreationManagement.Models
     public class Alert
     {
         public int Id { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime TimeOfChange { get; set; }
         public int StateId { get; set; }
         public State State { get; set; }

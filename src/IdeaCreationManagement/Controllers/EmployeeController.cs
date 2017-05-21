@@ -14,7 +14,7 @@ namespace IdeaCreationManagement.Controllers
         private AppContext db = new AppContext();
 
         // GET: Project
-        public ActionResult AssignedProjectsList()
+        public ActionResult AssignedProjects()
         {
             //TODO: zwrócenie projektów przydzielone do pracownika
             var assignedProjects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State);

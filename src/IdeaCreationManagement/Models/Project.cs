@@ -9,6 +9,7 @@ namespace IdeaCreationManagement.Models
         public int Id { get; set; }
 
         [Display(Name = "Data dodania")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
 
         [Display(Name = "Tytuł")]
