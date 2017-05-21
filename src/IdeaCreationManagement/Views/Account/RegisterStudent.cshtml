@@ -8,6 +8,7 @@
 @using (Html.BeginForm("RegisterStudent", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
+
     <h4>Utwórz konto studenta.</h4>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
