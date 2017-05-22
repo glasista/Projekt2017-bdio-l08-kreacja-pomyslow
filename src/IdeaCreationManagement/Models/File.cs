@@ -4,7 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string FilePath { get; set; }
+        public string DataType { get; set; }
+        public byte[] Content { get; set; }
         public long Size { get; set; }
         public int ProjectId { get; set; }
         public Project Project { get; set; }
