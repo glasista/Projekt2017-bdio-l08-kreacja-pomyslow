@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201705201713528_project-time.Designer.cs">
       <DependentUpon>201705201713528_project-time.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705221325283_user-name.cs" />
+    <Compile Include="Migrations\201705221325283_user-name.Designer.cs">
+      <DependentUpon>201705221325283_user-name.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -327,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705201713528_project-time.resx">
       <DependentUpon>201705201713528_project-time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705221325283_user-name.resx">
+      <DependentUpon>201705221325283_user-name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

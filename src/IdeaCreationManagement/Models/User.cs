@@ -14,6 +14,7 @@ namespace IdeaCreationManagement.Models
         public OrganizationalUnit OrganizationalUnit { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        public string Name { get; set; }
         public string Surname { get; set; }
         public int StudentNumber { get; set; }
 
