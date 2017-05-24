@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
+using IdeaCreationManagement.Repositories;
 
 namespace IdeaCreationManagement.Controllers
 {
     public class ProjectsController : Controller
     {
         private AppContext db = new AppContext();
+        private readonly ProjectsRepository _repo = new ProjectsRepository();
 
         // GET: Projects
         public ActionResult Index()
@@ -39,10 +41,7 @@ namespace IdeaCreationManagement.Controllers
         // GET: Projects/Create
         public ActionResult Create()
         {
-            ViewBag.AssigneeId = new SelectList(db.Users, "Id", "Surname");
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Surname");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(ProjectType.Idea), "Id", "Name");
             return View();
         }
 
