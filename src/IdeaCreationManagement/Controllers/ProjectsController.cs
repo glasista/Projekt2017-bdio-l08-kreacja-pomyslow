@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Repositories;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 
 namespace IdeaCreationManagement.Controllers
@@ -39,56 +40,28 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
+        [Authorize]
+        public ActionResult Add(string type)
+        {
+            if (type.IsNullOrWhiteSpace())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ProjectType projectType = type.ToLower() == "idea" ? ProjectType.Idea : ProjectType.Problem;
+            ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(projectType), "Id", "Name");
+            ViewBag.ProjectType = type.ToLower() == "idea" ? "Pomysł" : "Problem";
+            return View("Create");
+        }
         
-        public ActionResult AddIdea()
-        {
-            ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(ProjectType.Idea), "Id", "Name");
-            ViewBag.ProjectType = "Pomysł";
-            return View("Create");
-        }
 
-        public ActionResult AddProblem()
-        {
-            ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(ProjectType.Problem), "Id", "Name");
-            ViewBag.ProjectType = "Problem";
-            return View("Create");
-        }
-
-        // POST: Projects/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddIdea([Bind(Include = "Title,CategoryId,Description")] Project project)
+        [ValidateAntiForgeryToken, Authorize]
+        public ActionResult Add(string type, [Bind(Include = "Title,CategoryId,Description")] Project project)
         {
             if (ModelState.IsValid)
             {
                 project.AuthorId = User.Identity.GetUserId();
-                project.Type = ProjectType.Idea;
-
-                try
-                {
-                    _repo.AddNewProject(project);
-                    _repo.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    return RedirectToAction("Index");
-                }
-                
-            }
-
-            return View("Details",project);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddProblem([Bind(Include = "Title,CategoryId,Description")] Project project)
-        {
-            if (ModelState.IsValid)
-            {
-                project.AuthorId = User.Identity.GetUserId();
-                project.Type = ProjectType.Problem;
+                project.Type = type.ToLower() == "idea" ? ProjectType.Idea : ProjectType.Problem;
 
                 try
                 {
@@ -102,8 +75,9 @@ namespace IdeaCreationManagement.Controllers
 
             }
 
-            return View("Details", project);
+            return RedirectToAction("Details", project);
         }
+        
 
         // GET: Projects/Edit/5
         public ActionResult Edit(int? id)
