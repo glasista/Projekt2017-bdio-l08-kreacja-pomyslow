@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Repositories;
+using Microsoft.AspNet.Identity;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -38,11 +39,19 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
-        // GET: Projects/Create
-        public ActionResult Create()
+        
+        public ActionResult AddIdea()
         {
             ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(ProjectType.Idea), "Id", "Name");
-            return View();
+            ViewBag.ProjectType = "Pomysł";
+            return View("Create");
+        }
+
+        public ActionResult AddProblem()
+        {
+            ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(ProjectType.Problem), "Id", "Name");
+            ViewBag.ProjectType = "Problem";
+            return View("Create");
         }
 
         // POST: Projects/Create
@@ -50,20 +59,50 @@ namespace IdeaCreationManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Time,Title,Description,AuthorId,AssigneeId,Type,AverageGrade,AverageUsefulness,AverageDifficulty,AverageIngenuity,StateId,CategoryId")] Project project)
+        public ActionResult AddIdea([Bind(Include = "Title,CategoryId,Description")] Project project)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                project.AuthorId = User.Identity.GetUserId();
+                project.Type = ProjectType.Idea;
+
+                try
+                {
+                    _repo.AddNewProject(project);
+                    _repo.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("Index");
+                }
+                
             }
 
-            ViewBag.AssigneeId = new SelectList(db.Users, "Id", "Surname", project.AssigneeId);
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "Surname", project.AuthorId);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", project.CategoryId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name", project.StateId);
-            return View(project);
+            return View("Details",project);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddProblem([Bind(Include = "Title,CategoryId,Description")] Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                project.AuthorId = User.Identity.GetUserId();
+                project.Type = ProjectType.Problem;
+
+                try
+                {
+                    _repo.AddNewProject(project);
+                    _repo.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+
+            return View("Details", project);
         }
 
         // GET: Projects/Edit/5
