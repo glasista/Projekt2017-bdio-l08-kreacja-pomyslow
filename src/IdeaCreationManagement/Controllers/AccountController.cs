@@ -164,7 +164,7 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, FieldOfStudyId = model.Id };
+                var user = new User { UserName = model.Email, Email = model.Email, Surname = model.SurName, FieldOfStudyId = model.Id, Name = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 // Roles
                 var userStore = new UserStore<User>(db);
@@ -211,7 +211,7 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, OrganizationalUnitId = model.Id};
+                var user = new User { UserName = model.Email, Email = model.Email, Surname = model.SurName, OrganizationalUnitId = model.Id, Name = model.UserName};
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
