@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using IdeaCreationManagement.App_Start;
 
 namespace IdeaCreationManagement
 {
@@ -17,6 +18,7 @@ namespace IdeaCreationManagement
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.Configure();
+            AutomapperConfig.Configure();
         }
     }
 }
