@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using IdeaCreationManagement.Controllers;
 using IdeaCreationManagement.Models;
+using IdeaCreationManagement.Services;
 using IdeaCreationManagement.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,7 +20,7 @@ namespace IdeaCreationManagement.App_Start
 
         private static void Configuration(IMapperConfigurationExpression cfg)
         {
-            UsersController.ConfigureAutomapper(cfg);
+            UserService.ConfigureAutomapper(cfg);
         }
     }
 }

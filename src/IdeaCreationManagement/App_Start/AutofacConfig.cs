@@ -2,6 +2,7 @@
 using Autofac;
 using Autofac.Integration.Mvc;
 using IdeaCreationManagement.Models;
+using IdeaCreationManagement.Services;
 
 namespace IdeaCreationManagement
 {
@@ -19,6 +20,7 @@ namespace IdeaCreationManagement
         private static void Register(ContainerBuilder builder)
         {
             builder.RegisterType<AppContext>().AsSelf().InstancePerRequest();
+            builder.RegisterType<UserService>().AsSelf().InstancePerRequest();
         }
     }
 }
