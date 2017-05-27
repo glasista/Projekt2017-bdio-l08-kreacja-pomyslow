@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Services;
 
@@ -28,6 +29,19 @@ namespace IdeaCreationManagement.Controllers
             }
 
             return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(string id)
+        {
+            return Details(id);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteConfirm(string id)
+        {
+            _users.DeleteUser(id);
+            return RedirectToAction("Index");
         }
     }
 }

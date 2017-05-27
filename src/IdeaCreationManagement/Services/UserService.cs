@@ -5,6 +5,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.ViewModels;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Services
@@ -12,10 +13,12 @@ namespace IdeaCreationManagement.Services
     public class UserService
     {
         private readonly AppContext _ctx;
+        private readonly ApplicationUserManager _userManager;
 
-        public UserService(AppContext ctx)
+        public UserService(AppContext ctx, ApplicationUserManager userManager)
         {
             _ctx = ctx;
+            _userManager = userManager;
         }
 
         public static void ConfigureAutomapper(IMapperConfigurationExpression cfg)
@@ -85,6 +88,31 @@ namespace IdeaCreationManagement.Services
                 CreatedProjects = created,
                 AssignedProjects = assigned,
             };
+        }
+
+        public void DeleteUser(string id)
+        {
+            var assigned = _ctx.Projects
+                .Where(x => x.AssigneeId == id)
+                .ToList();
+            foreach (var project in assigned)
+            {
+                project.AssigneeId = null;
+            }
+
+            var created = _ctx.Projects
+                .Where(x => x.AuthorId == id)
+                .ToList();
+            foreach (var project in created)
+            {
+                project.AuthorId = null;
+            }
+
+
+
+            var user = _userManager.FindById(id);
+            _userManager.Delete(user);
+            _ctx.SaveChanges();
         }
     }
 }
