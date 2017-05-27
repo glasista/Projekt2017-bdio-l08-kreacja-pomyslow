@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.ViewModels;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -32,6 +35,16 @@ namespace IdeaCreationManagement.Controllers
                 .ProjectUsing(c => roles[c.RoleId]);
             cfg.CreateMap<User, ListUser>()
                 .ForMember(x => x.RoleNames, c => c.MapFrom(x => x.Roles));
+            cfg.CreateMap<User, UserDetails>()
+                .ForMember(x => x.FieldOfStudy, c => c.MapFrom(x => x.FieldOfStudy != null ? x.FieldOfStudy.Name : null))
+                .ForMember(x => x.OrganizationalUnit, c => c.MapFrom(x => x.OrganizationalUnit != null ? x.OrganizationalUnit.Name : null))
+                .ForMember(x => x.Category, c => c.MapFrom(x => x.Category != null ? x.Category.Name : null))
+                .ForMember(x => x.RoleNames, c => c.Ignore());
+            cfg.CreateMap<Project, ListProject>()
+                .ForMember(x => x.Author, c => c.MapFrom(x => x.Author != null ? x.Author.Name : "-"))
+                .ForMember(x => x.Assignee, c => c.MapFrom(x => x.Assignee != null ? x.Assignee.Name : "-"))
+                .ForMember(x => x.State, c => c.MapFrom(x => x.State.Name))
+                .ForMember(x => x.Category, c => c.MapFrom(x => x.Category.Name));
         }
 
         public ActionResult Index()
@@ -39,6 +52,46 @@ namespace IdeaCreationManagement.Controllers
             var users = _ctx.Users
                 .ToList();
             var model = Mapper.Map<List<ListUser>>(users);
+
+            return View(model);
+        }
+
+        public ActionResult Details(string id)
+        {
+            var user = _ctx.Users
+                .Where(x => x.Id == id)
+                .Include(x => x.OrganizationalUnit)
+                .Include(x => x.FieldOfStudy)
+                .Include(x => x.Category)
+                .ProjectTo<UserDetails>()
+                .SingleOrDefault();
+            //var user = Mapper.Map<UserDetails>(u);
+
+            if (user == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            var created = _ctx.Projects
+                .Where(x => x.AuthorId == user.Id)
+                .Include(x => x.Assignee)
+                .Include(x => x.Author)
+                .Include(x => x.Category)
+                .Include(x => x.State)
+                .ProjectTo<ListProject>()
+                .ToList();
+            var assigned = _ctx.Projects
+                .Where(x => x.AssigneeId == user.Id)
+                .ProjectTo<ListProject>()
+                .ToList();
+
+            var model = new UserDetailsViewModel()
+            {
+                Details = user,
+                CreatedProjects = created,
+                AssignedProjects = assigned,
+            };
+
             return View(model);
         }
     }
