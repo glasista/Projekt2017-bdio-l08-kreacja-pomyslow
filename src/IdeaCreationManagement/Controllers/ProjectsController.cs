@@ -183,6 +183,48 @@ namespace IdeaCreationManagement.Controllers
 
         }
 
+        [Authorize(Roles = "employee")]
+        public ActionResult ChangeState(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            ViewBag.StateID = new SelectList(db.States, "Id", "Name");
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "employee")]
+        public ActionResult ChangeState([Bind(Include = "Id,Time,Title,Description,AuthorId,AssigneeId,Type,AverageGrade,AverageUsefulness,AverageDifficulty,AverageIngenuity,StateId,CategoryId")] Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(project).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AssignedProjectsDetails", new { projectId = project.Id });
+            }
+            
+            return View(project);
+
+        }
+
 
 
 
