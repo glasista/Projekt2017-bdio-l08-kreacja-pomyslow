@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.ViewModels;
 
@@ -16,26 +18,10 @@ namespace IdeaCreationManagement.Controllers
 
         public ActionResult Index()
         {
-            var a = new ListUser()
-            {
-                Email = "a@a.pl",
-                EmailConfirmed = false,
-                Id = "abc123",
-                Name = "pawel",
-                Surname = "pietrasz",
-                Roles = "admin",
-            };
-
-            var b = new ListUser()
-            {
-                Email = "a@a.pl",
-                EmailConfirmed = false,
-                Id = "abc1234",
-                Name = "pawel",
-                Surname = "pietrasz",
-                Roles = "pracownik",
-            };
-            return View(new List<ListUser>(){a, b});
+            var users = _ctx.Users
+                .ToList();
+            var model = Mapper.Map<List<ListUser>>(users);
+            return View(model);
         }
     }
 }

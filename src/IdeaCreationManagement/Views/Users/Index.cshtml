@@ -22,7 +22,7 @@
             @Html.DisplayNameFor(model => model.EmailConfirmed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Roles)
+            @Html.DisplayNameFor(model => model.RoleNames)
         </th>
         <th></th>
     </tr>
@@ -42,7 +42,7 @@
             @Html.DisplayFor(modelItem => item.EmailConfirmed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Roles)
+            @Html.DisplayFor(modelItem => item.RoleNames)
         </td>
         <td>
             @Html.ActionLink("Edycja", "Edit", new { id=item.Id }, new { @class = "btn btn-xs btn-default" }) |

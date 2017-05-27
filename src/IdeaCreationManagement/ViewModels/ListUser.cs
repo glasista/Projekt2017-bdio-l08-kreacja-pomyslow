@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace IdeaCreationManagement.ViewModels
 {
@@ -14,6 +15,6 @@ namespace IdeaCreationManagement.ViewModels
         [DisplayName("Zatwierdzony")]
         public bool EmailConfirmed { get; set; }
         [DisplayName("Role")]
-        public string Roles { get; set; }
+        public List<string> RoleNames { get; set; }
     }
 }
