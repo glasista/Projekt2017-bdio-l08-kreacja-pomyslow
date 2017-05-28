@@ -60,12 +60,19 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                List<HttpPostedFileBase> postedFiles = new List<HttpPostedFileBase>();
                 project.AuthorId = User.Identity.GetUserId();
                 project.Type = type.ToLower() == "idea" ? ProjectType.Idea : ProjectType.Problem;
-
+                foreach (var upload in Request.Files.AllKeys)
+                {
+                    var file = Request.Files[upload];
+                    if(file != null && file.ContentLength > 0)
+                        postedFiles.Add(file);
+                }
                 try
                 {
                     _repo.AddNewProject(project);
+                    _repo.AddFilesIntoProject(project, postedFiles);
                     _repo.SaveChanges();
                 }
                 catch (Exception e)
