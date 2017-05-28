@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Services;
@@ -14,10 +15,14 @@ namespace IdeaCreationManagement.Controllers
             _users = userService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string msg)
         {
             var model = _users.GetAll();
-            return View(model);
+            if (msg == "deleted")
+            {
+                ViewBag.Message = "Użytkownik został usunięty";
+            }
+            return View("Index", model);
         }
 
         public ActionResult Details(string id)
@@ -40,8 +45,11 @@ namespace IdeaCreationManagement.Controllers
         [HttpPost]
         public ActionResult DeleteConfirm(string id)
         {
-            _users.DeleteUser(id);
-            return RedirectToAction("Index");
+            if (id != null)
+            {
+                _users.DeleteUser(id);
+            }
+            return RedirectToAction("Index", new {msg = "deleted"});
         }
     }
 }
