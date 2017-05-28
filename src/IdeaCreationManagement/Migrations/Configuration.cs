@@ -1,4 +1,6 @@
+using System.Web.Razor.Generator;
 using IdeaCreationManagement.Models;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Migrations
@@ -30,123 +32,193 @@ namespace IdeaCreationManagement.Migrations
             //    );
             //
 
+            var states = new[]
+            {
+                new State() {Name = "oczekuj¹cy"},
+                new State() {Name = "odrzucony"},
+                new State() {Name = "przydzielony"},
+                new State() {Name = "zrealizowany"},
+                new State() {Name = "niezrealizowany"},
+                new State() {Name = "rozwi¹zany"},
+                new State() {Name = "nierozwi¹zany"}
+            };
+
             context.States.AddOrUpdate(
                 s => s.Name,
-                new State() { Name = "oczekuj¹cy" },
-                new State() { Name = "odrzucony" },
-                new State() { Name = "przydzielony" },
-                new State() { Name = "zrealizowany" },
-                new State() { Name = "niezrealizowany" },
-                new State() { Name = "rozwi¹zany" },
-                new State() { Name = "nierozwi¹zany" }
+                states
             );
 
-            context.Categories.AddOrUpdate(
-                c => c.Name,
+            var categories = new[]
+            {
                 new Category() { Name = "Stan ³azienek", Type = ProjectType.Problem },
                 new Category() { Name = "Stan pod³óg", Type = ProjectType.Problem },
                 new Category() { Name = "Organizacja studiów", Type = ProjectType.Pomys³ },
                 new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Pomys³ }
+            };
+
+            context.Categories.AddOrUpdate(
+                c => c.Name,
+                categories
             );
+
+            var fields = new[]
+            {
+                new FieldOfStudy() {Name = "Informatyka"},
+                new FieldOfStudy() {Name = "Zarz¹dzanie"}
+            };
 
             context.FieldsOfStudies.AddOrUpdate(
                 f => f.Name,
-                new FieldOfStudy() { Name = "Informatyka" },
-                new FieldOfStudy() { Name = "Zarz¹dzanie" }
+                fields
             );
+
+            var organizations = new[]
+            {
+                new OrganizationalUnit() {Name = "Wydzia³ informatyki"},
+                new OrganizationalUnit() {Name = "Wydzia³ zarz¹dzania"}
+            };
 
             context.OrganizationalUnits.AddOrUpdate(
                 o => o.Name,
-                new OrganizationalUnit() { Name = "Wydzia³ informatyki" },
-                new OrganizationalUnit() { Name = "Wydzia³ zarz¹dzania" }
+                organizations
             );
+
+            var student = new IdentityRole("student");
+            var employee = new IdentityRole("employee");
+            var admin = new IdentityRole("admin");
 
             context.Roles.AddOrUpdate(
                 r => r.Name,
-                new IdentityRole("student"),
-                new IdentityRole("employee"),
-                new IdentityRole("admin")
+                student,
+                employee,
+                admin
             );
+            context.SaveChanges();
 
-            //do dodania:
-            //Category, Claims, Logins, OrganizationalU…, Roles
+            var studentMail = "student@mail.com";
+            var employeeMail = "pracownik@mail.com";
+            var adminMail = "admin@mail.com";
 
+            var user1 = context.Users.SingleOrDefault(x => x.UserName == studentMail);
+            var user2 = context.Users.SingleOrDefault(x => x.UserName == employeeMail);
+            var user3 = context.Users.SingleOrDefault(x => x.UserName == adminMail);
+
+            var hasher = new PasswordHasher();
+            var pass = "qwerty";
+            var passHash = hasher.HashPassword(pass);
             
-            var users = new User[]
+
+            if (user1 == null)
             {
-                new User {
-                    FieldOfStudyId = 1,
-                    OrganizationalUnitId = 1,
+                user1 = new User
+                {
+                    FieldOfStudyId = fields[0].Id,
                     Surname = "Kowalski",
                     StudentNumber = 10010,
-                    Email = "email1@mail.com",
-                    EmailConfirmed = false,
-                    PasswordHash = "AJbhCiDRViukYOcL9E05michPMIBGfOr2Bsj4zkkJRpLbDe5y1b4Gd922uCBevfzFA==",  //Has³o6zn
-                    SecurityStamp = "c1c09534-086f-448f-95c4-e775ad6d8cd7",
-                    PhoneNumber = "465675485",
-                    PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false,
-                    LockoutEnabled = false,
-                    AccessFailedCount = 0,
-                    UserName = "Jan",
+                    Email = studentMail,
+                    EmailConfirmed = true,
+                    PasswordHash = passHash,
+                    SecurityStamp = new Guid().ToString(),
+                    UserName = studentMail,
+                    Name = "Jan",
+                };
+                user1.Roles.Add(new IdentityUserRole() { RoleId = student.Id, UserId = user1.Id});
+                context.Users.Add(user1);
+            }
 
-                },
-                new User
-                { 
-                    FieldOfStudyId = 1,
-                    OrganizationalUnitId = 1,
+            if (user2 == null)
+            {
+                user2 = new User
+                {
+                    OrganizationalUnitId = organizations[0].Id,
                     Surname = "Polak",
-                    StudentNumber = 10011,
-                    Email = "email2@mail.com",
-                    EmailConfirmed = false,
-                    PasswordHash = "AJbhCiDRViukYOcL9E05michPMIBGfOr2Bsj4zkkJRpLbDe5y1b4Gd922uCBevfzFA==",  //Has³o6zn
-                    SecurityStamp = "c1c09534-086f-448f-95c4-e775ad6d8cd7",
-                    PhoneNumber = "987876765",
-                    PhoneNumberConfirmed = false,
-                    TwoFactorEnabled = false,
-                    LockoutEnabled = false,
-                    AccessFailedCount = 0,
-                    UserName = "Adam"
-                }
-            };
+                    Email = employeeMail,
+                    EmailConfirmed = true,
+                    PasswordHash = passHash,
+                    SecurityStamp = new Guid().ToString(),
+                    Name = "Adam",
+                    UserName = employeeMail,
+                };
+                user2.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user2.Id});
+                context.Users.Add(user2);
+            }
+
+            if (user3 == null)
+            {
+                user3 = new User
+                {
+                    Surname = "Niepolak",
+                    Email = adminMail,
+                    EmailConfirmed = true,
+                    PasswordHash = passHash,
+                    SecurityStamp = new Guid().ToString(),
+                    Name = "Admin",
+                    UserName = adminMail,
+                };
+                user3.Roles.Add(new IdentityUserRole() { RoleId = student.Id, UserId = user3.Id });
+                user3.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user3.Id });
+                user3.Roles.Add(new IdentityUserRole() { RoleId = admin.Id, UserId = user3.Id });
+                context.Users.Add(user3);
+            }
+
+            context.SaveChanges();
 
             var projects = new Project[]
             {
                 new Project
                 {
-                    Title = "Tytu³1",
+                    Title = "Tytu³ 1",
                     Description = "Opis 1",
-                    Author = users[0],
-                    Assignee = users[1],
-                    Type = ProjectType.Pomys³,
-                    StateId = 3,
-                    CategoryId = 1,
+                    AuthorId = user1.Id,
+                    AssigneeId = user2.Id,
+                    Type = ProjectType.Problem,
+                    StateId = states[0].Id,
+                    CategoryId = categories[0].Id,
                     Time = DateTime.Now
                 },
                 new Project
                 {
-                    Title = "Tytu³2",
+                    Title = "Tytu³ 2",
                     Description = "Opis 2",
-                    Author = users[0],
-                    Assignee = users[1],
-                    Type = ProjectType.Pomys³,
-                    StateId = 3,
-                    CategoryId = 1,
+                    AuthorId = user1.Id,
+                    Type = ProjectType.Problem,
+                    StateId = states[0].Id,
+                    CategoryId = categories[1].Id,
                     Time = DateTime.Now
-                }
+                },
+                new Project
+                {
+                    Title = "Tytu³ 3",
+                    Description = "Opis 3",
+                    AssigneeId = user2.Id,
+                    Type = ProjectType.Pomys³,
+                    StateId = states[0].Id,
+                    CategoryId = categories[2].Id,
+                    Time = DateTime.Now
+                },
+                new Project
+                {
+                    Title = "Tytu³ 4",
+                    Description = "Opis 4",
+                    Type = ProjectType.Pomys³,
+                    StateId = states[0].Id,
+                    CategoryId = categories[3].Id,
+                    Time = DateTime.Now
+                },
             };
 
             context.Users.AddOrUpdate(
-                r => r.Email,
-                users
-            );
+                r => r.UserName,
+                user1, user2);
+
+            context.SaveChanges();
 
             context.Projects.AddOrUpdate(
                 r => r.Title,
                 projects
             );
 
-
+            context.SaveChanges();
         }
     }
 }
