@@ -70,4 +70,10 @@ namespace IdeaCreationManagement.ViewModels
         public ICollection<ListProject> CreatedProjects { get; set; }
         public ICollection<ListProject> AssignedProjects { get; set; }
     }
+
+    public class DeassignViewModel
+    {
+        public UserDetailsViewModel UserDetailsViewModel { get; set; }
+        public Project Project { get; set; }
+    }
 }

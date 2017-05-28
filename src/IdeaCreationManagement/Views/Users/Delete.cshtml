@@ -17,18 +17,4 @@
 } 
 
 
-@Html.Partial("UserDetails", Model.Details)
-
-@if (Model.CreatedProjects.Count > 0)
-{
-    <h4>Utworzone projekty</h4>
-
-    @Html.Partial("UserProjects", Model.CreatedProjects)
-}
-
-@if (Model.AssignedProjects.Count > 0)
-{
-    <h4>Przypisane projekty</h4>
-
-    @Html.Partial("UserProjects", Model.AssignedProjects)
-}
+@Html.Partial("DetailsOnly", Model)
