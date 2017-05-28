@@ -42,8 +42,8 @@ namespace IdeaCreationManagement.Services
                 .ForMember(x => x.Category, c => c.MapFrom(x => x.Category != null ? x.Category.Name : null))
                 .ForMember(x => x.RoleNames, c => c.Ignore());
             cfg.CreateMap<Project, ListProject>()
-                .ForMember(x => x.Author, c => c.MapFrom(x => x.Author != null ? x.Author.Name : "-"))
-                .ForMember(x => x.Assignee, c => c.MapFrom(x => x.Assignee != null ? x.Assignee.Name : "-"))
+                .ForMember(x => x.Author, c => c.MapFrom(x => x.Author != null ? x.Author.Name + " " + x.Author.Surname : "-"))
+                .ForMember(x => x.Assignee, c => c.MapFrom(x => x.Assignee != null ? x.Assignee.Name + " " + x.Assignee.Surname : "-"))
                 .ForMember(x => x.State, c => c.MapFrom(x => x.State.Name))
                 .ForMember(x => x.Category, c => c.MapFrom(x => x.Category.Name));
         }
