@@ -27,13 +27,20 @@ namespace IdeaCreationManagement.Models
         [ForeignKey("Assignee")]
         public string AssigneeId { get; set; }
 
+        [Display(Name = "Opiekun")]
         public User Assignee { get; set; }
         public ProjectType Type { get; set; }
 
         [Display(Name = "Średnia ocena")]
         public float AverageGrade { get; set; }
+
+        [Display(Name = "Przydatność")]
         public float AverageUsefulness { get; set; }
+
+        [Display(Name = "Poziom trudności")]
         public float AverageDifficulty { get; set; }
+
+        [Display(Name = "Pomysłowość")]
         public float AverageIngenuity { get; set; }
 
         public int StateId { get; set; }

@@ -238,6 +238,29 @@ namespace IdeaCreationManagement.Controllers
             return View(projects.ToList());
         }
 
+        public ActionResult AllProjectsDetails(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
