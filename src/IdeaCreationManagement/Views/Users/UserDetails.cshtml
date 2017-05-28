@@ -1,0 +1,82 @@
+﻿@model IdeaCreationManagement.ViewModels.UserDetails
+
+<div>
+    <h4>Szczegóły</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+        
+        @if (Model.StudentNumber != 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.StudentNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StudentNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FieldOfStudy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FieldOfStudy)
+            </dd>
+        }
+        
+        @if (Model.OrganizationalUnit != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationalUnit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationalUnit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new {id = Model.Id}, new {@class = "btn btn-xs btn-default"})
+    @Html.ActionLink("Powrót do listy", "Index", new {}, new {@class = "btn btn-xs btn-default"})
+</p>

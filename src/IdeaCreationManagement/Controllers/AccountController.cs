@@ -164,23 +164,30 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, FieldOfStudyId = model.Id };
+                var user = new User {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Surname = model.SurName,
+                    FieldOfStudyId = model.Id,
+                    Name = model.UserName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 // Roles
                 var userStore = new UserStore<User>(db);
                 var userManager = new UserManager<User>(userStore);
-                userManager.AddToRole(user.Id, "student");
+                
 
                 //
                 if (result.Succeeded)
                 {
+                    userManager.AddToRole(user.Id, "student");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -211,18 +218,24 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.UserName, Email = model.Email, Surname = model.SurName, OrganizationalUnitId = model.Id};
+                var user = new User { UserName = model.Email,
+                    Email = model.Email,
+                    Surname = model.SurName,
+                    OrganizationalUnitId = model.Id,
+                    Name = model.UserName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
 
 
                 // Roles
                 var userStore = new UserStore<User>(db);
                 var userManager = new UserManager<User>(userStore);
-                userManager.AddToRole(user.Id, "employee");
+                
 
                 //
                 if (result.Succeeded)
                 {
+                    userManager.AddToRole(user.Id, "employee");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

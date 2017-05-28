@@ -1,6 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Data.Entity;
+using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using IdeaCreationManagement.Models;
+using IdeaCreationManagement.Services;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement
 {
@@ -17,7 +22,10 @@ namespace IdeaCreationManagement
 
         private static void Register(ContainerBuilder builder)
         {
-            // tu beda rejestrowane typy dla autofaca
+            builder.RegisterType<AppContext>().AsSelf().As<DbContext>().InstancePerRequest();
+            builder.RegisterType<UserService>().AsSelf().InstancePerRequest();
+            builder.RegisterType<UserStore<User>>().As<IUserStore<User>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
         }
     }
 }

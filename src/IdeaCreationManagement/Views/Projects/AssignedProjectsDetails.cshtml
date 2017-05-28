@@ -51,7 +51,10 @@ oceny według kategorii*@
             @Html.DisplayNameFor(model => model.State):
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State.Name)
+            @Html.DisplayFor(model => model.State.Name) [@Html.ActionLink("Zmień",
+                   "ChangeState",
+                   new { projectId = Model.Id }
+               )]
         </dd>
 
         <dt>
@@ -62,6 +65,27 @@ oceny według kategorii*@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.AverageDifficulty):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageDifficulty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageIngenuity):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageIngenuity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageUsefulness):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageUsefulness)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Description):
         </dt>
         <dd>
@@ -69,4 +93,7 @@ oceny według kategorii*@
         </dd>
 
     </dl>
+
+    @Html.ActionLink("Wróć", "AssignedProjects", "Projects", null,
+    new { @class = "btn btn-block btn-default btn-lg" })
 </div>

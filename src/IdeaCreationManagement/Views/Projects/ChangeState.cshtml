@@ -1,0 +1,53 @@
+﻿@model IdeaCreationManagement.Models.Project
+
+@{
+    ViewBag.Title = "Change state";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zmiana stanu projektu</h2>
+
+<div class="panel-body">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.AuthorId)
+        @Html.HiddenFor(model => model.CategoryId)
+        @Html.HiddenFor(model => model.Time)
+        @Html.HiddenFor(model => model.AverageGrade)
+        @Html.HiddenFor(model => model.AverageDifficulty)
+        @Html.HiddenFor(model => model.AverageIngenuity)
+        @Html.HiddenFor(model => model.AverageUsefulness)
+        @Html.HiddenFor(model => model.Description)
+        @Html.HiddenFor(model => model.AssigneeId)
+        @Html.HiddenFor(model => model.Type)
+
+        <div class="well form-horizontal">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.StateId, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Zmień" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @Html.ActionLink("Wróć", "AssignedProjectsDetails", "Projects", new { projectId = Model.Id },
+    new { @class = "btn btn-block btn-default btn-lg" })
+</div>

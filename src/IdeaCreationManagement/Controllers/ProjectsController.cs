@@ -151,6 +151,90 @@ namespace IdeaCreationManagement.Controllers
             return RedirectToAction("Index");
         }
 
+
+        [Authorize(Roles = "employee")]
+        public ActionResult AssignedProjects()
+        {
+            //TODO: zwrócenie projektów przydzielone do pracownika
+            var userId = User.Identity.GetUserId();
+            var assignedProjects = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.AssigneeId == userId);
+            return View(assignedProjects.ToList());
+        }
+
+        [Authorize(Roles = "employee")]
+        public ActionResult AssignedProjectsDetails(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+
+        }
+
+        [Authorize(Roles = "employee")]
+        public ActionResult ChangeState(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            ViewBag.StateID = new SelectList(db.States, "Id", "Name");
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "employee")]
+        public ActionResult ChangeState([Bind(Include = "Id,Time,Title,Description,AuthorId,AssigneeId,Type,AverageGrade,AverageUsefulness,AverageDifficulty,AverageIngenuity,StateId,CategoryId")] Project project)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(project).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("AssignedProjectsDetails", new { projectId = project.Id });
+            }
+            
+            return View(project);
+
+        }
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -159,5 +243,7 @@ namespace IdeaCreationManagement.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }
