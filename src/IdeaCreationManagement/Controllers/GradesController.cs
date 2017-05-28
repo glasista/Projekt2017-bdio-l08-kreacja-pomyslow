@@ -43,9 +43,11 @@ namespace IdeaCreationManagement.Controllers
 
         {
            // var grade = new Grade();
-          // grade.Time = DateTime.Now;
-            
-                      
+            //var dateTimeNow = DateTime.Now;
+            //var dateOnlyString = dateTimeNow.ToShortDateString();
+             //grade.Time = dateOnlyString;
+
+
             return View();
         }
 
@@ -63,6 +65,8 @@ namespace IdeaCreationManagement.Controllers
 
                 db.Grades.Add(grade);
                db.SaveChanges();
+                var average = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
+                
                 return RedirectToAction("Index");
             }
 
