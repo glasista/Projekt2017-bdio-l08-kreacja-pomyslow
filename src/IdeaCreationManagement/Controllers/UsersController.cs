@@ -25,12 +25,16 @@ namespace IdeaCreationManagement.Controllers
             return View("Index", model);
         }
 
-        public ActionResult Details(string id)
+        public ActionResult Details(string id, string msg)
         {
             var user = _users.GetUserDetails(id);
             if (user == null)
             {
                 return new HttpNotFoundResult();
+            }
+            if (msg == "deassigned")
+            {
+                ViewBag.Message = "Przypisanie pracownika do projektu zostało usunięte";
             }
 
             return View(user);
@@ -39,17 +43,41 @@ namespace IdeaCreationManagement.Controllers
         [HttpGet]
         public ActionResult Delete(string id)
         {
-            return Details(id);
+            return Details(id, null);
         }
 
         [HttpPost]
         public ActionResult DeleteConfirm(string id)
         {
+            string message = "";
             if (id != null)
             {
                 _users.DeleteUser(id);
+                message = "deleted";
             }
-            return RedirectToAction("Index", new {msg = "deleted"});
+            return RedirectToAction("Index", new {msg = message });
+        }
+
+        public ActionResult Deassign(string id, int projectId)
+        {
+            var model = _users.DeassignConfirmation(id, projectId);
+            if (model.UserDetailsViewModel == null || model.Project == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult DeassignConfirm(string id, int projectId)
+        {
+            string message = "";
+            var result = _users.Deassign(projectId);
+            if (result)
+            {
+                message = "deassigned";
+            }
+            return RedirectToAction("Details", new { id = id, msg = message });
         }
     }
 }

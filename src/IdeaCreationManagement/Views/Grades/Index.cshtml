@@ -1,27 +1,27 @@
 ﻿@model IEnumerable<IdeaCreationManagement.Models.Grade>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Dokonane oceny";
 }
 
-<h2>Index</h2>
+<h2>Dokonane oceny</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nowa Ocena", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayName("Data")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UsefulnessValue)
+            @Html.DisplayName("Przydatność")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DifficultyValue)
+            @Html.DisplayName("Poziom Trudności")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ingenuity)
+            @Html.DisplayName("Pomysłowość")
         </th>
         <th></th>
     </tr>
@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Ingenuity)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edytuj","Edit", new { id=item.Id }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.Id }) |
+            @Html.ActionLink( "Usuń", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
