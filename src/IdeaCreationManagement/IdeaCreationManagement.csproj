@@ -304,14 +304,11 @@
     <Content Include="Views\Grades\Details.cshtml" />
     <Content Include="Views\Grades\Edit.cshtml" />
     <Content Include="Views\Grades\Index.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\ViewProjects.cshtml" />
     <Content Include="Views\Admin\ChooseEmployee.cshtml" />
-=======
     <Content Include="Views\Users\DetailsOnly.cshtml" />
     <Content Include="Views\Users\Deassign.cshtml" />
->>>>>>> e04e7e92eaff82ffaab6cef4b8a14dcb493c8756
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
