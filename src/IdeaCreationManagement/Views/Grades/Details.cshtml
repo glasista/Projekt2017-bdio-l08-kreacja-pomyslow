@@ -1,0 +1,50 @@
+﻿@model IdeaCreationManagement.Models.Grade
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Grade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsefulnessValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsefulnessValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DifficultyValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DifficultyValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingenuity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingenuity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
