@@ -232,8 +232,11 @@ namespace IdeaCreationManagement.Controllers
 
         }
 
-
-
+        public ActionResult AllProjects()
+        {
+            var projects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State);
+            return View(projects.ToList());
+        }
 
         protected override void Dispose(bool disposing)
         {
