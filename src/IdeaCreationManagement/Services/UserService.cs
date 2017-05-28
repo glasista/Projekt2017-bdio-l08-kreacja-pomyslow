@@ -114,5 +114,29 @@ namespace IdeaCreationManagement.Services
             _userManager.Delete(user);
             _ctx.SaveChanges();
         }
+
+        public DeassignViewModel DeassignConfirmation(string id, int projectId)
+        {
+            var user = GetUserDetails(id);
+            var project = _ctx.Projects.Find(projectId);
+            return new DeassignViewModel()
+            {
+                Project = project,
+                UserDetailsViewModel = user,
+            };
+        }
+
+        public bool Deassign(int projectId)
+        {
+            var project = _ctx.Projects.Find(projectId);
+            if (project != null)
+            {
+                project.AssigneeId = null;
+                project.Assignee = null;
+                _ctx.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

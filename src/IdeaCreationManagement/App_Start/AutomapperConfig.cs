@@ -11,8 +11,6 @@ namespace IdeaCreationManagement.App_Start
 {
     public class AutomapperConfig
     {
-        private static Dictionary<string, string> Roles;
-
         public static void Configure()
         {
             Mapper.Initialize(Configuration);

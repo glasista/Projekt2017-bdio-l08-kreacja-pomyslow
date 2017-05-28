@@ -12,23 +12,9 @@
         Czy na pewno skasować poniższego użytkownika? <br />
         <input type="submit" value="Tak" class="btn btn-xs btn-default"/>
         <input type="hidden" name="id" value="@Model.Details.Id"/>
-        @Html.ActionLink("Nie", "Details", new { id = Model.Details.Id }, new { @class = "btn btn-xs btn-default" })
+        @Html.ActionLink("Nie", "Index",null, new { @class = "btn btn-xs btn-default" })
     </p>
 } 
 
 
-@Html.Partial("UserDetails", Model.Details)
-
-@if (Model.CreatedProjects.Count > 0)
-{
-    <h4>Utworzone projekty</h4>
-
-    @Html.Partial("UserProjects", Model.CreatedProjects)
-}
-
-@if (Model.AssignedProjects.Count > 0)
-{
-    <h4>Przypisane projekty</h4>
-
-    @Html.Partial("UserProjects", Model.AssignedProjects)
-}
+@Html.Partial("DetailsOnly", Model)
