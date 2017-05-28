@@ -15,8 +15,11 @@ namespace IdeaCreationManagement.Controllers
         private AppContext db = new AppContext();
 
         // GET: Grades
-        public ActionResult Index()
+        public ActionResult Index(ProjectType type = ProjectType.Idea)
         {
+
+
+
             return View(db.Grades.ToList());
         }
 
@@ -37,7 +40,12 @@ namespace IdeaCreationManagement.Controllers
 
         // GET: Grades/Create
         public ActionResult Create()
+
         {
+           // var grade = new Grade();
+          // grade.Time = DateTime.Now;
+            
+                      
             return View();
         }
 
@@ -50,8 +58,11 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                var id = db.Projects.First().Id;
+                grade.ProjectId = id;
+
                 db.Grades.Add(grade);
-                db.SaveChanges();
+               db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
