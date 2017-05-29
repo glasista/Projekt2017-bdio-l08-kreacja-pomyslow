@@ -76,17 +76,18 @@ namespace IdeaCreationManagement.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [RegularExpression("^([\\w\\.\\-]+)@stud.prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @stud.prz.edu.pl")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2 } znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Wprowadzone hasła są różne.")]
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("FieldOfStudy")]
@@ -108,17 +109,18 @@ namespace IdeaCreationManagement.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [RegularExpression("^([\\w\\.\\-]+)@prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @prz.edu.pl")]
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Potwierdź hasło")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Wprowadzone hasła są różne.")]
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("OrganizationalUnit")]
