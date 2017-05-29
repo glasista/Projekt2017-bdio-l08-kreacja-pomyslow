@@ -45,8 +45,8 @@ namespace IdeaCreationManagement.Migrations
                 c => c.Name,
                 new Category() { Name = "Stan ³azienek", Type = ProjectType.Problem },
                 new Category() { Name = "Stan pod³óg", Type = ProjectType.Problem },
-                new Category() { Name = "Organizacja studiów", Type = ProjectType.Idea },
-                new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Idea }
+                new Category() { Name = "Organizacja studiów", Type = ProjectType.Pomys³ },
+                new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Pomys³ }
             );
 
             context.FieldsOfStudies.AddOrUpdate(
@@ -118,7 +118,7 @@ namespace IdeaCreationManagement.Migrations
                     Description = "Opis 1",
                     Author = users[0],
                     Assignee = users[1],
-                    Type = ProjectType.Idea,
+                    Type = ProjectType.Pomys³,
                     StateId = 3,
                     CategoryId = 1,
                     Time = DateTime.Now
@@ -129,7 +129,7 @@ namespace IdeaCreationManagement.Migrations
                     Description = "Opis 2",
                     Author = users[0],
                     Assignee = users[1],
-                    Type = ProjectType.Idea,
+                    Type = ProjectType.Pomys³,
                     StateId = 3,
                     CategoryId = 1,
                     Time = DateTime.Now

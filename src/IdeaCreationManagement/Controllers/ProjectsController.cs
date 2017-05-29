@@ -47,7 +47,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProjectType projectType = type.ToLower() == "idea" ? ProjectType.Idea : ProjectType.Problem;
+            ProjectType projectType = type.ToLower() == "idea" ? ProjectType.Pomysł : ProjectType.Problem;
             ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(projectType), "Id", "Name");
             ViewBag.ProjectType = type.ToLower() == "idea" ? "Pomysł" : "Problem";
             return View("Create");
@@ -62,7 +62,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 List<HttpPostedFileBase> postedFiles = new List<HttpPostedFileBase>();
                 project.AuthorId = User.Identity.GetUserId();
-                project.Type = type.ToLower() == "idea" ? ProjectType.Idea : ProjectType.Problem;
+                project.Type = type.ToLower() == "idea" ? ProjectType.Pomysł : ProjectType.Problem;
                 foreach (var upload in Request.Files.AllKeys)
                 {
                     var file = Request.Files[upload];

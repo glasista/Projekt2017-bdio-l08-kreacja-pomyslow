@@ -21,16 +21,16 @@ namespace IdeaCreationManagement.Controllers
         //}
 
         //[Route("/Category?type=Idea")]
-        public ActionResult Index(ProjectType type = ProjectType.Idea)
+        public ActionResult Index(ProjectType type = ProjectType.Pomysł)
         {
             //if (type != null)
             // {
             var categories = db.Categories;
             IQueryable<Category> selected;
 
-            if (type == ProjectType.Idea)
+            if (type == ProjectType.Pomysł)
             {
-                selected = categories.Where(c => c.Type == ProjectType.Idea);
+                selected = categories.Where(c => c.Type == ProjectType.Pomysł);
             }
             else
             {
