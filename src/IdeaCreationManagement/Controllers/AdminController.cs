@@ -48,6 +48,7 @@ namespace IdeaCreationManagement.Controllers
             ViewBag.ProjectID = project.Id;
             ViewBag.Projects = project.Title;
             var employee = db.Users.Include(p => p.OrganizationalUnit).Include(p => p.Category).Where(p => p.Category == project.Category);
+            // .Where(c => c.Category.Name == project.Category.Name);
             return View(employee);
         }
         public ActionResult SetEmployee(int? id)
