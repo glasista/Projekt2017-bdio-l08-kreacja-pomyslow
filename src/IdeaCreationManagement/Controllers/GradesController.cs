@@ -15,7 +15,7 @@ namespace IdeaCreationManagement.Controllers
         private AppContext db = new AppContext();
 
         // GET: Grades
-        public ActionResult Index(ProjectType type = ProjectType.Idea)
+        public ActionResult Index(ProjectType type = ProjectType.Pomysł)
         {
 
 

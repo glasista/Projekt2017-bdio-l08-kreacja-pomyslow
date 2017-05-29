@@ -3,6 +3,6 @@
     public enum ProjectType
     {
         Problem,
-        Idea
+        Pomysł
     }
 }
