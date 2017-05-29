@@ -10,10 +10,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Assignee.Surname)
+            @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Author.Surname)
+            @Html.DisplayNameFor(model => model.Type)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Category.Name)
@@ -22,17 +22,9 @@
             @Html.DisplayNameFor(model => model.State.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayNameFor(model => model.Assignee)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
+
         <th>
 
         <th></th>
@@ -42,36 +34,31 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Assignee.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Author.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.State.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.State.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assignee.Name)
+            </td>
 
           
             <td>
-            @Html.ActionLink("Przydziel", "ChooseEmployee", new { id = item.Id }) 
+            @Html.ActionLink("Przydziel", "ChooseEmployee", new{ id=item.Id }) 
    
             </td>
         </tr>
     }
 
 </table>
+@Html.ActionLink("Wróć", "Index")
+
+

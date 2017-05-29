@@ -19,7 +19,7 @@ namespace IdeaCreationManagement.Controllers
         private AppContext db = new AppContext();
 
         // GET: 
-        [Authorize(Roles = "admin")]
+      //  [Authorize(Roles = "admin")]
 
         public ActionResult Index()
         {
@@ -45,9 +45,20 @@ namespace IdeaCreationManagement.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ProjectID = project.Id;
             ViewBag.Projects = project.Title;
             var employee = db.Users.Include(p => p.OrganizationalUnit).Include(p => p.Category).Where(p => p.Category == project.Category);
             return View(employee);
+        }
+        public ActionResult SetEmployee(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            db.SaveChanges();   
+            return RedirectToAction("ViewProjects");
         }
     }
 
