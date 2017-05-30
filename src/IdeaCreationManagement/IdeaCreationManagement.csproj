@@ -317,6 +317,7 @@
     <Content Include="Views\Alerts\Index.cshtml" />
     <Content Include="Views\Account\RegisterStudentStepTwo.cshtml" />
     <Content Include="Views\Account\RegisterEmployeeStepTwo.cshtml" />
+    <Content Include="Views\Alerts\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
