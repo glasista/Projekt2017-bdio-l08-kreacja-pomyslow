@@ -1,4 +1,4 @@
-using System.Web.Razor.Generator;
+Ôªøusing System.Web.Razor.Generator;
 using IdeaCreationManagement.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -34,13 +34,13 @@ namespace IdeaCreationManagement.Migrations
 
             var states = new[]
             {
-                new State() {Name = "oczekujπcy"},
+                new State() {Name = "oczekujƒÖcy"},
                 new State() {Name = "odrzucony"},
                 new State() {Name = "przydzielony"},
                 new State() {Name = "zrealizowany"},
                 new State() {Name = "niezrealizowany"},
-                new State() {Name = "rozwiπzany"},
-                new State() {Name = "nierozwiπzany"}
+                new State() {Name = "rozwiƒÖzany"},
+                new State() {Name = "nierozwiƒÖzany"}
             };
 
             context.States.AddOrUpdate(
@@ -50,10 +50,10 @@ namespace IdeaCreationManagement.Migrations
 
             var categories = new[]
             {
-                new Category() { Name = "Stan ≥azienek", Type = ProjectType.Problem },
-                new Category() { Name = "Stan pod≥Ûg", Type = ProjectType.Problem },
-                new Category() { Name = "Organizacja studiÛw", Type = ProjectType.Pomys≥ },
-                new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Pomys≥ }
+                new Category() { Name = "Stan ≈Çazienek", Type = ProjectType.Problem },
+                new Category() { Name = "Stan pod≈Ç√≥g", Type = ProjectType.Problem },
+                new Category() { Name = "Organizacja studi√≥w", Type = ProjectType.Pomys≈Ç },
+                new Category() { Name = "Organizacja dziekanatu", Type = ProjectType.Pomys≈Ç }
             };
 
             context.Categories.AddOrUpdate(
@@ -64,7 +64,7 @@ namespace IdeaCreationManagement.Migrations
             var fields = new[]
             {
                 new FieldOfStudy() {Name = "Informatyka"},
-                new FieldOfStudy() {Name = "Zarzπdzanie"}
+                new FieldOfStudy() {Name = "ZarzƒÖdzanie"}
             };
 
             context.FieldsOfStudies.AddOrUpdate(
@@ -74,8 +74,8 @@ namespace IdeaCreationManagement.Migrations
 
             var organizations = new[]
             {
-                new OrganizationalUnit() {Name = "Wydzia≥ informatyki"},
-                new OrganizationalUnit() {Name = "Wydzia≥ zarzπdzania"}
+                new OrganizationalUnit() {Name = "Wydzia≈Ç informatyki"},
+                new OrganizationalUnit() {Name = "Wydzia≈Ç zarzƒÖdzania"}
             };
 
             context.OrganizationalUnits.AddOrUpdate(
@@ -168,7 +168,7 @@ namespace IdeaCreationManagement.Migrations
             {
                 new Project
                 {
-                    Title = "Tytu≥ 1",
+                    Title = "Tytu≈Ç 1",
                     Description = "Opis 1",
                     AuthorId = user1.Id,
                     AssigneeId = user2.Id,
@@ -179,7 +179,7 @@ namespace IdeaCreationManagement.Migrations
                 },
                 new Project
                 {
-                    Title = "Tytu≥ 2",
+                    Title = "Tytu≈Ç 2",
                     Description = "Opis 2",
                     AuthorId = user1.Id,
                     Type = ProjectType.Problem,
@@ -189,19 +189,19 @@ namespace IdeaCreationManagement.Migrations
                 },
                 new Project
                 {
-                    Title = "Tytu≥ 3",
+                    Title = "Tytu≈Ç 3",
                     Description = "Opis 3",
                     AssigneeId = user2.Id,
-                    Type = ProjectType.Pomys≥,
+                    Type = ProjectType.Pomys≈Ç,
                     StateId = states[0].Id,
                     CategoryId = categories[2].Id,
                     Time = DateTime.Now
                 },
                 new Project
                 {
-                    Title = "Tytu≥ 4",
+                    Title = "Tytu≈Ç 4",
                     Description = "Opis 4",
-                    Type = ProjectType.Pomys≥,
+                    Type = ProjectType.Pomys≈Ç,
                     StateId = states[0].Id,
                     CategoryId = categories[3].Id,
                     Time = DateTime.Now
