@@ -312,14 +312,11 @@
     <Content Include="Views\Users\Deassign.cshtml" />
     <Content Include="Views\Projects\AllProjects.cshtml" />
     <Content Include="Views\Projects\AllProjectsDetails.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Alerts\Create.cshtml" />
     <Content Include="Views\Alerts\Details.cshtml" />
     <Content Include="Views\Alerts\Index.cshtml" />
-=======
     <Content Include="Views\Account\RegisterStudentStepTwo.cshtml" />
     <Content Include="Views\Account\RegisterEmployeeStepTwo.cshtml" />
->>>>>>> 66908b658f7b97264fe7639f23c18d7c2c4222e3
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

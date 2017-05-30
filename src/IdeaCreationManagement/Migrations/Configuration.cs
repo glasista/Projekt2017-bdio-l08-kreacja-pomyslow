@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 using System.Web.Razor.Generator;
-=======
->>>>>>> 66908b658f7b97264fe7639f23c18d7c2c4222e3
 ﻿using System.Web.Razor.Generator;
 using IdeaCreationManagement.Models;
 using Microsoft.AspNet.Identity;
