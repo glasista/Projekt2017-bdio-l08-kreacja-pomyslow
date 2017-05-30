@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using IdeaCreationManagement.Models;
@@ -35,7 +36,7 @@ namespace IdeaCreationManagement.Services
             cfg.CreateMap<IdentityUserRole, string>()
                 .ProjectUsing(c => roles[c.RoleId]);
             cfg.CreateMap<User, ListUser>()
-                .ForMember(x => x.RoleNames, c => c.MapFrom(x => x.Roles));
+                .ForMember(x => x.Roles, c => c.MapFrom(x => x.Roles));
             cfg.CreateMap<User, UserDetails>()
                 .ForMember(x => x.FieldOfStudy, c => c.MapFrom(x => x.FieldOfStudy != null ? x.FieldOfStudy.Name : null))
                 .ForMember(x => x.OrganizationalUnit, c => c.MapFrom(x => x.OrganizationalUnit != null ? x.OrganizationalUnit.Name : null))
@@ -46,6 +47,16 @@ namespace IdeaCreationManagement.Services
                 .ForMember(x => x.Assignee, c => c.MapFrom(x => x.Assignee != null ? x.Assignee.Name + " " + x.Assignee.Surname : "-"))
                 .ForMember(x => x.State, c => c.MapFrom(x => x.State.Name))
                 .ForMember(x => x.Category, c => c.MapFrom(x => x.Category.Name));
+            cfg.CreateMap<Category, SelectListItem>()
+                .ForMember(x => x.Value, c => c.MapFrom(x => x.Id))
+                .ForMember(x => x.Text, c => c.MapFrom(x => x.Name));
+            cfg.CreateMap<FieldOfStudy, SelectListItem>()
+                .ForMember(x => x.Value, c => c.MapFrom(x => x.Id))
+                .ForMember(x => x.Text, c => c.MapFrom(x => x.Name));
+            cfg.CreateMap<OrganizationalUnit, SelectListItem>()
+                .ForMember(x => x.Value, c => c.MapFrom(x => x.Id))
+                .ForMember(x => x.Text, c => c.MapFrom(x => x.Name));
+            cfg.CreateMap<User, UserEditViewModel>();
         }
 
         public ICollection<ListUser> GetAll()
@@ -62,12 +73,13 @@ namespace IdeaCreationManagement.Services
                 .Include(x => x.OrganizationalUnit)
                 .Include(x => x.FieldOfStudy)
                 .Include(x => x.Category)
-                .ProjectTo<UserDetails>()
                 .SingleOrDefault();
             if (user == null)
             {
                 return null;
             }
+
+            var userModel = Mapper.Map<UserDetails>(user);
 
             var created = _ctx.Projects
                 .Where(x => x.AuthorId == user.Id)
@@ -84,7 +96,7 @@ namespace IdeaCreationManagement.Services
 
             return new UserDetailsViewModel()
             {
-                Details = user,
+                Details = userModel,
                 CreatedProjects = created,
                 AssignedProjects = assigned,
             };
@@ -137,6 +149,23 @@ namespace IdeaCreationManagement.Services
                 return true;
             }
             return false;
+        }
+
+        public UserEditViewModel GetUserEditDetails(string id)
+        {
+            var user = _ctx.Users
+                .Find(id);
+            if (user == null)
+            {
+                return null;
+            }
+            var model = Mapper.Map<UserEditViewModel>(user);
+
+            model.Categories = _ctx.Categories.ProjectTo<SelectListItem>().ToList();
+            model.FieldsOfStudy = _ctx.FieldsOfStudies.ProjectTo<SelectListItem>().ToList();
+            model.OrganizationalUnits = _ctx.OrganizationalUnits.ProjectTo<SelectListItem>().ToList();
+
+            return model;
         }
     }
 }

@@ -318,6 +318,7 @@
     <Content Include="Views\Account\RegisterStudentStepTwo.cshtml" />
     <Content Include="Views\Account\RegisterEmployeeStepTwo.cshtml" />
     <Content Include="Views\Alerts\Delete.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

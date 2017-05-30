@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web.Mvc;
+using System.Web.WebPages;
 using IdeaCreationManagement.Models;
 
 namespace IdeaCreationManagement.ViewModels
@@ -15,8 +17,25 @@ namespace IdeaCreationManagement.ViewModels
         public string Email { get; set; }
         [DisplayName("Zatwierdzony")]
         public bool EmailConfirmed { get; set; }
+        public List<string> Roles { get; set; }
+
         [DisplayName("Role")]
-        public List<string> RoleNames { get; set; }
+        public string RoleNames
+        {
+            get
+            {
+                string output = "";
+                foreach (var x in Roles)
+                {
+                    if (!output.IsEmpty())
+                    {
+                        output += ", ";
+                    }
+                    output += x;
+                }
+                return output;
+            }
+        }
     }
 
     public class UserDetails : ListUser
@@ -39,6 +58,26 @@ namespace IdeaCreationManagement.ViewModels
 
         [DisplayName("Kategoria")]
         public string Category { get; set; }
+    }
+
+    public class UserEditViewModel : ListUser
+    {
+        public int StudentNumber { get; set; }
+
+        [DisplayName("Numer albumu")]
+        public string StudentNumberView => StudentNumber == 0 ? "" : StudentNumber.ToString();
+
+        public int? FieldOfStudyId { get; set; }
+        [DisplayName("Kierunek studiów")]
+        public List<SelectListItem> FieldsOfStudy { get; set; }
+
+        public int? OrganizationalUnitId { get; set; }
+        [DisplayName("Jednostka organizacyjna")]
+        public List<SelectListItem> OrganizationalUnits { get; set; }
+
+        public int? CategoryId { get; set; }
+        [DisplayName("Kategoria")]
+        public List<SelectListItem> Categories { get; set; }
     }
 
     public class ListProject
