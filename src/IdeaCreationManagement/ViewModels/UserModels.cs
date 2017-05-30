@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Web.WebPages;
 using IdeaCreationManagement.Models;
 
 namespace IdeaCreationManagement.ViewModels
@@ -15,8 +16,25 @@ namespace IdeaCreationManagement.ViewModels
         public string Email { get; set; }
         [DisplayName("Zatwierdzony")]
         public bool EmailConfirmed { get; set; }
+        public List<string> Roles { get; set; }
+
         [DisplayName("Role")]
-        public List<string> RoleNames { get; set; }
+        public string RoleNames
+        {
+            get
+            {
+                string output = "";
+                foreach (var x in Roles)
+                {
+                    if (!output.IsEmpty())
+                    {
+                        output += ", ";
+                    }
+                    output += x;
+                }
+                return output;
+            }
+        }
     }
 
     public class UserDetails : ListUser

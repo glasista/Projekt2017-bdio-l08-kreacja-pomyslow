@@ -35,7 +35,7 @@ namespace IdeaCreationManagement.Services
             cfg.CreateMap<IdentityUserRole, string>()
                 .ProjectUsing(c => roles[c.RoleId]);
             cfg.CreateMap<User, ListUser>()
-                .ForMember(x => x.RoleNames, c => c.MapFrom(x => x.Roles));
+                .ForMember(x => x.Roles, c => c.MapFrom(x => x.Roles));
             cfg.CreateMap<User, UserDetails>()
                 .ForMember(x => x.FieldOfStudy, c => c.MapFrom(x => x.FieldOfStudy != null ? x.FieldOfStudy.Name : null))
                 .ForMember(x => x.OrganizationalUnit, c => c.MapFrom(x => x.OrganizationalUnit != null ? x.OrganizationalUnit.Name : null))
