@@ -65,11 +65,11 @@ namespace IdeaCreationManagement.Models
 
     public class RegisterStudentViewModel
     {
-        [Required(ErrorMessage = "Musisz wprowadzić Imię")]
+        [Required(ErrorMessage = "Musisz wprowadzić imię")]
         [Display(Name = "Imię")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Musisz wprowadzić naziwsko")]
+        [Required(ErrorMessage = "Musisz wprowadzić nazwisko")]
         [Display(Name = "Nazwisko")]
         public string SurName { get; set; }
 
@@ -79,7 +79,7 @@ namespace IdeaCreationManagement.Models
         [RegularExpression("^([\\w\\.\\-]+)@stud.prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @stud.prz.edu.pl")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Musisz wpisać hasło")]
+        [Required(ErrorMessage = "Musisz wprowadzić hasło")]
         [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2 } znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
