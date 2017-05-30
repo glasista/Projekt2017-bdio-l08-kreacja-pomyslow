@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
-                @Html.ActionLink("Wybierz Pracownika", "SetEmployee", new { id = item.Id })
+                @Html.ActionLink("Wybierz Pracownika", "SetEmployee", new { id_e = item.Id  , id_p = ViewBag.ProjectID  })
 
             </td>
         <</tr>

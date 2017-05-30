@@ -138,6 +138,7 @@ namespace IdeaCreationManagement.Migrations
                     SecurityStamp = new Guid().ToString(),
                     Name = "Adam",
                     UserName = employeeMail,
+                    CategoryId = categories[1].Id,
                 };
                 user2.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user2.Id});
                 context.Users.Add(user2);
