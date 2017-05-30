@@ -223,7 +223,17 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                Alert newalert = new Alert {
+                    TimeOfChange = DateTime.Now,
+                    StateId = project.StateId,
+                    AuthorOfChangeId = User.Identity.GetUserId(),
+                    StudentRead = false,
+                    EmployeeRead = false,
+                    ProjectId = project.Id
+                };
+
                 db.Entry(project).State = EntityState.Modified;
+                db.Alerts.Add(newalert);
                 db.SaveChanges();
                 return RedirectToAction("AssignedProjectsDetails", new { projectId = project.Id });
             }
