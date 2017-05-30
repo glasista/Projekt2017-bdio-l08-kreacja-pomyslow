@@ -311,6 +311,8 @@
     <Content Include="Views\Users\Deassign.cshtml" />
     <Content Include="Views\Projects\AllProjects.cshtml" />
     <Content Include="Views\Projects\AllProjectsDetails.cshtml" />
+    <Content Include="Views\Account\RegisterStudentStepTwo.cshtml" />
+    <Content Include="Views\Account\RegisterEmployeeStepTwo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
