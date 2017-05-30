@@ -1,0 +1,64 @@
+﻿@model IEnumerable<IdeaCreationManagement.Models.Alert>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorOfChange.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfChange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentRead)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeRead)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorOfChange.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeOfChange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentRead)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeRead)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
