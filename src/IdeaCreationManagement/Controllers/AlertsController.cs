@@ -65,6 +65,32 @@ namespace IdeaCreationManagement.Controllers
             return View(alert);
         }
 
+        // GET: Alerts/Delete/
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alert alert = db.Alerts.Find(id);
+            if (alert == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alert);
+        }
+
+        // POST: Alerts/Delete/
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Alert alert = db.Alerts.Find(id);
+            db.Alerts.Remove(alert);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
