@@ -65,21 +65,21 @@ namespace IdeaCreationManagement.Models
 
     public class RegisterStudentViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić Imię")]
         [Display(Name = "Imię")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić naziwsko")]
         [Display(Name = "Nazwisko")]
         public string SurName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić email")]
         [EmailAddress]
         [Display(Name = "Email")]
         [RegularExpression("^([\\w\\.\\-]+)@stud.prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @stud.prz.edu.pl")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wpisać hasło")]
         [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2 } znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
@@ -91,6 +91,7 @@ namespace IdeaCreationManagement.Models
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("FieldOfStudy")]
+        [Required(ErrorMessage = "Musisz wybrać kierunek studiów z listy")]
         public int Id { get; set; }
         [Display(Name = "Kierunek studiów")]
         public virtual FieldOfStudy Name { get; set; }
@@ -98,21 +99,21 @@ namespace IdeaCreationManagement.Models
 
     public class RegisterEmployeeViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić imię")]
         [Display(Name = "Imię")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić naziwsko")]
         [Display(Name = "Nazwisko")]
         public string SurName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić email")]
         [EmailAddress]
         [Display(Name = "Email")]
         [RegularExpression("^([\\w\\.\\-]+)@prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @prz.edu.pl")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Musisz wprowadzić hasło")]
         [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2} znaków.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Hasło")]
@@ -124,6 +125,7 @@ namespace IdeaCreationManagement.Models
         public string ConfirmPassword { get; set; }
 
         [ForeignKey("OrganizationalUnit")]
+        [Required(ErrorMessage = "Musisz wybrać zakład/katedrę z listy")]
         public int Id { get; set; }
         [Display(Name = "Zakład/Katedra")]
         public virtual OrganizationalUnit Name { get; set; }
