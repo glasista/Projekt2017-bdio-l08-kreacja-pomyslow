@@ -12,7 +12,7 @@ using IdeaCreationManagement.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace IdeaCreationManagement.Controllers
-{
+{ 
     [Authorize]
     public class AccountController : Controller
     {
