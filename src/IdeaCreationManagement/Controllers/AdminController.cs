@@ -47,16 +47,31 @@ namespace IdeaCreationManagement.Controllers
             }
             ViewBag.ProjectID = project.Id;
             ViewBag.Projects = project.Title;
-            var employee = db.Users.Include(p => p.OrganizationalUnit).Include(p => p.Category).Where(p => p.Category == project.Category);
+            var employee = db.Users.Include(p => p.OrganizationalUnit).Include(p => p.Category).Where(p => p.CategoryId == project.CategoryId);
             // .Where(c => c.Category.Name == project.Category.Name);
-            return View(employee);
+            return View(employee.ToList());
         }
-        public ActionResult SetEmployee(int? id)
+        public ActionResult SetEmployee(string id_e , int? id_p)
         {
-            if (id == null)
+            if (id_e == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if(id_p == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User emp = db.Users.Include(p => p.OrganizationalUnit).Include(p => p.Category).Where(p => p.Id == id_e).First();
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == id_p).
+                First();
+
+            project.AssigneeId = emp.Id;
             
             db.SaveChanges();   
             return RedirectToAction("ViewProjects");

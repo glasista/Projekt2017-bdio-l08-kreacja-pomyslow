@@ -29,6 +29,7 @@
                     <li>@Html.ActionLink("Baza projektów", "AllProjects", "Projects")</li>
                     <li>@Html.ActionLink("kat. pomysłów", "Index","Category", new { type = IdeaCreationManagement.Models.ProjectType.Pomysł })</li>
                     <li>@Html.ActionLink("kat. problemów", "Index", "Category", new { type = IdeaCreationManagement.Models.ProjectType.Problem })</li>
+                    <li>@Html.ActionLink("Przydzielone proj.", "AssignedProjects", "Projects")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

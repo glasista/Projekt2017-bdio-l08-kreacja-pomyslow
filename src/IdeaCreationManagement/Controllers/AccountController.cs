@@ -189,7 +189,7 @@ namespace IdeaCreationManagement.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("RegisterStudentStepTwo", "Account");
                 }
                 AddErrors(result);
             }
@@ -199,6 +199,11 @@ namespace IdeaCreationManagement.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
+        public ActionResult RegisterStudentStepTwo()
+        {
+            return View();
+        }
 
         //
         // GET: /Account/RegisterEmployee
@@ -244,7 +249,7 @@ namespace IdeaCreationManagement.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("RegisterEmployeeStepTwo", "Account");
                 }
                 AddErrors(result);
             }
@@ -252,6 +257,12 @@ namespace IdeaCreationManagement.Controllers
             // If we got this far, something failed, redisplay form
             ViewBag.Id = new SelectList(db.OrganizationalUnits, "Id", "Name");
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterEmployeeStepTwo()
+        {
+            return View();
         }
 
         //
