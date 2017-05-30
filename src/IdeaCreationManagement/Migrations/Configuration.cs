@@ -99,10 +99,12 @@ namespace IdeaCreationManagement.Migrations
             var studentMail = "student@mail.com";
             var employeeMail = "pracownik@mail.com";
             var adminMail = "admin@mail.com";
+            var testerMail = "tester@mail.com";
 
             var user1 = context.Users.SingleOrDefault(x => x.UserName == studentMail);
             var user2 = context.Users.SingleOrDefault(x => x.UserName == employeeMail);
             var user3 = context.Users.SingleOrDefault(x => x.UserName == adminMail);
+            var user4 = context.Users.SingleOrDefault(x => x.UserName == testerMail);
 
             var hasher = new PasswordHasher();
             var pass = "qwerty";
@@ -157,10 +159,28 @@ namespace IdeaCreationManagement.Migrations
                     Name = "Admin",
                     UserName = adminMail,
                 };
-                user3.Roles.Add(new IdentityUserRole() { RoleId = student.Id, UserId = user3.Id });
-                user3.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user3.Id });
+                //user3.Roles.Add(new IdentityUserRole() { RoleId = student.Id, UserId = user3.Id });
+                //user3.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user3.Id });
                 user3.Roles.Add(new IdentityUserRole() { RoleId = admin.Id, UserId = user3.Id });
                 context.Users.Add(user3);
+            }
+
+            if (user4 == null)
+            {
+                user4 = new User
+                {
+                    Surname = "Testowy",
+                    Email = testerMail,
+                    EmailConfirmed = true,
+                    PasswordHash = passHash,
+                    SecurityStamp = new Guid().ToString(),
+                    Name = "Tester",
+                    UserName = testerMail,
+                };
+                user4.Roles.Add(new IdentityUserRole() { RoleId = student.Id, UserId = user4.Id });
+                user4.Roles.Add(new IdentityUserRole() { RoleId = employee.Id, UserId = user4.Id });
+                user4.Roles.Add(new IdentityUserRole() { RoleId = admin.Id, UserId = user4.Id });
+                context.Users.Add(user4);
             }
 
             context.SaveChanges();
