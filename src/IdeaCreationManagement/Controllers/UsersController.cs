@@ -79,5 +79,15 @@ namespace IdeaCreationManagement.Controllers
             }
             return RedirectToAction("Details", new { id = id, msg = message });
         }
+
+        public ActionResult Edit(string id)
+        {
+            var model = _users.GetUserEditDetails(id);
+            if (model == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            return View(model);
+        }
     }
 }
