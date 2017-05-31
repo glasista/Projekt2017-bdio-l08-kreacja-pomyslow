@@ -7,3 +7,11 @@ $("#EmailConfirmed").change(function () {
         $("#emailstatus").text("Niepotwierdzony");
     }
 });
+
+$("#savebutton").click(function() {
+    $("#savedialog").css("display", "block");
+});
+
+$("#nosavebutton").click(function() {
+    $("#savedialog").css("display", "none");
+});
