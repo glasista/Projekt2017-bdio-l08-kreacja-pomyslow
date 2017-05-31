@@ -156,8 +156,9 @@ namespace IdeaCreationManagement.Services
 
         public UserEditViewModel GetUserEditDetails(string id)
         {
-            var user = _ctx.Users
-                .Find(id);
+            var user = ((IQueryable<User>) _ctx.Users)
+                .Include(x => x.Roles)
+                .SingleOrDefault(x => x.Id == id);
             if (user == null)
             {
                 return null;
@@ -167,6 +168,10 @@ namespace IdeaCreationManagement.Services
             model.Categories = _ctx.Categories.ProjectTo<SelectListItem>().ToList();
             model.FieldsOfStudy = _ctx.FieldsOfStudies.ProjectTo<SelectListItem>().ToList();
             model.OrganizationalUnits = _ctx.OrganizationalUnits.ProjectTo<SelectListItem>().ToList();
+
+            var roles = _ctx.Roles.ToDictionary(x => x.Name, y => y.Id);
+            model.IsStudent = user.Roles.Any(x => x.RoleId == roles["student"]);
+            model.IsEmployee = user.Roles.Any(x => x.RoleId == roles["employee"]);
 
             return model;
         }
@@ -183,16 +188,16 @@ namespace IdeaCreationManagement.Services
 
             var roles = _ctx.Roles.ToDictionary(x => x.Name, y => y.Id);
 
-            if (user.Roles.Any(x => x.RoleId == roles["student"]))
-            {
-                model.CategoryId = null;
-                model.OrganizationalUnitId = null;
-            }
-
-            if (user.Roles.Any(x => x.RoleId == roles["employee"]))
+            if (user.Roles.All(x => x.RoleId != roles["student"]))
             {
                 model.FieldOfStudyId = null;
                 model.StudentNumberView = null;
+            }
+
+            if (user.Roles.All(x => x.RoleId != roles["employee"]))
+            {
+                model.CategoryId = null;
+                model.OrganizationalUnitId = null;
             }
 
             Mapper.Map(model, user);

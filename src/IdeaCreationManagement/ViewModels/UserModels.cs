@@ -78,6 +78,9 @@ namespace IdeaCreationManagement.ViewModels
         public int? CategoryId { get; set; }
         [DisplayName("Kategoria")]
         public List<SelectListItem> Categories { get; set; }
+
+        public bool IsEmployee { get; set; }
+        public bool IsStudent { get; set; }
     }
 
     public class UserEditSubmitModel
