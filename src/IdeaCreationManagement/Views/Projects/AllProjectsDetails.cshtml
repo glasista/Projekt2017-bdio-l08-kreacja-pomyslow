@@ -90,3 +90,10 @@
 <p>
     @Html.ActionLink("Powrót", "AllProjects")
 </p>
+<p>
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Oceń", "AllProjectsDetails", new { ProjectId = Model.Id })
+    }
+</p>
+

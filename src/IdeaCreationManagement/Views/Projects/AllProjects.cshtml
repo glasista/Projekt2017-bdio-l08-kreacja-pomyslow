@@ -44,6 +44,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AverageGrade)
             </td>
+            <td>
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Oceń", "AllProjectsDetails", new { ProjectId = item.Id })
+            }
+            </td>
         </tr>
     }
 
