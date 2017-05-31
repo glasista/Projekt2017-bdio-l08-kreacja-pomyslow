@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Services;
+using IdeaCreationManagement.ViewModels;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -55,7 +56,7 @@ namespace IdeaCreationManagement.Controllers
                 _users.DeleteUser(id);
                 message = "deleted";
             }
-            return RedirectToAction("Index", new {msg = message });
+            return RedirectToAction("Index", new {msg = message});
         }
 
         public ActionResult Deassign(string id, int projectId)
@@ -77,7 +78,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 message = "deassigned";
             }
-            return RedirectToAction("Details", new { id = id, msg = message });
+            return RedirectToAction("Details", new {id = id, msg = message});
         }
 
         public ActionResult Edit(string id)
@@ -88,6 +89,13 @@ namespace IdeaCreationManagement.Controllers
                 return new HttpNotFoundResult();
             }
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(string id, [Bind] UserEditSubmitModel model)
+        {
+            _users.Update(id, model);
+            return RedirectToAction("Edit", new {id});
         }
     }
 }

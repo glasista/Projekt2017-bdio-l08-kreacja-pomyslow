@@ -80,6 +80,20 @@ namespace IdeaCreationManagement.ViewModels
         public List<SelectListItem> Categories { get; set; }
     }
 
+    public class UserEditSubmitModel
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public int? StudentNumberView { get; set; }
+        public int? FieldOfStudyId { get; set; }
+        public int? OrganizationalUnitId { get; set; }
+        public int? CategoryId { get; set; }
+
+        public int StudentNumber => StudentNumberView ?? 0;
+    }
+
     public class ListProject
     {
         public int Id { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -30,7 +31,8 @@ namespace IdeaCreationManagement.Services
             {
                 roles = ctx.Roles.ToDictionary(x => x.Id, y => y.Name);
             }
-            roles["employee"] = "pracownik";
+            var employeeId = roles.SingleOrDefault(x => x.Value == "employee").Key;
+            roles[employeeId] = "pracownik";
 
             // set mappings
             cfg.CreateMap<IdentityUserRole, string>()
@@ -57,6 +59,7 @@ namespace IdeaCreationManagement.Services
                 .ForMember(x => x.Value, c => c.MapFrom(x => x.Id))
                 .ForMember(x => x.Text, c => c.MapFrom(x => x.Name));
             cfg.CreateMap<User, UserEditViewModel>();
+            cfg.CreateMap<UserEditSubmitModel, User>();
         }
 
         public ICollection<ListUser> GetAll()
@@ -166,6 +169,35 @@ namespace IdeaCreationManagement.Services
             model.OrganizationalUnits = _ctx.OrganizationalUnits.ProjectTo<SelectListItem>().ToList();
 
             return model;
+        }
+
+        public bool Update(string id, UserEditSubmitModel model)
+        {
+            var user = ((IQueryable<User>) _ctx.Users)
+                .Include(x => x.Roles)
+                .SingleOrDefault(x => x.Id == id);
+            if (user == null)
+            {
+                return false;
+            }
+
+            var roles = _ctx.Roles.ToDictionary(x => x.Name, y => y.Id);
+
+            if (user.Roles.Any(x => x.RoleId == roles["student"]))
+            {
+                model.CategoryId = null;
+                model.OrganizationalUnitId = null;
+            }
+
+            if (user.Roles.Any(x => x.RoleId == roles["employee"]))
+            {
+                model.FieldOfStudyId = null;
+                model.StudentNumberView = null;
+            }
+
+            Mapper.Map(model, user);
+            _ctx.SaveChanges();
+            return true;
         }
     }
 }
