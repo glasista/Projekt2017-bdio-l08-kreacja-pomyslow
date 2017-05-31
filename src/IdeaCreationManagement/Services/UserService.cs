@@ -92,10 +92,7 @@ namespace IdeaCreationManagement.Services
                 .Include(x => x.State)
                 .ProjectTo<ListProject>()
                 .ToList();
-            var assigned = _ctx.Projects
-                .Where(x => x.AssigneeId == user.Id)
-                .ProjectTo<ListProject>()
-                .ToList();
+            var assigned = GetAssignedProjects(id);
 
             return new UserDetailsViewModel()
             {
@@ -103,6 +100,14 @@ namespace IdeaCreationManagement.Services
                 CreatedProjects = created,
                 AssignedProjects = assigned,
             };
+        }
+
+        private List<ListProject> GetAssignedProjects(string userId)
+        {
+            return _ctx.Projects
+                .Where(x => x.AssigneeId == userId)
+                .ProjectTo<ListProject>()
+                .ToList();
         }
 
         public void DeleteUser(string id)
@@ -172,6 +177,7 @@ namespace IdeaCreationManagement.Services
             var roles = _ctx.Roles.ToDictionary(x => x.Name, y => y.Id);
             model.IsStudent = user.Roles.Any(x => x.RoleId == roles["student"]);
             model.IsEmployee = user.Roles.Any(x => x.RoleId == roles["employee"]);
+            model.AssignedProjects = GetAssignedProjects(id);
 
             return model;
         }

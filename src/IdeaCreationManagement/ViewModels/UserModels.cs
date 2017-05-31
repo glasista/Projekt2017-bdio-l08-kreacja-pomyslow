@@ -82,6 +82,7 @@ namespace IdeaCreationManagement.ViewModels
 
         public bool IsEmployee { get; set; }
         public bool IsStudent { get; set; }
+        public List<ListProject> AssignedProjects { get; set; }
     }
 
     public class UserEditSubmitModel

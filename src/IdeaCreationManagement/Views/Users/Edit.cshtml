@@ -105,6 +105,14 @@
     @Html.ActionLink("Powrót do listy", "Index", new { }, new { @class = "btn btn-xs btn-default" })
 </div>
 
+@if (Model.AssignedProjects.Count > 0)
+{
+    <h4>Przypisane projekty</h4>
+
+    <!--@(ViewBag.ProjectsType = "assigned");-->
+    @Html.Partial("UserProjects", Model.AssignedProjects)
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
