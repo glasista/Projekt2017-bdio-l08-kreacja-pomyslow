@@ -29,6 +29,8 @@ namespace IdeaCreationManagement.Models
 
         [Display(Name = "Opiekun")]
         public User Assignee { get; set; }
+
+        [Display(Name = "Typ")]
         public ProjectType Type { get; set; }
 
         [Display(Name = "Średnia ocena")]
