@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using IdeaCreationManagement.Models;
@@ -85,8 +86,11 @@ namespace IdeaCreationManagement.ViewModels
 
     public class UserEditSubmitModel
     {
+        [MaxLength(100, ErrorMessage = "Zbyt długie imię")]
         public string Name { get; set; }
+        [MaxLength(100, ErrorMessage = "Zbyt długie nazwisko")]
         public string Surname { get; set; }
+        [RegularExpression("^(?(\")(\".+?(?<!\\\\)\"@)|(([0-9a-z]((\\.(?!\\.))|[-!#\\$%&\'\\*\\+/=\\?\\^`\\{\\}\\|~\\w])*)(?<=[0-9a-z])@))(?(\\[)(\\[(\\d{1,3}\\.){3}\\d{1,3}\\])|(([0-9a-z][-\\w]*[0-9a-z]*\\.)+[a-z0-9][\\-a-z0-9]{0,22}[a-z0-9]))$", ErrorMessage = "Niepoprawny email")]
         public string Email { get; set; }
         public bool EmailConfirmed { get; set; }
         public int? StudentNumberView { get; set; }

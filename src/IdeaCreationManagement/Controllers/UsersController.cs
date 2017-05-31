@@ -94,6 +94,10 @@ namespace IdeaCreationManagement.Controllers
         [HttpPost]
         public ActionResult Edit(string id, [Bind] UserEditSubmitModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return Edit(id);
+            }
             _users.Update(id, model);
             return RedirectToAction("Edit", new {id});
         }
