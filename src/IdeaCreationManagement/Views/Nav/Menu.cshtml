@@ -49,3 +49,14 @@
         new { @class = "btn btn-block btn-default btn-lg"
     })
 }
+
+@if (Request.IsAuthenticated && User.IsInRole("admin"))
+{
+    @Html.ActionLink(
+        "Zarządzanie użytkownikami",
+        "Index",
+        "Users",
+        null,
+        new { @class = "btn btn-block btn-default btn-lg"
+        })
+}
