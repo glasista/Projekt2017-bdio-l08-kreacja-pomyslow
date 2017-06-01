@@ -7,6 +7,7 @@ using IdeaCreationManagement.ViewModels;
 
 namespace IdeaCreationManagement.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private readonly UserService _users;
