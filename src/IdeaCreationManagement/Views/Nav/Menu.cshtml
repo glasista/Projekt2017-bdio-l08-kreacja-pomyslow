@@ -1,42 +1,42 @@
 ﻿
 @Html.ActionLink(
     "Dodaj Pomysł",
-    "Add", 
+    "Add",
     "Projects",
     new { type = "idea" },
-    new { @class = "btn btn-block btn-default btn-lg"
-})
+    new { @class = "btn btn-block btn-default btn-md"
+    })
 
 @Html.ActionLink(
     "Zgłoś Problem",
     "Add",
     "Projects",
     new { type = "problem" },
-    new { @class = "btn btn-block btn-default btn-lg"
-})
+    new { @class = "btn btn-block btn-default btn-md"
+    })
 
 @Html.ActionLink(
     "Baza projektów",
     "AllProjects",
     "Projects",
     null,
-    new { @class = "btn btn-block btn-default btn-lg"
-})
+    new { @class = "btn btn-block btn-default btn-md"
+    })
 
 @Html.ActionLink(
     "kat. pomysłów",
     "Index",
     "Category",
     new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
-    new { @class = "btn btn-block btn-default btn-lg"
-})
+    new { @class = "btn btn-block btn-default btn-md"
+    })
 
 @Html.ActionLink(
     "kat. problemów",
     "Index",
     "Category",
     new { type = IdeaCreationManagement.Models.ProjectType.Problem },
-    new { @class = "btn btn-block btn-default btn-lg"
+    new { @class = "btn btn-block btn-default btn-md"
 })
 
 @if (Request.IsAuthenticated && User.IsInRole("employee"))
@@ -46,8 +46,8 @@
         "AssignedProjects",
         "Projects",
         null,
-        new { @class = "btn btn-block btn-default btn-lg"
-    })
+        new { @class = "btn btn-block btn-default btn-md"
+        })
 }
 
 @if (Request.IsAuthenticated && User.IsInRole("admin"))
@@ -57,6 +57,6 @@
         "Index",
         "Users",
         null,
-        new { @class = "btn btn-block btn-default btn-lg"
+        new { @class = "btn btn-block btn-default btn-md"
         })
 }
