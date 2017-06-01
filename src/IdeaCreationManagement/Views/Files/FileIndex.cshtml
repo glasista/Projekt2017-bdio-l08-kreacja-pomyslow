@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<IdeaCreationManagement.Models.File>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pliki";
 }
 
-<h2>Index</h2>
+<h2>Pliki</h2>
 
 <table class="table">
     <tr>
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Size)
         </td>
         <td>
-            @Html.ActionLink("Pobierz", "Download", new { FileId = item.Id })
+            @Html.ActionLink("Pobierz", "Details", new { fileId = item.Id })
         </td>
     </tr>
 }

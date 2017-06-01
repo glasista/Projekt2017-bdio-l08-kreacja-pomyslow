@@ -89,7 +89,7 @@
 </div>
 <p>
     @Html.ActionLink("Powrót", "AllProjects") | 
-    @Html.ActionLink("Pliki", "FileIndex", "Files", new { ProjectId = Model.Id })
+    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = Model.Id }, "Files")
 </p>
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)

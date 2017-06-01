@@ -24,17 +24,25 @@ namespace IdeaCreationManagement.Controllers
         }
 
         // GET: Files/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? fileId)
         {
-            if (id == null)
+            if (fileId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            File file = db.Files.Find(id);
+            File file = db.Files.Find(fileId);
+
             if (file == null)
             {
                 return HttpNotFound();
             }
+
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", String.Format("attachment;filename=\"{0}\"", file.Name));
+            Response.AddHeader("Content-Length", file.Size.ToString());
+            Response.BinaryWrite(file.Content);
+            Response.End();
+
             return View(file);
         }
 
@@ -120,23 +128,6 @@ namespace IdeaCreationManagement.Controllers
             db.Files.Remove(file);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Download(int? fileId)
-        {
-            File file = db.Files.
-                Include(p => p.Name).
-                Include(p => p.Size).
-                Include(p => p.Content).
-                Where(p => p.Id == fileId).
-                First();
-
-            Response.ContentType = "application/octet-stream";
-            Response.AddHeader("Content-Disposition", String.Format("attachment;filename=\"{0}\"", file.Name)); // filename - nazwa pliku (zmienna typu string)
-            Response.AddHeader("Content-Length", file.Size.ToString()); // file - plik (tablica byte[]); tutaj rozmiar pliku
-            Response.BinaryWrite(file.Content); // plik
-            Response.End();
-            return View(file);
         }
 
         protected override void Dispose(bool disposing)
