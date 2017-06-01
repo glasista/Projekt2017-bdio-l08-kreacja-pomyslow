@@ -13,12 +13,6 @@ namespace IdeaCreationManagement
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    name: "Kategorie",
-            //    url: "Category/Index/{type}",
-            //    defaults: new { controller = "Home", action = "Index", type = UrlParameter.Optional }
-            //);
-
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

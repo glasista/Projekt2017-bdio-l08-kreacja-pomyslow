@@ -1,11 +1,51 @@
 ﻿
-@Html.ActionLink("Dodaj Pomysł", "Add", "Projects", new { type = "idea" }, new { @class = "btn btn-block btn-default btn-lg" })
-@Html.ActionLink("Zgłoś Problem", "Add", "Projects", new { type = "problem" }, new { @class = "btn btn-block btn-default btn-lg" })
-@Html.ActionLink("Baza projektów", "AllProjects", "Projects", null, new { @class = "btn btn-block btn-default btn-lg" })
-@Html.ActionLink("kat. pomysłów", "Index", "Category", new { type = IdeaCreationManagement.Models.ProjectType.Pomysł }, new { @class = "btn btn-block btn-default btn-lg" })
-@Html.ActionLink("kat. problemów", "Index", "Category", new { type = IdeaCreationManagement.Models.ProjectType.Problem }, new { @class = "btn btn-block btn-default btn-lg" })
+@Html.ActionLink(
+    "Dodaj Pomysł",
+    "Add", 
+    "Projects",
+    new { type = "idea" },
+    new { @class = "btn btn-block btn-default btn-lg"
+})
+
+@Html.ActionLink(
+    "Zgłoś Problem",
+    "Add",
+    "Projects",
+    new { type = "problem" },
+    new { @class = "btn btn-block btn-default btn-lg"
+})
+
+@Html.ActionLink(
+    "Baza projektów",
+    "AllProjects",
+    "Projects",
+    null,
+    new { @class = "btn btn-block btn-default btn-lg"
+})
+
+@Html.ActionLink(
+    "kat. pomysłów",
+    "Index",
+    "Category",
+    new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
+    new { @class = "btn btn-block btn-default btn-lg"
+})
+
+@Html.ActionLink(
+    "kat. problemów",
+    "Index",
+    "Category",
+    new { type = IdeaCreationManagement.Models.ProjectType.Problem },
+    new { @class = "btn btn-block btn-default btn-lg"
+})
 
 @if (Request.IsAuthenticated && User.IsInRole("employee"))
 {
-    @Html.ActionLink("Przydzielone proj.", "AssignedProjects", "Projects", null, new { @class = "btn btn-block btn-default btn-lg" })
+    @Html.ActionLink(
+        "Przydzielone proj.",
+        "AssignedProjects",
+        "Projects",
+        null,
+        new { @class = "btn btn-block btn-default btn-lg"
+    })
 }
