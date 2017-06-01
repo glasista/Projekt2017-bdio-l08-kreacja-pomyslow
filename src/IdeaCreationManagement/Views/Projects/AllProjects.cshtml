@@ -49,6 +49,7 @@
             {
                 @Html.ActionLink("Oceń", "AllProjectsDetails", new { ProjectId = item.Id })
             }
+            @Html.ActionLink("Pliki", "FileIndex","Files", new { ProjectId = item.Id })
             </td>
         </tr>
     }
