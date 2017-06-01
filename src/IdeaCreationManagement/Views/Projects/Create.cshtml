@@ -4,15 +4,15 @@
     ViewBag.Title = "Dodaj " + ViewBag.ProjectType;
 }
 
-<h2>Dodaj</h2>
-
+@*<h2>Dodaj @ViewBag.ProjectType</h2>*@
+<h2>@ViewBag.ProjectType</h2>
 
 @using (Html.BeginForm("Add", "Projects", new {type = ViewBag.ProjectType}, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>@ViewBag.ProjectType</h4>
+        @*<h4>@ViewBag.ProjectType</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

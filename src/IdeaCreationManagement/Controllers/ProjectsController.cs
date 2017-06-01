@@ -49,7 +49,7 @@ namespace IdeaCreationManagement.Controllers
             }
             ProjectType projectType = type.ToLower() == "idea" ? ProjectType.Pomysł : ProjectType.Problem;
             ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(projectType), "Id", "Name");
-            ViewBag.ProjectType = type.ToLower() == "idea" ? "Pomysł" : "Problem";
+            ViewBag.ProjectType = type.ToLower() == "idea" ? "Dodaj Pomysł" : " Zgłoś problem";
             return View("Create");
         }
         
