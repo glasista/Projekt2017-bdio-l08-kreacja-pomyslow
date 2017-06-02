@@ -77,12 +77,13 @@ namespace IdeaCreationManagement.Controllers
                 }
                 catch (Exception e)
                 {
-                    return RedirectToAction("Index");
+                    ViewBag.ErrorMessage = "Nie udało się dodać projektu do bazy. Spróbuj ponownie.";
+                    return View("Error");
                 }
 
             }
 
-            return RedirectToAction("Details", project);
+            return RedirectToAction("AllProjects");
         }
         
 
