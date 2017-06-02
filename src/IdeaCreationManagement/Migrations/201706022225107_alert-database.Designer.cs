@@ -7,13 +7,13 @@ namespace IdeaCreationManagement.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class alertdatatime : IMigrationMetadata
+    public sealed partial class alertdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(alertdatatime));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(alertdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706022155205_alert-datatime"; }
+            get { return "201706022225107_alert-database"; }
         }
         
         string IMigrationMetadata.Source
