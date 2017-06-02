@@ -9,6 +9,7 @@ namespace IdeaCreationManagement.Models
         public int Id { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Data zmiany")]
         public DateTime TimeOfChange { get; set; }
         public int StateId { get; set; }
         public State State { get; set; }

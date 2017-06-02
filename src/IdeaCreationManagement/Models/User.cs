@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace IdeaCreationManagement.Models
 {
@@ -14,6 +15,7 @@ namespace IdeaCreationManagement.Models
         public OrganizationalUnit OrganizationalUnit { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
+        [Display(Name = "Imię")]
         public string Name { get; set; }
         public string Surname { get; set; }
         public int StudentNumber { get; set; }
