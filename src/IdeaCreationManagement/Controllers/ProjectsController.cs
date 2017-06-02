@@ -224,7 +224,7 @@ namespace IdeaCreationManagement.Controllers
             if (ModelState.IsValid)
             {
                 Alert newalert = new Alert {
-                    TimeOfChange = DateTime.Now,
+                    //TimeOfChange = DateTime.Now,
                     StateId = project.StateId,
                     AuthorOfChangeId = User.Identity.GetUserId(),
                     StudentRead = false,

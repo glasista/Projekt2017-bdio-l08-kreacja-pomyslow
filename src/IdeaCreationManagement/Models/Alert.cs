@@ -10,7 +10,13 @@ namespace IdeaCreationManagement.Models
 
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name = "Data zmiany")]
-        public DateTime TimeOfChange { get; set; }
+        public DateTime TimeOfChange
+        {
+            get
+            {
+                return DateTime.Now;
+            }
+        }
         public int StateId { get; set; }
         public State State { get; set; }
         [ForeignKey("AuthorOfChange")]
