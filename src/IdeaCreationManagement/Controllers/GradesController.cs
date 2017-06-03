@@ -62,11 +62,19 @@ namespace IdeaCreationManagement.Controllers
             {
                 var id = db.Projects.First().Id;
                 grade.ProjectId = id;
-
+                grade.RaterId = db.Users.First().Id;
+                grade.Time = DateTime.Now;
+                grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
                 db.Grades.Add(grade);
-               db.SaveChanges();
+                db.SaveChanges();
+
                 var average = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
-                
+                var mediumgrade = db.Grades.Where(g => g.ProjectId == id).ToList();
+
+                db.Projects.Find(id).AverageIngenuity = mediumgrade.Sum(g => g.Ingenuity) / mediumgrade.Count;
+                db.Projects.Find(id).AverageDifficulty = mediumgrade.Sum(g => g.DifficultyValue) / mediumgrade.Count;
+                db.Projects.Find(id).AverageUsefulness = mediumgrade.Sum(g => g.UsefulnessValue) / mediumgrade.Count;
+                db.Projects.Find(id).AverageGrade = mediumgrade.Sum(g => g.AverageGrade) / mediumgrade.Count;
                 return RedirectToAction("Index");
             }
 
