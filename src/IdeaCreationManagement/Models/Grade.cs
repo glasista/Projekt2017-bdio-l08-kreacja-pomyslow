@@ -13,6 +13,7 @@ namespace IdeaCreationManagement.Models
         public int UsefulnessValue { get; set; }
         public int DifficultyValue { get; set; }
         public int Ingenuity { get; set; }
+        public int AverageGrade { get; set; }
         [ForeignKey("Rater")]
         public string RaterId { get; set; }
         public User Rater { get; set; }

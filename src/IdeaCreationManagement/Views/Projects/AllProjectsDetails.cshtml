@@ -87,7 +87,7 @@
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Oceń", "AllProjectsDetails", new { ProjectId = Model.Id })
+        @Html.ActionLink("Oceń ", "Create", "Grades", new {Id = Model.Id },null)
     }
 </p>
 

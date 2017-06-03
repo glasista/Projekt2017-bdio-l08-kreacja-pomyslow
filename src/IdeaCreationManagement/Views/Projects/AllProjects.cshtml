@@ -45,11 +45,14 @@
                 @Html.DisplayFor(modelItem => item.AverageGrade)
             </td>
             <td>
-            @if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                @Html.ActionLink("Oceń", "AllProjectsDetails", new { ProjectId = item.Id })
-            }
-            @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, "Files")
+                @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, "Files")
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if(String.Compare(item.Type.ToString(), "Pomysł") <= 0)
+                    {
+                        @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id },null)
+                    }
+                }
             </td>
         </tr>
     }
