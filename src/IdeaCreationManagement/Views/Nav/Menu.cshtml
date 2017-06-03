@@ -6,6 +6,31 @@
     new { type = "powiadomienie"},
     new{ @class = "btn btn-block btn-default btn-md" })
 
+@if(Request.IsAuthenticated)
+{
+    @Html.ActionLink(
+        "Moje Pomysły",
+        "MyIdeas",
+        "Projects",
+        new { type = "idea" },
+        new
+         {
+           @class = "btn btn-block btn-default btn-md"
+         })
+}
+
+@if(Request.IsAuthenticated)
+{
+    @Html.ActionLink(
+        "Moje Problemy",
+        "MyProblems",
+        "Projects",
+        new { type = "problem" },
+        new
+         {
+          @class = "btn btn-block btn-default btn-md"
+        })
+}
 
 @Html.ActionLink(
     "Dodaj Pomysł",
