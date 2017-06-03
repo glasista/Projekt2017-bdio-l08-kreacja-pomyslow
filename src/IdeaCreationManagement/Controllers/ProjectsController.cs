@@ -243,6 +243,34 @@ namespace IdeaCreationManagement.Controllers
 
         }
 
+        public ActionResult MyIdeas()
+        {
+            var userId = User.Identity.GetUserId();
+            var type = ProjectType.Pomysł;
+            var projects = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.AuthorId == userId).
+                Where(p => (p.Type == type));
+            return View(projects.ToList());
+        }
+
+        public ActionResult MyProblems()
+        {
+            var userId = User.Identity.GetUserId();
+            var type = ProjectType.Problem;
+            var projects = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.AuthorId == userId).
+                Where(p => (p.Type == type));
+            return View(projects.ToList());
+        }
+
         public ActionResult AllProjects()
         {
             var projects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State);
