@@ -39,10 +39,9 @@ namespace IdeaCreationManagement.Controllers
         }
 
         // GET: Grades/Create
-        public ActionResult Create( )
-
+        public ActionResult Create( int id)
         {
-
+            
             return View();
         }
 
@@ -51,13 +50,13 @@ namespace IdeaCreationManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Time,UsefulnessValue,DifficultyValue,Ingenuity")] Grade grade)
+        public ActionResult Create(int id,[Bind(Include = "Time,UsefulnessValue,DifficultyValue,Ingenuity")] Grade grade)
         {
             if (ModelState.IsValid)
             {
                
-                var id = db.Projects.First().Id;
-                grade.ProjectId = id;
+                //var id = db.Projects.Find(Id);
+                grade.ProjectId =id;
                 grade.RaterId = db.Users.First().Id;
                 grade.Time = DateTime.Now;
                 grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
