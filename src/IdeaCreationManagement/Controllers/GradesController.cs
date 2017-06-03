@@ -39,14 +39,9 @@ namespace IdeaCreationManagement.Controllers
         }
 
         // GET: Grades/Create
-        public ActionResult Create()
+        public ActionResult Create( )
 
         {
-           // var grade = new Grade();
-            //var dateTimeNow = DateTime.Now;
-            //var dateOnlyString = dateTimeNow.ToShortDateString();
-             //grade.Time = dateOnlyString;
-
 
             return View();
         }
@@ -60,6 +55,7 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+               
                 var id = db.Projects.First().Id;
                 grade.ProjectId = id;
                 grade.RaterId = db.Users.First().Id;
@@ -68,14 +64,15 @@ namespace IdeaCreationManagement.Controllers
                 db.Grades.Add(grade);
                 db.SaveChanges();
 
-                var average = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
+               
                 var mediumgrade = db.Grades.Where(g => g.ProjectId == id).ToList();
 
                 db.Projects.Find(id).AverageIngenuity = mediumgrade.Sum(g => g.Ingenuity) / mediumgrade.Count;
                 db.Projects.Find(id).AverageDifficulty = mediumgrade.Sum(g => g.DifficultyValue) / mediumgrade.Count;
                 db.Projects.Find(id).AverageUsefulness = mediumgrade.Sum(g => g.UsefulnessValue) / mediumgrade.Count;
                 db.Projects.Find(id).AverageGrade = mediumgrade.Sum(g => g.AverageGrade) / mediumgrade.Count;
-                return RedirectToAction("Index");
+                db.SaveChanges();
+                return RedirectToAction("AllProjectsDetails", "Projects", new { ProjectId = grade.ProjectId });
             }
 
             return View(grade);
