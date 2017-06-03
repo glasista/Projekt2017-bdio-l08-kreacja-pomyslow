@@ -194,10 +194,6 @@
     <Compile Include="Migrations\201705221334244_file-content.Designer.cs">
       <DependentUpon>201705221334244_file-content.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706022225107_alert-database.cs" />
-    <Compile Include="Migrations\201706022225107_alert-database.Designer.cs">
-      <DependentUpon>201706022225107_alert-database.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -350,9 +346,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705221334244_file-content.resx">
       <DependentUpon>201705221334244_file-content.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706022225107_alert-database.resx">
-      <DependentUpon>201706022225107_alert-database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
