@@ -50,7 +50,7 @@
                 {
                     if(String.Compare(item.Type.ToString(), "Pomysł") <= 0)
                     {
-                        @Html.ActionLink("Oceń", "Grades","Create", new { ProjectId = item.Id })
+                        @Html.ActionLink("Oceń", "Create", "Grades", new { ProjectId = item.Id })
                     }
                 }
             </td>
