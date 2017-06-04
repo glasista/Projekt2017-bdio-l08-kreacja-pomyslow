@@ -45,11 +45,15 @@
                 @Html.DisplayFor(modelItem => item.AverageGrade)
             </td>
             <td>
+                
                 @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, "Files")
                 @if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
-                    if(String.Compare(item.Type.ToString(), "Pomysł") <= 0)
+                   
+                    if (String.Compare(item.Type.ToString(), "Pomysł") <= 0)
                     {
+
+
                         @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id },null)
                     }
                 }

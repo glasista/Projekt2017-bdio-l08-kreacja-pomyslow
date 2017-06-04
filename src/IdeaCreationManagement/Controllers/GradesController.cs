@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
+using Microsoft.AspNet.Identity;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -54,10 +55,10 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-               
-                //var id = db.Projects.Find(Id);
+                if (User.Identity.GetUserId() == db.Projects.Find(id).AuthorId)
+                { return RedirectToAction("Index", "Grades" ); }
                 grade.ProjectId =id;
-                grade.RaterId = db.Users.First().Id;
+                grade.RaterId = User.Identity.GetUserId();
                 grade.Time = DateTime.Now;
                 grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
                 db.Grades.Add(grade);
