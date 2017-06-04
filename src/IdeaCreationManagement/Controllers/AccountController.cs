@@ -169,8 +169,7 @@ namespace IdeaCreationManagement.Controllers
                     Email = model.Email,
                     Surname = model.SurName,
                     FieldOfStudyId = model.Id,
-                    Name = model.UserName,
-                    PasswordHashed =  System.Web.Helpers.Crypto.SHA256(model.Password)
+                    Name = model.UserName
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 // Roles

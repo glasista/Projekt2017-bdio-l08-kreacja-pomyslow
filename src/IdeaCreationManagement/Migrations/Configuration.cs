@@ -1,4 +1,5 @@
 using System.Web.Razor.Generator;
+﻿using System.Web.Razor.Generator;
 using IdeaCreationManagement.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;

@@ -7,16 +7,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IdeaCreationManagement.Models;
-using IdeaCreationManagement.ViewModels;
-
 
 namespace IdeaCreationManagement.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
-        private AppContext db = new AppContext();
-        static private string message { get; set; }
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -71,7 +67,6 @@ namespace IdeaCreationManagement.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                HasEmail=HasEmail(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
@@ -231,7 +226,6 @@ namespace IdeaCreationManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -242,7 +236,6 @@ namespace IdeaCreationManagement.Controllers
                 var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
                 if (user != null)
                 {
-
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
@@ -251,45 +244,6 @@ namespace IdeaCreationManagement.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Manage/ChangeEmail       
-        public ActionResult ChangeEmail()
-        {
-            return View();
-        }
-        //
-        // POST: /Manage/ChangeEmail
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-       
-        public async Task<ActionResult> ChangeEmail(ChangeEmailViewModel viewModel)
-        {               
-                if (ModelState.IsValid)                {
-                    var currentUser = GetCurrentUser();
-                    string hashedPassword = Helpers.AuthHelper.HashPasswordWithExistingSalt(viewModel.Password);
-                    if (currentUser.PasswordHashed == hashedPassword)
-                    {
-                    var user = await UserManager.FindByIdAsync(currentUser.Id);
-                    currentUser.Email = viewModel.NewEmail;                    
-                         await UserManager.UpdateAsync(user);                    
-                         message = "Email został zmieniony!";
-                        string title = message;
-                        string body = "Witaj " + currentUser.UserName + " ! Twój e-mail został zmieniony na " + currentUser.Email + " !";
-                                               
-                        return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
-                    }
-                    else ViewBag.Message = "Błąd! Podano niepoprawne hasło!";
-                }
-                else ViewBag.Message = "Błąd! Niepoprawne dane!";
-            
-
-            return View(viewModel);
-        }
-
-        private static User GetCurrentUser()
-        {
-            return Helpers.AuthHelper.GetCurrentLoggedInUser();
-        }
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
@@ -405,15 +359,6 @@ namespace IdeaCreationManagement.Controllers
             if (user != null)
             {
                 return user.PasswordHash != null;
-            }
-            return false;
-        }
-        private bool HasEmail()
-        {
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user != null)
-            {
-                return user.Email != null;
             }
             return false;
         }
