@@ -93,3 +93,15 @@
         new { @class = "btn btn-block btn-default btn-md"
         })
 }
+@if (Request.IsAuthenticated && User.IsInRole("admin"))
+{
+    @Html.ActionLink(
+        "Przydziel pracownika do projektu   ",
+        "ViewProjects",
+        "Admin",
+        null,
+        new
+        {
+            @class = "btn btn-block btn-default btn-md"
+        })
+}

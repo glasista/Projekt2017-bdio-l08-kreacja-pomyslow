@@ -12,11 +12,13 @@ namespace IdeaCreationManagement.Models
         public int? FieldOfStudyId { get; set; }
         public FieldOfStudy FieldOfStudy { get; set; }
         public int? OrganizationalUnitId { get; set; }
+        [Display(Name = "Katedra")]
         public OrganizationalUnit OrganizationalUnit { get; set; }
         public int? CategoryId { get; set; }
         public Category Category { get; set; }
         [Display(Name = "Imię")]
         public string Name { get; set; }
+        [Display(Name = "Nazwisko")]
         public string Surname { get; set; }
         public int StudentNumber { get; set; }
 

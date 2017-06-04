@@ -52,8 +52,16 @@
 
           
             <td>
-            @Html.ActionLink("Przydziel", "ChooseEmployee", new{ id=item.Id }) 
+            @Html.ActionLink("Przydziel", "ChooseEmployee", new{ id =item.Id }) 
    
+            </td>
+            <td>
+                @Html.ActionLink("Odrzuć", "RejectProject", new { id = item.Id })
+
+            </td>
+            <td>
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+
             </td>
         </tr>
     }
