@@ -8,7 +8,6 @@ namespace IdeaCreationManagement.Models
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
-        public bool HasEmail { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
@@ -44,33 +43,19 @@ namespace IdeaCreationManagement.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Stare hasło")]
+        [Display(Name = "Current password")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "Twoje hasło musi mieć conajmniej {2 } znaków", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Nowe hasło")]
+        [Display(Name = "New password")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Powtórz nowe hasło")]
-        [Compare("NewPassword", ErrorMessage = "Wprowadzone hasła są różne.")]
+        [Display(Name = "Confirm new password")]
+        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class ChangeEmailViewModel
-    {
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Hasło")]
-        public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Zły format adresu e-mail!")]
-        [Display(Name = "Nowy adres e-mail")]
-        public string NewEmail { get; set; }
     }
 
     public class AddPhoneNumberViewModel
