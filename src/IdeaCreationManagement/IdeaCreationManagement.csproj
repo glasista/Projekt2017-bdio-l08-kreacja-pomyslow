@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201706031007337_Grades_AverageGrade.Designer.cs">
       <DependentUpon>201706031007337_Grades_AverageGrade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706042052170_password.cs" />
+    <Compile Include="Migrations\201706042052170_password.Designer.cs">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -353,6 +357,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706031007337_Grades_AverageGrade.resx">
       <DependentUpon>201706031007337_Grades_AverageGrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706042052170_password.resx">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
