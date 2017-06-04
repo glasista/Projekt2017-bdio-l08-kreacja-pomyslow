@@ -283,7 +283,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
+            
             Project project = db.Projects.
                 Include(p => p.Assignee).
                 Include(p => p.Author).

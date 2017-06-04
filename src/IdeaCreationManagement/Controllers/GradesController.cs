@@ -55,8 +55,7 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (User.Identity.GetUserId() == db.Projects.Find(id).AuthorId)
-                { return RedirectToAction("Index", "Grades" ); }
+                ViewBag.RaterId = db.Grades.Where(g => g.RaterId != null);
                 grade.ProjectId =id;
                 grade.RaterId = User.Identity.GetUserId();
                 grade.Time = DateTime.Now;
