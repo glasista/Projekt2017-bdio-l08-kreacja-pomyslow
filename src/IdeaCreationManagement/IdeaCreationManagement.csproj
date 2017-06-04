@@ -195,9 +195,9 @@
     <Compile Include="Migrations\201705221334244_file-content.Designer.cs">
       <DependentUpon>201705221334244_file-content.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201706031752191_as.cs" />
-    <Compile Include="Migrations\201706031752191_as.Designer.cs">
-      <DependentUpon>201706031752191_as.cs</DependentUpon>
+    <Compile Include="Migrations\201706042052170_password.cs" />
+    <Compile Include="Migrations\201706042052170_password.Designer.cs">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -354,8 +354,8 @@
     <EmbeddedResource Include="Migrations\201705221334244_file-content.resx">
       <DependentUpon>201705221334244_file-content.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706031752191_as.resx">
-      <DependentUpon>201706031752191_as.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706042052170_password.resx">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
