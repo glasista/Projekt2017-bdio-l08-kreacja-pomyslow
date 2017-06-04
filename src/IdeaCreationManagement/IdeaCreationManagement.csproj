@@ -178,6 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AuthHelper.cs" />
     <Compile Include="Migrations\201705171512383_initial.cs" />
     <Compile Include="Migrations\201705171512383_initial.Designer.cs">
       <DependentUpon>201705171512383_initial.cs</DependentUpon>
@@ -197,6 +198,10 @@
     <Compile Include="Migrations\201706031007337_Grades_AverageGrade.cs" />
     <Compile Include="Migrations\201706031007337_Grades_AverageGrade.Designer.cs">
       <DependentUpon>201706031007337_Grades_AverageGrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706042052170_password.cs" />
+    <Compile Include="Migrations\201706042052170_password.Designer.cs">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -331,9 +336,11 @@
     <Content Include="Views\Files\Details.cshtml" />
     <Content Include="Views\Files\Edit.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
+    <Content Include="Views\Manage\ChangeEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AuthHelper\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -353,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706031007337_Grades_AverageGrade.resx">
       <DependentUpon>201706031007337_Grades_AverageGrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706042052170_password.resx">
+      <DependentUpon>201706042052170_password.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
