@@ -336,11 +336,10 @@
     <Content Include="Views\Files\Details.cshtml" />
     <Content Include="Views\Files\Edit.cshtml" />
     <Content Include="Views\Nav\Menu.cshtml" />
-
     <Content Include="Views\Admin\RejectProject.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-
     <Content Include="Views\Manage\ChangeEmail.cshtml" />
+    <Content Include="Views\Admin\ConfirmEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

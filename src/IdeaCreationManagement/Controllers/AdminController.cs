@@ -98,6 +98,7 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
 
         }
+
         [Authorize(Roles = "admin")]
         [HttpPost, ActionName("RejectProject")]
         [ValidateAntiForgeryToken]
@@ -109,6 +110,16 @@ namespace IdeaCreationManagement.Controllers
             db.SaveChanges();
             return RedirectToAction("ViewProjects");
         }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult ConfirmEmployee()
+        {
+            var employee = from i in db.Users
+                           select i;
+            return View(employee.ToList());
+        }
+
+
 
         public ActionResult Delete(int? id)
         {
