@@ -6,7 +6,7 @@
     new { type = "powiadomienie"},
     new{ @class = "btn btn-block btn-default btn-md" })
 
-@if(Request.IsAuthenticated && (User.IsInRole("student") || UserControl.IsInRole("employee"))
+@if(Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
 {
     @Html.ActionLink(
         "Moje Pomysły",
@@ -19,7 +19,7 @@
          })
 }
 
-@if(Request.IsAuthenticated && (User.IsInRole("student") || UserControl.IsInRole("employee")))
+@if(Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
 {
     @Html.ActionLink(
         "Moje Problemy",
