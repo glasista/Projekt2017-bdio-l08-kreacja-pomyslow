@@ -55,14 +55,11 @@
                     if (HttpContext.Current.User.Identity.GetUserId() == item.AuthorId) { }
                     else
                     {
-                                             
-
-                            if (String.Compare(item.Type.ToString(), "Pomysł") <= 0)
+                            if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
                             {
 
                                 @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, null)
                             }
-                        
                     }
                 }
             </td>

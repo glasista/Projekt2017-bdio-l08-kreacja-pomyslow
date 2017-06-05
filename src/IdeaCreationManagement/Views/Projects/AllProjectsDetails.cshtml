@@ -87,7 +87,11 @@
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
     {
-           @Html.ActionLink("Oceń ", "Create", "Grades", new {Id = Model.Id },null)
+        if (String.Compare(Model.Type.ToString(), "Pomysł") == 0)
+        {
+
+            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, null)
+        }
     }
 </p>
 
