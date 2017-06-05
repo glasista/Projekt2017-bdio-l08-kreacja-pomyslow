@@ -119,7 +119,15 @@ namespace IdeaCreationManagement.Controllers
             return View(employee.ToList());
         }
 
-
+        [Authorize(Roles = "admin")]
+        [HttpPost, ActionName("ConfirmEmpolyeeAcc")]
+        public ActionResult EmployeeConfirmed(int? id)
+        {
+            User user = db.Users.Find(id);
+            user.EmailConfirmed = true;
+            db.SaveChanges();
+            return RedirectToAction("ConfirmEmployee");
+        }
 
         public ActionResult Delete(int? id)
         {
