@@ -36,7 +36,7 @@ else
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id })
+                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id } )
                 </td>
                 <td>
                     @Html.ActionLink("Odrzuć konto", "NegativeEmployeeAcc", new { id_e = item.Id })

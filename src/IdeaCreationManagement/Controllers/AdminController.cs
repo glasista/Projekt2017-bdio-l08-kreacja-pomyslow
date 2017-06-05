@@ -120,11 +120,29 @@ namespace IdeaCreationManagement.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPost, ActionName("ConfirmEmpolyeeAcc")]
-        public ActionResult EmployeeConfirmed(int? id)
+        //[HttpPost, ActionName("ConfirmEmployeeAcc")]
+        public ActionResult ConfirmEmployeeAcc(int? id)
         {
-            User user = db.Users.Find(id);
-            user.EmailConfirmed = true;
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User employee = db.Users.Find(id);
+            employee.EmailConfirmed = true;
+            db.SaveChanges();
+            return RedirectToAction("ConfirmEmployee");
+        }
+
+        [Authorize(Roles = "admin")]
+        //[HttpPost, ActionName("NegativeEmployeeAcc")]
+        public ActionResult NegativeEmployeeAcc(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User employee = db.Users.Find(id);
+            db.Users.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("ConfirmEmployee");
         }
