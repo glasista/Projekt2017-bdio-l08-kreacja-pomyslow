@@ -7,15 +7,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using IdeaCreationManagement.Models;
-using IdeaCreationManagement.ViewModels;
-
+using IdeaCreationManagement.Controllers;
 
 namespace IdeaCreationManagement.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
-        private AppContext db = new AppContext();
+       
         static private string message { get; set; }
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -59,9 +58,9 @@ namespace IdeaCreationManagement.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                message == ManageMessageId.ChangePasswordSuccess ? "Twoje hasło zostało zmienione."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                : message == ManageMessageId.ChangeEmailSucces ? "Twój e-mail został zmieniony."
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
@@ -248,8 +247,9 @@ namespace IdeaCreationManagement.Controllers
                 return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
-            return View(model);
+            return View();
         }
+       
 
         //
         // GET: /Manage/ChangeEmail       
@@ -261,28 +261,38 @@ namespace IdeaCreationManagement.Controllers
         // POST: /Manage/ChangeEmail
         [HttpPost]
         [ValidateAntiForgeryToken]
-       
+
         public async Task<ActionResult> ChangeEmail(ChangeEmailViewModel viewModel)
-        {               
-                if (ModelState.IsValid)                {
+        {
+            using (var mail = new AppContext())
+            { 
+                if (ModelState.IsValid)
+                {
                     var currentUser = GetCurrentUser();
                     string hashedPassword = Helpers.AuthHelper.HashPasswordWithExistingSalt(viewModel.Password);
                     if (currentUser.PasswordHashed == hashedPassword)
                     {
-                    var user = await UserManager.FindByIdAsync(currentUser.Id);
-                    currentUser.Email = viewModel.NewEmail;                    
-                         await UserManager.UpdateAsync(user);                    
-                         message = "Email został zmieniony!";
+                        string oldEmail = currentUser.Email;
+                        User user = UserManager.FindById(User.Identity.GetUserId());                       
+                        user.UserName = viewModel.NewEmail;
+                        user.Email = viewModel.NewEmail;
+                        IdentityResult result = await UserManager.UpdateAsync(user);                       
+                        
+                        message = "Email został zmieniony!";
+
                         string title = message;
-                        string body = "Witaj " + currentUser.UserName + " ! Twój e-mail został zmieniony na " + currentUser.Email + " !";
-                                               
-                        return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        string body = "Witaj " + currentUser.Email + " ! Twój e-mail został zmieniony na " + viewModel.NewEmail + " !";
+                        bool czySieUdalo = Helpers.AuthHelper.SendEmail(oldEmail, title, body);
+                        if (czySieUdalo) message += " Potwierdzenie zmiany zostało wysłane na maila!";
+                        else message += " Niestety nie udało się wysłać potwierdzenia zmiany na starego maila!";                        
+                        return RedirectToAction("Index",new { Message = ManageMessageId.SetTwoFactorSuccess });
+                       
                     }
                     else ViewBag.Message = "Błąd! Podano niepoprawne hasło!";
                 }
                 else ViewBag.Message = "Błąd! Niepoprawne dane!";
-            
 
+             }
             return View(viewModel);
         }
 
@@ -290,6 +300,18 @@ namespace IdeaCreationManagement.Controllers
         {
             return Helpers.AuthHelper.GetCurrentLoggedInUser();
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
@@ -432,6 +454,7 @@ namespace IdeaCreationManagement.Controllers
         {
             AddPhoneSuccess,
             ChangePasswordSuccess,
+            ChangeEmailSucces,
             SetTwoFactorSuccess,
             SetPasswordSuccess,
             RemoveLoginSuccess,

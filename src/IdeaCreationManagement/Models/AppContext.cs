@@ -13,8 +13,7 @@ namespace IdeaCreationManagement.Models
         public DbSet<Grade> Grades { get; set; }
         public DbSet<OrganizationalUnit> OrganizationalUnits { get; set; }
         public DbSet<Project> Projects { get; set; }
-        public DbSet<State> States { get; set; }
-
+        public DbSet<State> States { get; set; }      
         public AppContext()
             : base("SqlServerFile", throwIfV1Schema: false)
         {

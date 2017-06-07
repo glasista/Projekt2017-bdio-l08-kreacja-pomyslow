@@ -164,9 +164,9 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User {
+                User user = new User {
                     UserName = model.Email,
-                    Email = model.Email,
+                    Email = model.Email,                   
                     Surname = model.SurName,
                     FieldOfStudyId = model.Id,
                     Name = model.UserName,
@@ -228,7 +228,8 @@ namespace IdeaCreationManagement.Controllers
                     Email = model.Email,
                     Surname = model.SurName,
                     OrganizationalUnitId = model.Id,
-                    Name = model.UserName
+                    Name = model.UserName,
+                    PasswordHashed = System.Web.Helpers.Crypto.SHA256(model.Password)
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
 

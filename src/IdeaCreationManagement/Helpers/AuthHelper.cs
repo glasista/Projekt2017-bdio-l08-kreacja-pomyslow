@@ -3,6 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Net;
+using System.Net.Mail;
+using Microsoft.AspNet.Identity;
+
+
 
 namespace IdeaCreationManagement.Helpers
 {
@@ -41,5 +47,42 @@ namespace IdeaCreationManagement.Helpers
 
             return null;
         }
+       
+        public static bool  SendEmail(string receiver, string title, string body)
+        {
+            {
+                var sysLogin = "pomyslyiproblemy@gmail.com";
+                var sysPass = "Informatyka1232";
+                var sysAddress = new MailAddress(sysLogin, "Ocena użytkowników projektu");
+                var receiverAddress = new MailAddress(receiver);
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(sysLogin, sysPass),
+                    Timeout = 180000
+                };
+
+                using (var message = new MailMessage(sysAddress, receiverAddress) { Subject = title, Body = body })
+                {
+                    try
+                    {
+                        smtp.Send(message);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+            }
+            
+        }
+
     }
+
 }
