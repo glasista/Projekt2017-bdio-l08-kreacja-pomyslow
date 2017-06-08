@@ -1,0 +1,65 @@
+﻿@model IdeaCreationManagement.Models.Alert
+@{
+    ViewBag.Title = "Szczegóły";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły powiadomienia</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AuthorOfChange.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AuthorOfChange.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfChange)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeOfChange)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StudentRead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StudentRead)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeRead)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeRead)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wróć", "Index")
+</p>
+

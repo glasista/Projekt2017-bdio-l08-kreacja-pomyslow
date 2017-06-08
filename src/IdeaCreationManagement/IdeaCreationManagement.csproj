@@ -340,6 +340,7 @@
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Manage\ChangeEmail.cshtml" />
     <Content Include="Views\Admin\ConfirmEmployee.cshtml" />
+    <Content Include="Views\Alerts\AlertDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

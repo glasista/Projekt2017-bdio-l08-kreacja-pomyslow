@@ -7,17 +7,37 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using IdeaCreationManagement.Models;
+using Microsoft.AspNet.Identity;
+using System.Runtime.Remoting.Contexts;
+using Microsoft.Ajax.Utilities;
 
 namespace IdeaCreationManagement.Controllers
 {
     public class AlertsController : Controller
     {
-        private AppContext db = new AppContext();
+        private AppContext context = new AppContext();
 
         // GET: Alerts
         public ActionResult Index()
         {
-            var alerts = db.Alerts.Include(a => a.AuthorOfChange).Include(a => a.Project).Include(a => a.State);
+            var alerts = context.Alerts.Include(a => a.AuthorOfChange).Include(a => a.Project).Include(a => a.State);
+            if (User.IsInRole("student"))
+            {
+                var userId = User.Identity.GetUserId();
+                var user = context.Users.Include(x => x.CreateProjects).Single(x => x.Id == userId);
+                var list = new List<Alert>();
+                foreach (var project in user.CreateProjects)
+                {
+                        var alerty = context.Alerts.
+                        Include(a => a.AuthorOfChange).
+                        Include(a => a.Project).
+                        Include(a => a.State).
+                        Where(x => x.ProjectId == project.Id && x.StudentRead == false);
+                        list.AddRange(alerty);
+                }
+                return View(list);
+            }
+
             return View(alerts.ToList());
         }
 
@@ -28,7 +48,26 @@ namespace IdeaCreationManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alert alert = db.Alerts.Find(id);
+            Alert alert = context.Alerts.Find(id);
+            if (alert == null)
+            {
+                return HttpNotFound();
+            }
+            return View(alert);
+        }
+
+        public ActionResult AlertDetails(int? alertId)
+        {
+            if (alertId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Alert alert = context.Alerts.
+                Include(a => a.AuthorOfChange).
+                Include(a => a.Project).
+                Include(a => a.State).
+                Where(a => a.Id == alertId).
+                First();
             if (alert == null)
             {
                 return HttpNotFound();
@@ -39,9 +78,9 @@ namespace IdeaCreationManagement.Controllers
         // GET: Alerts/Create
         public ActionResult Create()
         {
-            ViewBag.AuthorOfChangeId = new SelectList(db.Users, "Id", "Name");
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title");
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name");
+            ViewBag.AuthorOfChangeId = new SelectList(context.Users, "Id", "Name");
+            ViewBag.ProjectId = new SelectList(context.Projects, "Id", "Title");
+            ViewBag.StateId = new SelectList(context.States, "Id", "Name");
             return View();
         }
 
@@ -54,14 +93,14 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Alerts.Add(alert);
-                db.SaveChanges();
+                context.Alerts.Add(alert);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AuthorOfChangeId = new SelectList(db.Users, "Id", "Name", alert.AuthorOfChangeId);
-            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Title", alert.ProjectId);
-            ViewBag.StateId = new SelectList(db.States, "Id", "Name", alert.StateId);
+            ViewBag.AuthorOfChangeId = new SelectList(context.Users, "Id", "Name", alert.AuthorOfChangeId);
+            ViewBag.ProjectId = new SelectList(context.Projects, "Id", "Title", alert.ProjectId);
+            ViewBag.StateId = new SelectList(context.States, "Id", "Name", alert.StateId);
             return View(alert);
         }
 
@@ -72,7 +111,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Alert alert = db.Alerts.Find(id);
+            Alert alert = context.Alerts.Find(id);
             if (alert == null)
             {
                 return HttpNotFound();
@@ -85,9 +124,9 @@ namespace IdeaCreationManagement.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Alert alert = db.Alerts.Find(id);
-            db.Alerts.Remove(alert);
-            db.SaveChanges();
+            Alert alert = context.Alerts.Find(id);
+            context.Alerts.Remove(alert);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -95,7 +134,7 @@ namespace IdeaCreationManagement.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                context.Dispose();
             }
             base.Dispose(disposing);
         }

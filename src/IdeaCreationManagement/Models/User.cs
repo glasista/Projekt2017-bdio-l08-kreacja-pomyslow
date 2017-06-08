@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace IdeaCreationManagement.Models
 {
@@ -26,7 +28,10 @@ namespace IdeaCreationManagement.Models
         public string Surname { get; set; }
         public int StudentNumber { get; set; }
 
-
+        [InverseProperty("Author")]
+        public IList<Project> CreateProjects { get; set; }
+        [InverseProperty("Assignee")]
+        public IList<Project> AssignedProjects { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
