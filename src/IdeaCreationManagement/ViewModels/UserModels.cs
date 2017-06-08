@@ -19,6 +19,8 @@ namespace IdeaCreationManagement.ViewModels
         [DisplayName("Status emaila")]
         public bool EmailConfirmed { get; set; }
         public List<string> Roles { get; set; }
+        [DisplayName("Kategoria")]
+        public string Category { get; set; }
 
         [DisplayName("Role")]
         public string RoleNames

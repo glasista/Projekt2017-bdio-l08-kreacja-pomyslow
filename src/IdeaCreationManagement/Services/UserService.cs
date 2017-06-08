@@ -38,7 +38,8 @@ namespace IdeaCreationManagement.Services
             cfg.CreateMap<IdentityUserRole, string>()
                 .ProjectUsing(c => roles[c.RoleId]);
             cfg.CreateMap<User, ListUser>()
-                .ForMember(x => x.Roles, c => c.MapFrom(x => x.Roles));
+                .ForMember(x => x.Roles, c => c.MapFrom(x => x.Roles))
+                .ForMember(x => x.Category, c => c.MapFrom(x => x.Category != null ? x.Category.Name : "-"));
             cfg.CreateMap<User, UserDetails>()
                 .ForMember(x => x.FieldOfStudy, c => c.MapFrom(x => x.FieldOfStudy != null ? x.FieldOfStudy.Name : null))
                 .ForMember(x => x.OrganizationalUnit, c => c.MapFrom(x => x.OrganizationalUnit != null ? x.OrganizationalUnit.Name : null))
@@ -65,6 +66,7 @@ namespace IdeaCreationManagement.Services
         public ICollection<ListUser> GetAll()
         {
             var users = _ctx.Users
+                .Include(x => x.Category)
                 .ToList();
             return Mapper.Map<List<ListUser>>(users);
         }
