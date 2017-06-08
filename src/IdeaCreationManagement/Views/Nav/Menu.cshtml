@@ -92,7 +92,7 @@
 @if (Request.IsAuthenticated && User.IsInRole("admin"))
 {
     @Html.ActionLink(
-        "kat. pomysłów",
+        "Kategorie pomysłów",
         "Index",
         "Category",
         new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
@@ -102,7 +102,7 @@
         })
 
     @Html.ActionLink(
-        "kat. problemów",
+        "Kategorie problemów",
         "Index",
         "Category",
         new { type = IdeaCreationManagement.Models.ProjectType.Problem },
