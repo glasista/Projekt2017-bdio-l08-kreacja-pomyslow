@@ -45,7 +45,10 @@
                 @Html.DisplayFor(modelItem => item.State.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AverageGrade)
+                @if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
+                {
+                   @Html.DisplayFor(modelItem => item.AverageGrade)
+                }
             </td>
             <td>
                 
