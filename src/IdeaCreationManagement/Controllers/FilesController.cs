@@ -32,18 +32,16 @@ namespace IdeaCreationManagement.Controllers
             }
             File file = db.Files.Find(fileId);
 
-            if (file == null)
+            if (file != null)
             {
-                return HttpNotFound();
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", String.Format("attachment;filename=\"{0}\"", file.Name));
+                Response.AddHeader("Content-Length", file.Size.ToString());
+                Response.BinaryWrite(file.Content);
+                Response.End();
             }
 
-            Response.ContentType = "application/octet-stream";
-            Response.AddHeader("Content-Disposition", String.Format("attachment;filename=\"{0}\"", file.Name));
-            Response.AddHeader("Content-Length", file.Size.ToString());
-            Response.BinaryWrite(file.Content);
-            Response.End();
-
-            return View(file);
+            return HttpNotFound();
         }
 
         // GET: Files/Create
