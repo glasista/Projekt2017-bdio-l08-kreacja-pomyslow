@@ -24,6 +24,12 @@
             @Html.DisplayNameFor(model => model.State.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Assignee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.AverageGrade)
         </th>
         <th></th>
@@ -44,6 +50,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.State.Name)
             </td>
+            <td>
+                @Html.DisplayFor(model => item.Assignee.Name) @Html.DisplayFor(model => item.Assignee.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+
             <td>
                 @if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
                 {
