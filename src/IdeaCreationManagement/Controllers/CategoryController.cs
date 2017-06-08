@@ -14,36 +14,24 @@ namespace IdeaCreationManagement.Controllers
         private AppContext db = new AppContext();
 
         // GET: Category
-        ////[Route("/Category")]
-        //public ActionResult Index()
-        //{
-        //    return View(db.Categories.ToList());
-        //}
-
-        //[Route("/Category?type=Idea")]
+        [Authorize(Roles = "admin")]
         public ActionResult Index(ProjectType type = ProjectType.Pomysł)
         {
-            //if (type != null)
-            // {
             var categories = db.Categories;
             IQueryable<Category> selected;
 
             if (type == ProjectType.Pomysł)
             {
                 selected = categories.Where(c => c.Type == ProjectType.Pomysł);
+                ViewBag.category = ProjectType.Pomysł;
             }
             else
             {
                 selected = categories.Where(c => c.Type == ProjectType.Problem);
+                ViewBag.category = ProjectType.Problem;
             }
 
             return View(selected.ToList());
-            //}
-            //else
-            //{
-            //   return View(db.Categories.ToList());
-            //}
-
         }
 
         // GET: Category/Create

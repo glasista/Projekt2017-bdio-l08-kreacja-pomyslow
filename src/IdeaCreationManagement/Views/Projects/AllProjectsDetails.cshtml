@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.Assignee)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Assignee.UserName) @Html.DisplayFor(model => model.Assignee.Surname)
+            @Html.DisplayFor(model => model.Assignee.Name) @Html.DisplayFor(model => model.Assignee.Surname)
         </dd>
 
         <dt>
@@ -43,33 +43,36 @@
             @Html.DisplayFor(model => model.State.Name)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageGrade)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageGrade)
-        </dd>
+        @if (String.Compare(Model.Type.ToString(), "Pomysł") == 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageGrade)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageGrade)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageUsefulness)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageUsefulness)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageUsefulness)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageUsefulness)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageDifficulty)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageDifficulty)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageDifficulty)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageDifficulty)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageIngenuity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageIngenuity)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageIngenuity)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageIngenuity)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.Description)

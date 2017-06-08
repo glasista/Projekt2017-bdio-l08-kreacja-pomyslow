@@ -193,7 +193,7 @@ namespace IdeaCreationManagement.Migrations
                     AuthorId = user1.Id,
                     AssigneeId = user2.Id,
                     Type = ProjectType.Problem,
-                    StateId = states[0].Id,
+                    StateId = states[2].Id,
                     CategoryId = categories[0].Id,
                     Time = DateTime.Now
                 },
@@ -213,7 +213,7 @@ namespace IdeaCreationManagement.Migrations
                     Description = "Opis 3",
                     AssigneeId = user2.Id,
                     Type = ProjectType.Pomysł,
-                    StateId = states[0].Id,
+                    StateId = states[2].Id,
                     CategoryId = categories[2].Id,
                     Time = DateTime.Now
                 },

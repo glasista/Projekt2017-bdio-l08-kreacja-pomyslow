@@ -20,11 +20,8 @@ namespace IdeaCreationManagement.Models
         public Category Category { get; set; }
         [Display(Name = "Imię")]
         public string Name { get; set; }
-
-
         public string PasswordHashed { get; set; }
-        //public string Email { get; set; }
-		[Display(Name = "Nazwisko")]
+        [Display(Name = "Nazwisko")]
         public string Surname { get; set; }
         public int StudentNumber { get; set; }
 

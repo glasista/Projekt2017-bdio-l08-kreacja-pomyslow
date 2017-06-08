@@ -56,22 +56,6 @@
     new { @class = "btn btn-block btn-default btn-md"
     })
 
-@Html.ActionLink(
-    "kat. pomysłów",
-    "Index",
-    "Category",
-    new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
-    new { @class = "btn btn-block btn-default btn-md"
-    })
-
-@Html.ActionLink(
-    "kat. problemów",
-    "Index",
-    "Category",
-    new { type = IdeaCreationManagement.Models.ProjectType.Problem },
-    new { @class = "btn btn-block btn-default btn-md"
-})
-
 @if (Request.IsAuthenticated && User.IsInRole("employee"))
 {
     @Html.ActionLink(
@@ -100,6 +84,28 @@
         "ViewProjects",
         "Admin",
         null,
+        new
+        {
+            @class = "btn btn-block btn-default btn-md"
+        })
+}
+@if (Request.IsAuthenticated && User.IsInRole("admin"))
+{
+    @Html.ActionLink(
+        "Kategorie pomysłów",
+        "Index",
+        "Category",
+        new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
+        new
+        {
+            @class = "btn btn-block btn-default btn-md"
+        })
+
+    @Html.ActionLink(
+        "Kategorie problemów",
+        "Index",
+        "Category",
+        new { type = IdeaCreationManagement.Models.ProjectType.Problem },
         new
         {
             @class = "btn btn-block btn-default btn-md"

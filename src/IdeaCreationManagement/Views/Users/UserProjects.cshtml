@@ -38,12 +38,8 @@
             @Html.DisplayFor(modelItem => item.Assignee)
         </td>
         <td>
-            @Html.ActionLink("Szczegóły", "Details", "Projects", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
-            @if (ViewBag.ProjectsType == "created")
-            {
-                @Html.ActionLink("Usuń", "Delete", "Projects", new {id = item.Id}, new {@class = "btn btn-xs btn-default"})
-            }
-            else
+            @Html.ActionLink("Szczegóły", "AllProjectsDetails", "Projects", new { projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
+            @if (ViewBag.ProjectsType != "created")
             {
                 @Html.ActionLink("Odbierz przydział", "Deassign", new { id = item.AssigneeId, projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
             }

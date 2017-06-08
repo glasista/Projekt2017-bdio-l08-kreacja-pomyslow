@@ -4,7 +4,6 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
     <h4>Zmień ustawienia konta</h4>
@@ -23,15 +22,19 @@
             }
             ]
         </dd>
-        <dt>E-mail:</dt>
-        <dd>
-            [
-            @if (Model.HasEmail)
-            {
-                @Html.ActionLink("Zmień e-mail", "ChangeEmail")
-            }
-            ]
-        </dd>
+        @if (User.IsInRole("employee"))
+        {
+            <dt>E-mail:</dt>
+            <dd>
+                [
+                @if (Model.HasEmail)
+                {
+                    @Html.ActionLink("Zmień e-mail", "ChangeEmail")
+                }
+                ]
+            </dd>
+        }
+
        @* <dt>External Logins:</dt>
         <dd>
             @Model.Logins.Count [
