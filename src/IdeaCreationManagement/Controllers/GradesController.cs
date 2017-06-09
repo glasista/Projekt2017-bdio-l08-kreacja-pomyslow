@@ -31,10 +31,13 @@ namespace IdeaCreationManagement.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var selected = db.Grades.
-                /*Include(c=>c.Time).
+                /*Include(c=>c.RaterId).
+                Include(c => c.Rater).
+                Include(c=>c.Time).
                 Include(c=>c.Ingenuity).
                 Include(c=>c.UsefulnessValue).
-                Include(c=>c.DifficultyValue).*/
+                Include(c=>c.DifficultyValue).
+                Include(c => c.AverageGrade).*/
                 Where(c => c.ProjectId == projectId);
             return View(selected.ToList());
         }

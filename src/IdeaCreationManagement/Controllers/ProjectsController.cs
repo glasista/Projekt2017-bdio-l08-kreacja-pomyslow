@@ -303,7 +303,13 @@ namespace IdeaCreationManagement.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult AdminAllProjects()
         {
-            var projects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State).Where(p => p.Type == ProjectType.Pomysł);
+            var projects = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Type == ProjectType.Pomysł);
+
             return View(projects.ToList());
         }
 

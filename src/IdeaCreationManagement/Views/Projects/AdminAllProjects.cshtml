@@ -24,7 +24,7 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.Title, "AllGradesDetails", "Grades", null, new { ProjectId = item.Id })
+                @Html.ActionLink(item.Title, "AllGradesDetails", "Grades", new { ProjectId = item.Id }, null)
             </td>
             <td>
                 @if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
