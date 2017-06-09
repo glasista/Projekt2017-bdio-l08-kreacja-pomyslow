@@ -59,7 +59,7 @@ namespace IdeaCreationManagement.Controllers
                 grade.ProjectId =id;
                 grade.RaterId = User.Identity.GetUserId();
                 grade.Time = DateTime.Now;
-                grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
+                //grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
                 db.Grades.Add(grade);
                 db.SaveChanges();
 
@@ -69,7 +69,7 @@ namespace IdeaCreationManagement.Controllers
                 db.Projects.Find(id).AverageIngenuity = mediumgrade.Sum(g => g.Ingenuity) / mediumgrade.Count;
                 db.Projects.Find(id).AverageDifficulty = mediumgrade.Sum(g => g.DifficultyValue) / mediumgrade.Count;
                 db.Projects.Find(id).AverageUsefulness = mediumgrade.Sum(g => g.UsefulnessValue) / mediumgrade.Count;
-                db.Projects.Find(id).AverageGrade = mediumgrade.Sum(g => g.AverageGrade) / mediumgrade.Count;
+                //db.Projects.Find(id).AverageGrade = mediumgrade.Sum(g => g.AverageGrade) / mediumgrade.Count;
                 db.SaveChanges();
                 return RedirectToAction("AllProjectsDetails", "Projects", new { ProjectId = grade.ProjectId });
             }
