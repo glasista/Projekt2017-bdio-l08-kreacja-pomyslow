@@ -24,6 +24,21 @@ namespace IdeaCreationManagement.Controllers
             return View(db.Grades.ToList());
         }
 
+        public ActionResult AllGradesDetails(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var selected = db.Grades.
+                /*Include(c=>c.Time).
+                Include(c=>c.Ingenuity).
+                Include(c=>c.UsefulnessValue).
+                Include(c=>c.DifficultyValue).*/
+                Where(c => c.ProjectId == projectId);
+            return View(selected.ToList());
+        }
+
         // GET: Grades/Details/5
         public ActionResult Details(int? id)
         {

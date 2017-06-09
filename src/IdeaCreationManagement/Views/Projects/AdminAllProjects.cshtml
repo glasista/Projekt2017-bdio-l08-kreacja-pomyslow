@@ -1,0 +1,58 @@
+﻿@model IEnumerable<IdeaCreationManagement.Models.Project>
+
+
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Lista pomysłów";
+}
+
+<h2>Lista pomysłów</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AverageGrade)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Title, "AllGradesDetails", "Grades", null, new { ProjectId = item.Id })
+            </td>
+            <td>
+                @if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
+                {
+                    @Html.DisplayFor(modelItem => item.AverageGrade)
+                }
+            </td>
+            <td>
+
+                @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, "Files")
+                @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (HttpContext.Current.User.Identity.GetUserId() == item.AuthorId) { }
+                    else
+                    {
+                        if (String.Compare(item.Type.ToString(), "Pomysł") == 0)
+                        {
+
+                            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, null)
+                        }
+                    }
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
