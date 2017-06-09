@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201706042052170_password.Designer.cs">
       <DependentUpon>201706042052170_password.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706091324110_averagegrade-to-float.cs" />
+    <Compile Include="Migrations\201706091324110_averagegrade-to-float.Designer.cs">
+      <DependentUpon>201706091324110_averagegrade-to-float.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Alert.cs" />
@@ -367,6 +371,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706042052170_password.resx">
       <DependentUpon>201706042052170_password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706091324110_averagegrade-to-float.resx">
+      <DependentUpon>201706091324110_averagegrade-to-float.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
