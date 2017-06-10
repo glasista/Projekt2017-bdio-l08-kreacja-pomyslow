@@ -121,3 +121,16 @@
             @class = "btn btn-block btn-default btn-md"
         })
 }
+
+@if (Request.IsAuthenticated && (User.IsInRole("employee") || User.IsInRole("student")))
+{
+    @Html.ActionLink(
+        "Ocenione projekty",
+        "GradedProjects",
+        "Projects",
+        null,
+        new
+        {
+            @class = "btn btn-block btn-default btn-md"
+        })
+}

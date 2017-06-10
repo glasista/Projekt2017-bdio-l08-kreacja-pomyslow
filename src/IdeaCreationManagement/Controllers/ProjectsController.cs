@@ -191,6 +191,43 @@ namespace IdeaCreationManagement.Controllers
 
         }
 
+        [Authorize(Roles = "employee,student")]
+        public ActionResult GradedProjects()
+        {
+            //TODO: zwrócenie projektów przydzielone do pracownika
+            var userId = User.Identity.GetUserId();
+            var gradedProjects = db.Grades.
+                Include(p => p.Project).
+                Include(p => p.Rater).
+                Where(p => p.RaterId == userId);
+
+            return View(gradedProjects.ToList());
+        }
+
+        [Authorize(Roles = "employee,student")]
+        public ActionResult GradedProjectsDetails(int? projectId)
+        {
+            if (projectId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Project project = db.Projects.
+                Include(p => p.Assignee).
+                Include(p => p.Author).
+                Include(p => p.Category).
+                Include(p => p.State).
+                Where(p => p.Id == projectId).
+                First();
+
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            return View(project);
+
+        }
+
         [Authorize(Roles = "employee")]
         public ActionResult ChangeState(int? projectId)
         {

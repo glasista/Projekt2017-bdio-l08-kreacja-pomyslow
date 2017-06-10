@@ -1,0 +1,26 @@
+﻿@using IdeaCreationManagement.Models
+@model IEnumerable<Grade>
+
+@{
+    ViewBag.Title = "Szczegóły oceny";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista ocenionych projektów</h2>
+
+<div class="row panel-body">
+    <table class="well table table-hover table-bordered">
+        <tr>
+            <th class="col-md-5">@Html.DisplayNameFor(model => model.First().Project.Title).ToString()</th>
+            <th class="col-md-2">@Html.DisplayNameFor(model => model.First().Project.AverageGrade).ToString()</th>
+        </tr>
+        @foreach (var p in Model)
+            {
+            <tr>
+                <td>@Html.ActionLink(p.Project.Title, "GradedProjectsDetails", new { projectId = p.ProjectId })</td>
+                <td>@p.AverageGrade </td>
+            </tr>
+        }
+    </table>
+</div>
+

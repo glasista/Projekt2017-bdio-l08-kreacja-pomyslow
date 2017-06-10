@@ -347,6 +347,8 @@
     <Content Include="Views\Alerts\AlertDetails.cshtml" />
     <Content Include="Views\Grades\AllGradesDetails.cshtml" />
     <Content Include="Views\Projects\AdminAllProjects.cshtml" />
+    <Content Include="Views\Projects\GradedProjects.cshtml" />
+    <Content Include="Views\Projects\GradedProjectsDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
