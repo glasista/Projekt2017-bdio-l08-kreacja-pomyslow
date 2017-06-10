@@ -10,10 +10,19 @@ namespace IdeaCreationManagement.Models
 
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
+
+        [Display(Name = "Przydatnośc")]
         public int UsefulnessValue { get; set; }
+
+        [Display(Name = "Poziom trudności")]
         public int DifficultyValue { get; set; }
+
+        [Display(Name = "Pomysłowość")]
         public int Ingenuity { get; set; }
+
+        [Display(Name = "Średnia ocena")]
         public float AverageGrade { get; set; }
+
         [ForeignKey("Rater")]
         public string RaterId { get; set; }
         public User Rater { get; set; }
