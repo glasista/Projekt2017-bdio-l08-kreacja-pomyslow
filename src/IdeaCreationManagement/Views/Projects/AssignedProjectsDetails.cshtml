@@ -7,16 +7,6 @@
 
 <h2>Szczegóły projektu</h2>
 
-@*tytuł-
-stan projektu-
-kategoria-
-średnia ocena-
-
-autor-
-data dodania-
-opis-
-oceny według kategorii*@
-
 <div class="panel-body">
     <dl class="dl-horizontal well">
         <dt>
@@ -57,34 +47,36 @@ oceny według kategorii*@
                )]
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageGrade):
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageGrade)
-        </dd>
+        @if (Model.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageGrade):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageGrade)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageDifficulty):
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageDifficulty)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageDifficulty):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageDifficulty)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageIngenuity):
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageIngenuity)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageIngenuity):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageIngenuity)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AverageUsefulness):
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.AverageUsefulness)
-        </dd>
-
+            <dt>
+                @Html.DisplayNameFor(model => model.AverageUsefulness):
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AverageUsefulness)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Description):
         </dt>
