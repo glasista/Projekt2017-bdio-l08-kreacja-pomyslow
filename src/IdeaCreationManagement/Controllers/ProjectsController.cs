@@ -207,7 +207,15 @@ namespace IdeaCreationManagement.Controllers
                 Where(p => p.Id == projectId).
                 First();
 
-            ViewBag.StateID = new SelectList(db.States, "Id", "Name");
+            if (project.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
+            {
+                ViewBag.StateID = new SelectList(db.States.Where(p => p.Name == "zrealizowany" || p.Name == "niezrealizowany"), "Id", "Name");
+            }
+            else if (project.Type == IdeaCreationManagement.Models.ProjectType.Problem)
+            {
+                ViewBag.StateID = new SelectList(db.States.Where(p => p.Name == "rozwiązany" || p.Name == "nierozwiązany"), "Id", "Name");
+            }
+
 
             if (project == null)
             {
