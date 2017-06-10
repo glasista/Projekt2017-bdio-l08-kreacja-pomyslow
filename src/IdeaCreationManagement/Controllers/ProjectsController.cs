@@ -205,26 +205,24 @@ namespace IdeaCreationManagement.Controllers
         }
 
         [Authorize(Roles = "employee,student")]
-        public ActionResult GradedProjectsDetails(int? projectId)
+        public ActionResult GradedProjectsDetails(int? gradeId)
         {
-            if (projectId == null)
+            if (gradeId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            Project project = db.Projects.
-                Include(p => p.Assignee).
-                Include(p => p.Author).
-                Include(p => p.Category).
-                Include(p => p.State).
-                Where(p => p.Id == projectId).
+            Grade grate = db.Grades.
+                Include(p => p.Project).
+                Include(p => p.Rater).
+                Where(p => p.Id == gradeId).
                 First();
 
-            if (project == null)
+            if (grate == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(grate);
 
         }
 

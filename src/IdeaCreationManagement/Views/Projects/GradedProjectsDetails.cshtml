@@ -1,4 +1,5 @@
-﻿
+﻿@model IdeaCreationManagement.Models.Grade
+
 @{
     ViewBag.Title = "Szczegóły oceny";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,47 @@
 
 <h2>Szczegóły oceny projektu</h2>
 
+<div class="panel-body">
+    <dl class="dl-horizontal well">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.Title):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Project.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsefulnessValue):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsefulnessValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DifficultyValue):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DifficultyValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingenuity):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ingenuity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AverageGrade):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AverageGrade)
+        </dd>
+
+        
+
+    </dl>
+
+    @Html.ActionLink("Wróć", "GradedProjects", "Projects", null,
+        new { @class = "btn btn-block btn-default btn-lg" })
+</div>

@@ -17,7 +17,7 @@
         @foreach (var p in Model)
             {
             <tr>
-                <td>@Html.ActionLink(p.Project.Title, "GradedProjectsDetails", new { projectId = p.ProjectId })</td>
+                <td>@Html.ActionLink(p.Project.Title, "GradedProjectsDetails", new { gradeId = p.Id })</td>
                 <td>@p.AverageGrade </td>
             </tr>
         }
