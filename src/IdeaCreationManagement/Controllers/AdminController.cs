@@ -51,14 +51,15 @@ namespace IdeaCreationManagement.Controllers
             // .Where(c => c.Category.Name == project.Category.Name);
             return View(employee.ToList());
         }
+
         [Authorize(Roles = "admin")]
-        public ActionResult SetEmployee(string id_e , int? id_p)
+        public ActionResult SetEmployee(string id_e, int? id_p)
         {
             if (id_e == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            if(id_p == null)
+            if (id_p == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -71,10 +72,19 @@ namespace IdeaCreationManagement.Controllers
                 Include(p => p.State).
                 Where(p => p.Id == id_p).
                 First();
-
             project.AssigneeId = emp.Id;
             project.State.Name = "przydzielony";
-            db.SaveChanges();   
+            Alert newalert = new Alert
+            {
+                TimeOfChange = DateTime.Now,
+                StateId = project.StateId,
+                AuthorOfChangeId = User.Identity.GetUserId(),
+                StudentRead = false,
+                EmployeeRead = false,
+                ProjectId = project.Id
+            };
+            db.Alerts.Add(newalert);
+            db.SaveChanges();
             return RedirectToAction("ViewProjects");
         }
         [Authorize(Roles = "admin")]
