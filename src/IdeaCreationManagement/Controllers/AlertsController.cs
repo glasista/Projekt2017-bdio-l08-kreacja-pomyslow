@@ -37,7 +37,22 @@ namespace IdeaCreationManagement.Controllers
                 }
                 return View(list);
             }
-
+            if (User.IsInRole("employee"))
+            {
+                var userId = User.Identity.GetUserId();
+                var user = context.Users.Include(x => x.AssignedProjects).Single(x => x.Id == userId);
+                var list = new List<Alert>();
+                foreach (var project in user.AssignedProjects)
+                {
+                    var alerty = context.Alerts.
+                        Include(a => a.AuthorOfChange).
+                        Include(a => a.Project).
+                        Include(a => a.State).
+                        Where(x => x.ProjectId == project.Id && x.EmployeeRead == false);
+                    list.AddRange(alerty);
+                }
+                return View(list);
+            }
             return View(alerts.ToList());
         }
 
