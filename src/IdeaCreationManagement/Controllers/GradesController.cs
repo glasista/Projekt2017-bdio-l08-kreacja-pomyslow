@@ -73,7 +73,6 @@ namespace IdeaCreationManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                ViewBag.RaterId = db.Grades.Where(g => g.RaterId != null);
                 grade.ProjectId =id;
                 grade.RaterId = User.Identity.GetUserId();
                 grade.Time = DateTime.Now;
