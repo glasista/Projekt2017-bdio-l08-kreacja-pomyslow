@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -54,5 +55,8 @@ namespace IdeaCreationManagement.Models
 
         [Display(Name = "Kategoria")]
         public Category Category { get; set; }
+
+        [InverseProperty("Project")]
+        public ICollection<Grade> Grades { get; set; }
     }
 }

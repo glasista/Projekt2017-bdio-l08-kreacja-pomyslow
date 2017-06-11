@@ -90,7 +90,7 @@
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
     {
-        if (String.Compare(Model.Type.ToString(), "Pomysł") == 0)
+        if (((Dictionary<int, bool>)ViewBag.Gradable)[Model.Id])
         {
 
             @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, null)

@@ -316,8 +316,29 @@ namespace IdeaCreationManagement.Controllers
 
         public ActionResult AllProjects()
         {
-            var projects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category).Include(p => p.State);
+            var projects = db.Projects.Include(p => p.Assignee).Include(p => p.Author).Include(p => p.Category)
+                .Include(p => p.State).Include(p => p.Grades);
+            ViewBag.Gradable = CheckGradability(projects);
             return View(projects.ToList());
+        }
+
+        private Dictionary<int, bool> CheckGradability(IEnumerable<Project> projects)
+        {
+            var dict = new Dictionary<int, bool>();
+            var currentUserId = User.Identity.GetUserId();
+            foreach (var project in projects)
+            {
+                if (project.Grades.Any(x => x.RaterId == currentUserId) || project.AuthorId == currentUserId 
+                    || project.Type == ProjectType.Problem)
+                {
+                    dict.Add(project.Id, false);
+                }
+                else
+                {
+                    dict.Add(project.Id, true);
+                }
+            }
+            return dict;
         }
 
         public ActionResult AllProjectsDetails(int? projectId)
@@ -332,6 +353,7 @@ namespace IdeaCreationManagement.Controllers
                 Include(p => p.Author).
                 Include(p => p.Category).
                 Include(p => p.State).
+                Include(p => p.Grades).
                 Where(p => p.Id == projectId).
                 First();
 
@@ -339,6 +361,7 @@ namespace IdeaCreationManagement.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Gradable = CheckGradability(new[] { project });
             return View(project);
 
         }
