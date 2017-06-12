@@ -10,7 +10,9 @@ using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Repositories;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
-
+using System.Net.Mail;
+using System.Web.Security;
+using System.Configuration;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -138,7 +140,21 @@ namespace IdeaCreationManagement.Controllers
             }
             User employee = db.Users.Find(id_e);
             employee.EmailConfirmed = true;
+
+            var message = new MailMessage();
+            message.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
+            message.To.Add(new MailAddress(employee.Email));
+            message.Subject = "Idea Creation Mangement - Account Confirmed";
+            message.Body = "Your account has been veryfied succesfully.";
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
+            smtpClient.Credentials = credentials;
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(message);
+
             db.SaveChanges();
+
             return RedirectToAction("AddCategoryToEmp",new {id_e =id_e });
         }
 
