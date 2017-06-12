@@ -1,0 +1,25 @@
+﻿@(ViewBag.categories as IEnumerable<IdeaCreationManagement.Models.Category>)
+   @{
+       ViewBag.Title = "AddCategoryToEmp";
+    } 
+<h2>Przydziel kategorie</h2>
+<table class="table">
+                
+                <tr>
+                    <b>Kategorie</b>
+                </tr>
+                @foreach (var item in ViewBag.categories)
+                {
+                    <tr>
+                        <th>
+                            @item.Name
+                        </th>
+                        <th>
+                            @Html.ActionLink("Dodaj kategorie", "AssignCategory", new {i_e=ViewBag.id_e, id_c = item.Id })
+                        </th>
+                    </tr>
+                }
+</table>
+
+        
+

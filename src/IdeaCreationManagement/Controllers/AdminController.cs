@@ -139,7 +139,7 @@ namespace IdeaCreationManagement.Controllers
             User employee = db.Users.Find(id_e);
             employee.EmailConfirmed = true;
             db.SaveChanges();
-            return RedirectToAction("ConfirmEmployee");
+            return RedirectToAction("AddCategoryToEmp",new {id_e =id_e });
         }
 
         [Authorize(Roles = "admin")]
@@ -151,6 +151,30 @@ namespace IdeaCreationManagement.Controllers
             }
             User employee = db.Users.Find(id_e);
             db.Users.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("ConfirmEmployee");
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult AddCategoryToEmp(string id_e)
+        {
+           // var employee = db.Users.Find(id_e);
+            var category = db.Categories.ToList();
+            ViewBag.id_e = id_e;
+            ViewBag.categories = category;
+            return View(ViewBag);
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult AssignCategory(string id_e,int? id_c)
+        {
+            if (id_e == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User employee = db.Users.Find(id_e);
+            //Category cat = db.Categories.Find(id_c);
+            employee.CategoryId = id_c;
             db.SaveChanges();
             return RedirectToAction("ConfirmEmployee");
         }
