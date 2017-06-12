@@ -124,9 +124,9 @@ namespace IdeaCreationManagement.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult ConfirmEmployee()
         {
-            var employee = from i in db.Users
-                           select i;
-            return View(employee.ToList());
+            var roleId = db.Roles.Where(x => x.Name.Equals("employee")).Select(y => y.Id).FirstOrDefault();
+            var employee = db.Users.Where(x => x.EmailConfirmed == false).Where(x => x.Roles.Any(y => y.RoleId.Equals(roleId))).ToList();
+            return View(employee);
         }
 
         [Authorize(Roles = "admin")]
