@@ -182,7 +182,7 @@ namespace IdeaCreationManagement.Controllers
                 if (result.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "student");
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -243,7 +243,7 @@ namespace IdeaCreationManagement.Controllers
                 if (result.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "employee");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
