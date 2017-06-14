@@ -1,12 +1,34 @@
 ﻿@{
-    ViewBag.Title = "Rejestracja";
+    ViewBag.Title = "REJESTRACJA";
 }
 
-<h2>@ViewBag.Title</h2>
+<br/>
+<br/>  
+        <div class="col-md-4" style="border: 2px solid black;">
+            <div style="color: black; text-align: center;">
+                <h3><b>@ViewBag.Title</b></h3>
+            </div>
+            <div style="color: black; text-align: center;">
+                <h4><b>Jestem: </b></h4>
+            </div>
+            <br/>
+            <div>                
+                @Html.ActionLink("Studentem", "RegisterStudent", "Account", new
+                {
+                    @class = "btn btn-block btn-default btn-md"
+                }) 
+            </div>
+            <br/>              
+            <div>
+                @Html.ActionLink("Pracownikiem", "RegisterEmployee", "Account", new
+             {
+                 @class = "btn btn-block btn-default btn-md"
+             })
+            </div>
 
-<div>
-    @Html.ActionLink("Zarejestruj jako Student", "RegisterStudent", "Account")
-</div>
-<div>
-    @Html.ActionLink("Zarejestruj jako Pracownik", "RegisterEmployee", "Account")
-</div>
+            <br/>
+        </div>
+    
+
+
+
