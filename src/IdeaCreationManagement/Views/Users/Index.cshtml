@@ -67,9 +67,9 @@ else
                     @Html.DisplayFor(modelItem => item.Category)
                 </td>
                 <td>
-                    @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-default" }) |
-                    @Html.ActionLink("Edycja", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-default" }) |
-                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-default" })
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-primary" }) |
+                    @Html.ActionLink("Edycja", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-warning" }) |
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-danger" })
                 </td>
             </tr>
         }

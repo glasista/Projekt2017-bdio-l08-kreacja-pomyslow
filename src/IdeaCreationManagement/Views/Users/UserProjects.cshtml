@@ -38,10 +38,10 @@
             @Html.DisplayFor(modelItem => item.Assignee)
         </td>
         <td>
-            @Html.ActionLink("Szczegóły", "AllProjectsDetails", "Projects", new { projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
+            @Html.ActionLink("Szczegóły", "AllProjectsDetails", "Projects", new { projectId = item.Id }, new { @class = "btn btn-xs btn-primary" })
             @if (ViewBag.ProjectsType != "created")
             {
-                @Html.ActionLink("Odbierz przydział", "Deassign", new { id = item.AssigneeId, projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
+                @Html.ActionLink("Odbierz przydział", "Deassign", new { id = item.AssigneeId, projectId = item.Id }, new { @class = "btn btn-xs btn-danger" })
             }
 
         </td>
