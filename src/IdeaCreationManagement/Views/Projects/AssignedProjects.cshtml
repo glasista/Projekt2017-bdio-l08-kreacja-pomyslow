@@ -23,7 +23,7 @@
             <tr>
                 <td>@Html.ActionLink(p.Title, "AssignedProjectsDetails", new { projectId = p.Id})</td>
                 <td>
-                    @Html.DisplayFor(model => p.Author.Name) @Html.DisplayFor(model => p.Author.Surname)
+                    @Html.DisplayFor(model => p.Author.UserName) @*@Html.DisplayFor(model => p.Author.Surname)*@
                     @Html.ActionLink("Szczegóły", "DetailsOnly2", "Users", new { id = p.AuthorId }, new { @class = "btn btn-xs btn-default" })
                 </td>
                 <td>@p.State.Name </td>  
