@@ -15,7 +15,7 @@
                             @item.Name
                         </th>
                         <th>
-                            @Html.ActionLink("Dodaj kategorie", "AssignCategory", new {i_e=ViewBag.id_e, id_c = item.Id })
+                            @Html.ActionLink("Dodaj kategorie", "AssignCategory", new {i_e=ViewBag.id_e, id_c = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
                         </th>
                     </tr>
                 }
