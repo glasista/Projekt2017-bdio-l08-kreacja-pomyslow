@@ -40,7 +40,7 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Add(string type)
         {
             if (type.IsNullOrWhiteSpace())
@@ -55,7 +55,7 @@ namespace IdeaCreationManagement.Controllers
         
 
         [HttpPost]
-        [ValidateAntiForgeryToken, Authorize]
+        [ValidateAntiForgeryToken]//, Authorize]
         public ActionResult Add(string type, [Bind(Include = "Title,CategoryId,Description")] Project project)
         {
             if (ModelState.IsValid)
@@ -82,8 +82,10 @@ namespace IdeaCreationManagement.Controllers
                 }
 
             }
-
-            return RedirectToAction("AllProjects");
+            if (type.ToLower() == "idea")
+                return RedirectToAction("MyIdeas");
+            else
+                return RedirectToAction("MyProblems");
         }
         
 
