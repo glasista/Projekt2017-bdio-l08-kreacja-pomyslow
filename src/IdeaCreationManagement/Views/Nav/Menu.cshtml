@@ -44,7 +44,7 @@
             })
     }
     
-    @if (!User.IsInRole("admin"))
+    @if (User.IsInRole("student") || User.IsInRole("employee"))
     {
         @Html.ActionLink(
             "Dodaj Pomysł",
