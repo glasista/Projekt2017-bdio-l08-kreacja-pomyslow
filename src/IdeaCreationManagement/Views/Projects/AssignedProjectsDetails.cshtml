@@ -19,8 +19,11 @@
         <dt>
             @Html.DisplayNameFor(model => model.Author):
         </dt>
-        <dd> 
-            @Html.DisplayFor(model => model.Author.UserName) @*@Html.DisplayFor(model => model.Author.Surname)*@      
+        <dd>
+            @if (Model.Author != null)
+            {
+                @Html.ActionLink(Model.Author.Name + " " + Model.Author.Surname, "DetailsOnly2", "Users", new { id = Model.AuthorId }, "Users")
+            }
         </dd>
 
         <dt>
@@ -41,10 +44,12 @@
             @Html.DisplayNameFor(model => model.State):
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State.Name) [@Html.ActionLink("Zmień",
+            @Html.ActionLink(Model.State.Name, "ChangeState", new { projectId = Model.Id })
+            @*@Html.DisplayFor(model => model.State.Name)*@ @*[@Html.ActionLink("Zmień",
                    "ChangeState",
                    new { projectId = Model.Id }
-               )]
+               )]*@            
+            @*@Html.ActionLink("Zmień", "ChangeState", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-warning" })*@
         </dd>
 
         @if (Model.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)

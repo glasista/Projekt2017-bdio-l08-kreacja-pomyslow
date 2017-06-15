@@ -10,9 +10,9 @@
 {
     <p>
         Czy na pewno skasować poniższego użytkownika? <br />
-        <input type="submit" value="Tak" class="btn btn-xs btn-default"/>
+        <input type="submit" value="Tak" class="btn btn-xs btn-success"/>
         <input type="hidden" name="id" value="@Model.Details.Id"/>
-        @Html.ActionLink("Nie", "Index",null, new { @class = "btn btn-xs btn-default" })
+        @Html.ActionLink("Nie", "Index",null, new { @class = "btn btn-xs btn-danger" })
     </p>
 } 
 

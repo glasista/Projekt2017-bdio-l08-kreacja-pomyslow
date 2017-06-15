@@ -42,13 +42,13 @@
                 @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
-                @Html.ActionLink("Wybierz Pracownika", "SetEmployee", new { id_e = item.Id  , id_p = ViewBag.ProjectID  })
+                @Html.ActionLink("Wybierz Pracownika", "SetEmployee", new { id_e = item.Id  , id_p = ViewBag.ProjectID  }, new { @class = "btn-xs btn-primary" })
 
             </td>
         <</tr>
     }
 </table>
-@Html.ActionLink("Wróć", "ViewProjects")
+@Html.ActionLink("Wróć", "ViewProjects",new { }, new { @class = "btn btn-primary" })
 
 
 

@@ -224,7 +224,7 @@ namespace IdeaCreationManagement.Controllers
                 Include(p => p.Rater).
                 Where(p => p.Id == gradeId).
                 First();
-
+            
             if (grate == null)
             {
                 return HttpNotFound();

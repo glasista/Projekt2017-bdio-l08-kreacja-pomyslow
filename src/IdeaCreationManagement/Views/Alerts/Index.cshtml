@@ -7,58 +7,51 @@
 
 <h2>Powiadomienia</h2>
 
-<p>
-    @Html.ActionLink("Stwórz nowe", "Create")
-</p>
-<table class="well table table-hover table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.AuthorOfChange.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Project.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TimeOfChange)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StudentRead)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmployeeRead)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AuthorOfChange.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Project.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TimeOfChange)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentRead)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeRead)
-        </td>
-        <td>
-            @Html.ActionLink("Szczegóły", "AlertDetails", new { alertId=item.Id }) |
-            
-            @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
-        </td>
-    </tr>
+@if (User.IsInRole("employee"))
+{
+    foreach (var item in Model)
+    {
+        if (item.Project.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
+        {
+            <h4>
+                @Html.DisplayFor(modelItem => item.TimeOfChange) Administrator przydzielił Cie do pomysłu <span style="text-transform:uppercase">
+                @Html.DisplayFor(modelItem => item.Project.Title)</span>
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            </h4>
+        }
+        if (item.Project.Type == IdeaCreationManagement.Models.ProjectType.Problem)
+        {
+            <h4>
+                @Html.DisplayFor(modelItem => item.TimeOfChange) Administrator przydzielił Cie do problemu <span style="text-transform:uppercase">
+                @Html.DisplayFor(modelItem => item.Project.Title)</span>
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            </h4>
+        }
+    }
 }
-
-</table>
+@if (User.IsInRole("student"))
+{
+    foreach (var item in Model)
+    {
+        if (item.Project.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
+        {
+            <h4>
+                    @Html.DisplayFor(modelItem => item.TimeOfChange) Twój pomysł 
+                <span style="text-transform:uppercase">@Html.DisplayFor(modelItem => item.Project.Title)</span>
+                    zmienił status na 
+                <span style="text-transform:uppercase">@Html.DisplayFor(modelItem => item.State.Name)</span>                 
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+           </h4>
+        }
+        if (item.Project.Type == IdeaCreationManagement.Models.ProjectType.Problem)
+        {
+            <h4>
+                @Html.DisplayFor(modelItem => item.TimeOfChange) Twój problem
+                <span style="text-transform:uppercase">@Html.DisplayFor(modelItem => item.Project.Title)</span>
+                zmienił status na
+                <span style="text-transform:uppercase">@Html.DisplayFor(modelItem => item.State.Name)</span>
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+            </h4>
+        }
+    }
+}
