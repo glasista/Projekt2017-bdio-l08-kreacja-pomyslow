@@ -44,11 +44,12 @@
             @Html.DisplayNameFor(model => model.State):
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State.Name) @*[@Html.ActionLink("Zmień",
+            @Html.ActionLink(Model.State.Name, "ChangeState", new { projectId = Model.Id })
+            @*@Html.DisplayFor(model => model.State.Name)*@ @*[@Html.ActionLink("Zmień",
                    "ChangeState",
                    new { projectId = Model.Id }
-               )]*@
-            @Html.ActionLink("Zmień", "ChangeState", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-warning" })
+               )]*@            
+            @*@Html.ActionLink("Zmień", "ChangeState", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-warning" })*@
         </dd>
 
         @if (Model.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
