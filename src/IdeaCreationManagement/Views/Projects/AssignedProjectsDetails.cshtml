@@ -42,10 +42,11 @@
             @Html.DisplayNameFor(model => model.State):
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.State.Name) [@Html.ActionLink("Zmień",
+            @Html.DisplayFor(model => model.State.Name) @*[@Html.ActionLink("Zmień",
                    "ChangeState",
                    new { projectId = Model.Id }
-               )]
+               )]*@
+            @Html.ActionLink("Zmień", "ChangeState", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-default" })
         </dd>
 
         @if (Model.Type == IdeaCreationManagement.Models.ProjectType.Pomysł)
