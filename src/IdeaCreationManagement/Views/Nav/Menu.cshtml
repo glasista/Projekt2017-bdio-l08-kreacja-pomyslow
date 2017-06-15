@@ -37,27 +37,29 @@
                 @class = "btn btn-block btn-default btn-md"
             })
     }
+    
+    @if (!User.IsInRole("admin"))
+    {
+        @Html.ActionLink(
+            "Dodaj Pomysł",
+            "Add",
+            "Projects",
+            new {type = "idea"},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
 
-    @Html.ActionLink(
-        "Dodaj Pomysł",
-        "Add",
-        "Projects",
-        new {type = "idea"},
-        new
-        {
-            @class = "btn btn-block btn-default btn-md"
-        })
-
-    @Html.ActionLink(
-        "Zgłoś Problem",
-        "Add",
-        "Projects",
-        new {type = "problem"},
-        new
-        {
-            @class = "btn btn-block btn-default btn-md"
-        })
-
+        @Html.ActionLink(
+            "Zgłoś Problem",
+            "Add",
+            "Projects",
+            new {type = "problem"},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
 
 
 
