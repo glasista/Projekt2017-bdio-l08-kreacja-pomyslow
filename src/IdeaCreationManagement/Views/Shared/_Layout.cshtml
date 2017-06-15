@@ -23,12 +23,15 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                       
+                    <li><p></p><p><img src="~/Content/Images/logo_prz.png" height="50" width="150" /></p></li>
+                    <li><p>"                               "</p></li>
+                    <li><h2 class="baner">INNOWACJE</h2></li>
+                    <li><p>"                               "</p></li>
                     <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
-                   
-                     @*<li>@Html.ActionLink("About", "About", "Home")</li>
+
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
-                    
+
                     @*<li>@Html.ActionLink("Moje pomysły", "MyIdeas", "Projects", new {type = "idea"}, null)</li>
                     <li>@Html.ActionLink("Moje problemy", "MyProblems", "Projects", new {type = "problem"}, null)</li>
                     <li>@Html.ActionLink("Dodaj Pomysł", "Add", "Projects", new {type = "idea"}, null)</li>
@@ -41,7 +44,7 @@
                         <li>@Html.ActionLink("Przydzielone proj.", "AssignedProjects", "Projects")</li>
                     }*@
 
-                    
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -52,7 +55,7 @@
     
     <div class="row panel">
         <div id="categories" class="col-md-2">
-            @Html.Action("Menu", "Nav")
+            @Html.Partial("../Nav/Menu")
         </div>
         <div class="col-md-8">
             @RenderBody()
@@ -61,13 +64,12 @@
         
     </div>
     @*<hr />*@
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Idea Creation Management</p>
+    <footer >
+        <p class="baner">&copy; @DateTime.Now.Year - Idea Creation Management</p>
     </footer>
     
     
     @*<div class="container body-content">
-        @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

@@ -1,151 +1,168 @@
-﻿
-@Html.ActionLink(
-    "Powiadomienia",
-    "Index",
-    "Alerts",
-    new { type = "powiadomienie"},
-    new{ @class = "btn btn-block btn-default btn-md" })
-
-@if(Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
-{
-    @Html.ActionLink(
-        "Moje Pomysły",
-        "MyIdeas",
-        "Projects",
-        new { type = "idea" },
-        new
-         {
-           @class = "btn btn-block btn-default btn-md"
-         })
-}
-
-@if(Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
-{
-    @Html.ActionLink(
-        "Moje Problemy",
-        "MyProblems",
-        "Projects",
-        new { type = "problem" },
-        new
-         {
-          @class = "btn btn-block btn-default btn-md"
-        })
-}
-
-@Html.ActionLink(
-    "Dodaj Pomysł",
-    "Add",
-    "Projects",
-    new { type = "idea" },
-    new { @class = "btn btn-block btn-default btn-md"
-    })
-
-@Html.ActionLink(
-    "Zgłoś Problem",
-    "Add",
-    "Projects",
-    new { type = "problem" },
-    new { @class = "btn btn-block btn-default btn-md"
-    })
-
-
-
-
-
-@Html.ActionLink(
-    "Baza projektów",
-    "AllProjects",
-    "Projects",
-    null,
-    new { @class = "btn btn-block btn-default btn-md"
-    })
-
-@Html.ActionLink(
-    "O projekcie",
-    "AboutProject",
-    "Projects",
-    null,
-    new
+﻿<div class="row">
+    <p><br/></p>
+    
+    
+    @if (Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
     {
-        @class = "btn btn-block btn-default btn-md"
-    })
+        @Html.ActionLink(
+            "Powiadomienia",
+            "Index",
+            "Alerts",
+            new {type = "powiadomienie"},
+            new {@class = "btn btn-block btn-default btn-md"})
+    }   
 
+    @if (Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
+    {
+        @Html.ActionLink(
+            "Moje Pomysły",
+            "MyIdeas",
+            "Projects",
+            new {type = "idea"},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
 
-@if (Request.IsAuthenticated && User.IsInRole("employee"))
-{
+    @if (Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
+    {
+        @Html.ActionLink(
+            "Moje Problemy",
+            "MyProblems",
+            "Projects",
+            new {type = "problem"},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+
     @Html.ActionLink(
-        "Przydzielone projekty",
-        "AssignedProjects",
+        "Dodaj Pomysł",
+        "Add",
         "Projects",
-        null,
-        new { @class = "btn btn-block btn-default btn-md"
-        })
-}
-
-@if (Request.IsAuthenticated && User.IsInRole("admin"))
-{
-    @Html.ActionLink(
-        "Zarządzanie użytkownikami",
-        "Index",
-        "Users",
-        null,
-        new { @class = "btn btn-block btn-default btn-md"
-        })
-}
-@if (Request.IsAuthenticated && User.IsInRole("admin"))
-{
-    @Html.ActionLink(
-        "Przydziel pracownika do projektu   ",
-        "ViewProjects",
-        "Admin",
-        null,
-        new
-        {
-            @class = "btn btn-block btn-default btn-md"
-        })
-}
-@if (Request.IsAuthenticated && User.IsInRole("admin"))
-{
-    @Html.ActionLink(
-        "Kategorie pomysłów",
-        "Index",
-        "Category",
-        new { type = IdeaCreationManagement.Models.ProjectType.Pomysł },
+        new {type = "idea"},
         new
         {
             @class = "btn btn-block btn-default btn-md"
         })
 
     @Html.ActionLink(
-        "Kategorie problemów",
-        "Index",
-        "Category",
-        new { type = IdeaCreationManagement.Models.ProjectType.Problem },
-        new
-        {
-            @class = "btn btn-block btn-default btn-md"
-        })
-
-    @Html.ActionLink(
-        "Lista pomysłów",
-        "AdminAllProjects",
+        "Zgłoś Problem",
+        "Add",
         "Projects",
-        null,
+        new {type = "problem"},
         new
         {
             @class = "btn btn-block btn-default btn-md"
         })
-}
 
-@if (Request.IsAuthenticated && (User.IsInRole("employee") || User.IsInRole("student")))
-{
+
+
+
+
     @Html.ActionLink(
-        "Ocenione projekty",
-        "GradedProjects",
+        "Baza projektów",
+        "AllProjects",
         "Projects",
         null,
         new
         {
             @class = "btn btn-block btn-default btn-md"
         })
-}
+
+    @Html.ActionLink(
+        "O projekcie",
+        "AboutProject",
+        "Projects",
+        null,
+        new
+        {
+            @class = "btn btn-block btn-default btn-md"
+        })
+
+
+    @if (Request.IsAuthenticated && User.IsInRole("employee"))
+    {
+        @Html.ActionLink(
+            "Przydzielone projekty",
+            "AssignedProjects",
+            "Projects",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+
+    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+    {
+        @Html.ActionLink(
+            "Zarządzanie użytkownikami",
+            "Index",
+            "Users",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+    {
+        @Html.ActionLink(
+            "Przydziel pracownika do projektu   ",
+            "ViewProjects",
+            "Admin",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+    @if (Request.IsAuthenticated && User.IsInRole("admin"))
+    {
+        @Html.ActionLink(
+            "Kategorie pomysłów",
+            "Index",
+            "Category",
+            new {type = IdeaCreationManagement.Models.ProjectType.Pomysł},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+
+        @Html.ActionLink(
+            "Kategorie problemów",
+            "Index",
+            "Category",
+            new {type = IdeaCreationManagement.Models.ProjectType.Problem},
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+
+        @Html.ActionLink(
+            "Lista pomysłów",
+            "AdminAllProjects",
+            "Projects",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+
+    @if (Request.IsAuthenticated && (User.IsInRole("employee") || User.IsInRole("student")))
+    {
+        @Html.ActionLink(
+            "Ocenione projekty",
+            "GradedProjects",
+            "Projects",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+    }
+</div>

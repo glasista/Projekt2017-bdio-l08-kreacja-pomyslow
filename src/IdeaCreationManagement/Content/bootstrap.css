@@ -12,7 +12,12 @@ html {
 
 footer {
     background: #1a237e;
+    height: 50px;
+    alignment: bottom;
+}
 
+.baner {
+    color: white;
 }
 
 body {
