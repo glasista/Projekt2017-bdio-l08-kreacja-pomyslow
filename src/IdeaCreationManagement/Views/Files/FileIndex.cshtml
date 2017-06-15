@@ -39,7 +39,7 @@ else
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
-                    @Html.ActionLink("Pobierz", "Details", new { fileId = item.Id })
+                    @Html.ActionLink("Pobierz", "Details", new { fileId = item.Id }, new { @class = "btn btn-xs btn-default" })
                 </td>
             </tr>
         }
@@ -48,5 +48,5 @@ else
 }
 
 <p>
-    @Html.ActionLink("Powrót", "AllProjects", "Projects")
+    @Html.ActionLink("Powrót", "AllProjects", "Projects", null, new { @class = "btn btn-xs btn-default" })
 </p>
