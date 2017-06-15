@@ -7,7 +7,6 @@ using IdeaCreationManagement.ViewModels;
 
 namespace IdeaCreationManagement.Controllers
 {
-    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private readonly UserService _users;
@@ -17,6 +16,7 @@ namespace IdeaCreationManagement.Controllers
             _users = userService;
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Index(string msg)
         {
             var model = _users.GetAll();
@@ -27,6 +27,7 @@ namespace IdeaCreationManagement.Controllers
             return View("Index", model);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Details(string id, string msg)
         {
             var user = _users.GetUserDetails(id);
@@ -42,13 +43,27 @@ namespace IdeaCreationManagement.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "employee")]
+        public ActionResult DetailsOnly2(string id)
+        {
+            var user = _users.GetUserDetails(id);
+            if (user == null)
+            {
+                return new HttpNotFoundResult();
+            }
+
+            return View(user);
+        }
+
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(string id)
         {
             return Details(id, null);
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirm(string id)
         {
             string message = "";
@@ -60,6 +75,7 @@ namespace IdeaCreationManagement.Controllers
             return RedirectToAction("Index", new {msg = message});
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Deassign(string id, int projectId)
         {
             var model = _users.DeassignConfirmation(id, projectId);
@@ -71,6 +87,7 @@ namespace IdeaCreationManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult DeassignConfirm(string id, int projectId)
         {
             string message = "";
@@ -82,6 +99,7 @@ namespace IdeaCreationManagement.Controllers
             return RedirectToAction("Details", new {id = id, msg = message});
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(string id)
         {
             var model = _users.GetUserEditDetails(id);
@@ -93,6 +111,7 @@ namespace IdeaCreationManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(string id, [Bind] UserEditSubmitModel model)
         {
             if (!ModelState.IsValid)
