@@ -22,7 +22,7 @@
             }
             ]
         </dd>
-        @if (User.IsInRole("employee"))
+        @if (User.IsInRole("employee") || User.IsInRole("admin"))
         {
             <dt>E-mail:</dt>
             <dd>
