@@ -55,7 +55,8 @@
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "AlertDetails", new { alertId=item.Id }) |
-            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+            
+            @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
         </td>
     </tr>
 }
