@@ -1,6 +1,12 @@
 ﻿<div class="row">
     <p><br/></p>
     
+    @Html.ActionLink(
+            "Strona Główna",
+            "Index",
+            "Home",
+            new { type = "stronaglowna" },
+            new { @class = "btn btn-block btn-default btn-md" })
     
     @if (Request.IsAuthenticated && (User.IsInRole("student") || User.IsInRole("employee")))
     {
