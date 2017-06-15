@@ -65,12 +65,12 @@
             </td>
             <td>
                 
-                @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, "Files")
+                @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
                 @if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     if (((Dictionary<int, bool>)ViewBag.Gradable)[item.Id])
                     {
-                        @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, null)
+                        @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, new { @class = "btn btn-xs btn-default" })
                     }
                 }
             </td>
