@@ -52,21 +52,21 @@
 
           
             <td>
-            @Html.ActionLink("Przydziel", "ChooseEmployee", new{ id =item.Id }) 
+            @Html.ActionLink("Przydziel", "ChooseEmployee", new{ id =item.Id }, new { @class = "btn-xs btn-primary" }) 
    
             </td>
             <td>
-                @Html.ActionLink("Odrzuć", "RejectProject", new { id = item.Id })
+                @Html.ActionLink("Odrzuć", "RejectProject", new { id = item.Id }, new { @class = "btn-xs btn-primary" })
 
             </td>
             <td>
-                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn-xs btn-danger" })
 
             </td>
         </tr>
     }
 
 </table>
-@Html.ActionLink("Wróć", "Index")
+
 
 

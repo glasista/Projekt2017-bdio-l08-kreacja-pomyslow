@@ -42,10 +42,10 @@ else
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id } )
+                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
                 </td>
                 <td>
-                    @Html.ActionLink("Odrzuć konto", "NegativeEmployeeAcc", new { id_e = item.Id } )
+                    @Html.ActionLink("Odrzuć konto", "NegativeEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
                 </td>
             </tr>
         }
