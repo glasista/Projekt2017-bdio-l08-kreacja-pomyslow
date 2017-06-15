@@ -84,8 +84,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Powrót", "AllProjects") | 
-    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = Model.Id }, "Files")
+    @Html.ActionLink("Powrót", "AllProjects", null, new { @class = "btn btn-xs btn-default" }) 
+    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-default" })
 </p>
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -93,7 +93,7 @@
         if (((Dictionary<int, bool>)ViewBag.Gradable)[Model.Id])
         {
 
-            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, null)
+            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, new { @class = "btn btn-xs btn-default" })
         }
     }
 </p>
