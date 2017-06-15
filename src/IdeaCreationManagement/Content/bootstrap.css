@@ -9,6 +9,12 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+
+footer {
+    background: #1a237e;
+
+}
+
 body {
   margin: 0;
 }
@@ -4168,6 +4174,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   min-height: 50px;
   margin-bottom: 20px;
   border: 1px solid transparent;
+  background: #1a237e;
 }
 @media (min-width: 768px) {
   .navbar {
@@ -4176,6 +4183,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-header {
+    background: #1a237e;
     float: left;
   }
 }
@@ -4216,6 +4224,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-fixed-top .navbar-collapse,
 .navbar-fixed-bottom .navbar-collapse {
+  background: #1a237e;  
   max-height: 340px;
 }
 @media (max-device-width: 480px) and (orientation: landscape) {
@@ -4589,7 +4598,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
+  background: #1a237e;
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
@@ -5482,7 +5491,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #f5f5f5;
+  background: #1a237e;
   border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;

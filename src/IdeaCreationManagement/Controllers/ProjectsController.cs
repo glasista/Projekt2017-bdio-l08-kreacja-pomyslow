@@ -40,7 +40,7 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Add(string type)
         {
             if (type.IsNullOrWhiteSpace())
@@ -60,7 +60,7 @@ namespace IdeaCreationManagement.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]//, Authorize]
+        [ValidateAntiForgeryToken, Authorize]
         public ActionResult Add(string type, [Bind(Include = "Title,CategoryId,Description")] Project project)
         {
             if (ModelState.IsValid)

@@ -354,6 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Views\AuthHelper\" />
   </ItemGroup>
   <ItemGroup>
