@@ -11,7 +11,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background: #1a237e">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,8 +21,8 @@
                 </button>
                 @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <div class="navbar-collapse collapse" style="background: #1a237e">
+                <ul class="nav navbar-nav" >
                     <li><p></p><p><img src="~/Content/Images/logo_prz.png" height="50" width="150" /></p></li>
                     <li><p>"                               "</p></li>
                     <li><h2 class="baner">INNOWACJE</h2></li>
@@ -53,7 +53,7 @@
     
     
     
-    <div class="row panel">
+    <div class="row panel" style="margin: 20px; padding-left: 300px">
         <div id="categories" class="col-md-2">
             @Html.Partial("../Nav/Menu")
         </div>
@@ -64,7 +64,7 @@
         
     </div>
     @*<hr />*@
-    <footer >
+    <footer style="background: #1a237e">
         <p class="baner">&copy; @DateTime.Now.Year - Idea Creation Management</p>
     </footer>
     
