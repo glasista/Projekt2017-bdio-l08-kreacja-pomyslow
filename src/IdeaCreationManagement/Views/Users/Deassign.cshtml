@@ -10,10 +10,10 @@
 {
     <p>
         Czy na pewno odebrać przydział tego użytkownika do projektu @Model.Project.Title? <br />
-        <input type="submit" value="Tak" class="btn btn-xs btn-success" />
+        <input type="submit" value="Tak" class="btn btn-xs btn-default" />
         <input type="hidden" name="id" value="@Model.UserDetailsViewModel.Details.Id" />
         <input type="hidden" name="projectId" value="@Model.Project.Id" />
-        @Html.ActionLink("Nie", "Details", new { id = Model.UserDetailsViewModel.Details.Id }, new { @class = "btn btn-xs btn-danger" })
+        @Html.ActionLink("Nie", "Details", new { id = Model.UserDetailsViewModel.Details.Id }, new { @class = "btn btn-xs btn-default" })
     </p>
 }
 
