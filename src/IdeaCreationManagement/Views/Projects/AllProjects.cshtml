@@ -71,12 +71,12 @@ else
                 </td>
                 <td>
 
-                    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, new { @class = "btn btn-xs btn-default" })
+                    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = item.Id }, new { @class = "btn btn-xs btn-primary" })
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         if (((Dictionary<int, bool>)ViewBag.Gradable)[item.Id])
                         {
-                            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, new { @class = "btn btn-xs btn-default" })
+                            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = item.Id }, new { @class = "btn btn-xs btn-success" })
                         }
                     }
                 </td>
