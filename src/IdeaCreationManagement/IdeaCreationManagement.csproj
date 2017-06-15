@@ -346,6 +346,8 @@
     <Content Include="Views\Projects\GradedProjectsDetails.cshtml" />
     <Content Include="Views\Admin\AddCategoryToEmp.cshtml" />
     <Content Include="Views\Projects\ProjectView.cshtml" />
+    <Content Include="Views\Users\UserDetails2.cshtml" />
+    <Content Include="Views\Users\DetailsOnly2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
