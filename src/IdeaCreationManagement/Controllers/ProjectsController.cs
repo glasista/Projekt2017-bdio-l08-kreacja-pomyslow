@@ -52,7 +52,12 @@ namespace IdeaCreationManagement.Controllers
             ViewBag.ProjectType = type.ToLower() == "idea" ? "Dodaj Pomysł" : " Zgłoś problem";
             return View("Create");
         }
-        
+        public ActionResult AboutProject(string type)
+        {
+   
+            return View("ProjectView");
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken, Authorize]
@@ -321,6 +326,9 @@ namespace IdeaCreationManagement.Controllers
             ViewBag.Gradable = CheckGradability(projects);
             return View(projects.ToList());
         }
+
+     
+
 
         private Dictionary<int, bool> CheckGradability(IEnumerable<Project> projects)
         {
