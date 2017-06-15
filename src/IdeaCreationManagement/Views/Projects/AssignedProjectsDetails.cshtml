@@ -21,6 +21,7 @@
         </dt>
         <dd> 
             @Html.DisplayFor(model => model.Author.UserName) @*@Html.DisplayFor(model => model.Author.Surname)*@      
+            @Html.ActionLink("Szczegóły", "DetailsOnly2", "Users", new { id = Model.Author.Id }, new { @class = "btn btn-xs btn-default" })
         </dd>
 
         <dt>
