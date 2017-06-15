@@ -48,6 +48,10 @@
     new { @class = "btn btn-block btn-default btn-md"
     })
 
+
+
+
+
 @Html.ActionLink(
     "Baza projektów",
     "AllProjects",
@@ -55,6 +59,17 @@
     null,
     new { @class = "btn btn-block btn-default btn-md"
     })
+
+@Html.ActionLink(
+    "O projekcie",
+    "AboutProject",
+    "Projects",
+    null,
+    new
+    {
+        @class = "btn btn-block btn-default btn-md"
+    })
+
 
 @if (Request.IsAuthenticated && User.IsInRole("employee"))
 {
