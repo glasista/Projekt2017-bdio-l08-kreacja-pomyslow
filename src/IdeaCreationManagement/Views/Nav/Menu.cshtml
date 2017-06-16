@@ -120,6 +120,17 @@
                 @class = "btn btn-block btn-default btn-md"
             })
     }
+
+    @Html.ActionLink(
+            "Wyświetl niepotwierdzone konta pracowników",
+            "ConfirmEmployee",
+            "Admin",
+            null,
+            new
+            {
+                @class = "btn btn-block btn-default btn-md"
+            })
+
     @if (Request.IsAuthenticated && User.IsInRole("admin"))
     {
         @Html.ActionLink(
@@ -151,6 +162,7 @@
             {
                 @class = "btn btn-block btn-default btn-md"
             })
+
     }
 
     @if (Request.IsAuthenticated && (User.IsInRole("employee") || User.IsInRole("student")))

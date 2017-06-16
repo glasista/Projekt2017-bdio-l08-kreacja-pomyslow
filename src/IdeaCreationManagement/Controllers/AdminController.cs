@@ -155,7 +155,7 @@ namespace IdeaCreationManagement.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("AddCategoryToEmp",new {id_e =id_e });
+            return RedirectToAction("AddCategoryToEmp",new { id_e });
         }
 
         [Authorize(Roles = "admin")]
