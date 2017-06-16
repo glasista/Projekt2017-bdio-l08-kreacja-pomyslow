@@ -194,7 +194,7 @@ namespace IdeaCreationManagement.Migrations
                     AssigneeId = user2.Id,
                     Type = ProjectType.Problem,
                     StateId = states[2].Id,
-                    CategoryId = categories[0].Id,
+                    CategoryId = categories[1].Id,
                     Time = DateTime.Now
                 },
                 new Project
