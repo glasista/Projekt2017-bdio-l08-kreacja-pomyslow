@@ -40,7 +40,7 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
-        //[Authorize]
+       [Authorize]
         public ActionResult Add(string type)
         {
             if (type.IsNullOrWhiteSpace())
