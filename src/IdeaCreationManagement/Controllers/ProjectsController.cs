@@ -40,7 +40,7 @@ namespace IdeaCreationManagement.Controllers
             return View(project);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Add(string type)
         {
             if (type.IsNullOrWhiteSpace())
@@ -49,7 +49,7 @@ namespace IdeaCreationManagement.Controllers
             }
             ProjectType projectType = type.ToLower() == "idea" ? ProjectType.Pomysł : ProjectType.Problem;
             ViewBag.CategoryId = new SelectList(_repo.GetProjectsCategories(projectType), "Id", "Name");
-            ViewBag.ProjectType = type.ToLower() == "idea" ? "Dodaj Pomysł" : " Zgłoś problem";
+            ViewBag.ProjectType = type.ToLower() == "idea" ? "Dodaj pomysł" : " Zgłoś problem";
             return View("Create");
         }
         public ActionResult AboutProject(string type)
@@ -60,14 +60,14 @@ namespace IdeaCreationManagement.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken, Authorize]
+        [ValidateAntiForgeryToken]//, Authorize]
         public ActionResult Add(string type, [Bind(Include = "Title,CategoryId,Description")] Project project)
         {
             if (ModelState.IsValid)
             {
                 List<HttpPostedFileBase> postedFiles = new List<HttpPostedFileBase>();
                 project.AuthorId = User.Identity.GetUserId();
-                project.Type = type.ToLower() == "idea" ? ProjectType.Pomysł : ProjectType.Problem;
+                project.Type = type == "Dodaj pomysł" ? ProjectType.Pomysł : ProjectType.Problem;
                 foreach (var upload in Request.Files.AllKeys)
                 {
                     var file = Request.Files[upload];
@@ -87,7 +87,7 @@ namespace IdeaCreationManagement.Controllers
                 }
 
             }
-            if (type.ToLower() == "idea")
+            if (project.Type == ProjectType.Pomysł)
                 return RedirectToAction("MyIdeas");
             else
                 return RedirectToAction("MyProblems");
