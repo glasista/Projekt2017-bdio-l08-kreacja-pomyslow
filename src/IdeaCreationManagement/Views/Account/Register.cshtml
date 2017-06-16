@@ -3,8 +3,7 @@
 }
 
 <br/>
-
-        <div class="col-md-4" style="">
+        <div class="col-md-4 col-md-offset-5">
             <div style="color: black; text-align: center;">
                 <h3>@ViewBag.Title</h3>
             </div>
@@ -16,17 +15,16 @@
             <div>                
                 @Html.ActionLink("Studentem", "RegisterStudent", "Account", new
                 {
-                    @class = "btn btn-block btn-default btn-md"
+                    @class = "btn btn-block btn-primary btn-blue"
                 }) 
             </div>
             <br/>              
             <div>
                 @Html.ActionLink("Pracownikiem", "RegisterEmployee", "Account", new
              {
-                 @class = "btn btn-block btn-default btn-md"
+                 @class = "btn btn-block btn-primary btn-md"
              })
             </div>
-
             <br/>
         </div>
     
