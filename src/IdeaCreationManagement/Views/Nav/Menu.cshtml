@@ -111,7 +111,7 @@
     @if (Request.IsAuthenticated && User.IsInRole("admin"))
     {
         @Html.ActionLink(
-            "Przydziel pracownika do projektu   ",
+            "Przydziel pracownika do projektu",
             "ViewProjects",
             "Admin",
             null,
@@ -122,7 +122,7 @@
     }
 
     @Html.ActionLink(
-            "Wyświetl niepotwierdzone konta pracowników",
+            "Potwierdź konta pracowników",
             "ConfirmEmployee",
             "Admin",
             null,

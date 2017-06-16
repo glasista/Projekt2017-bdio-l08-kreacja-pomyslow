@@ -14,9 +14,6 @@ else
 
         <tr>
             <th>
-             @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Surname)
             </th>
             <th>
@@ -29,9 +26,6 @@ else
         @foreach (var item in Model)
         {
             <tr>
-                <th>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </th>
                 <td>
                     @Html.DisplayFor(modelItem => item.Surname)
                 </td>
