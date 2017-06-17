@@ -12,6 +12,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.Title):
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
@@ -19,6 +20,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.Author):
         </dt>
+        
         <dd>
             @if (Model.Author != null)
             {
@@ -29,6 +31,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.Category):
         </dt>
+        
         <dd>
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
@@ -36,6 +39,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.Time):
         </dt>
+        
         <dd>
             @Html.DisplayFor(model => model.Time)
         </dd>
@@ -43,6 +47,7 @@
         <dt>
             @Html.DisplayNameFor(model => model.State):
         </dt>
+        
         <dd>
             @Html.ActionLink(Model.State.Name, "ChangeState", new { projectId = Model.Id })
             @*@Html.DisplayFor(model => model.State.Name)*@ @*[@Html.ActionLink("Zmień",
@@ -58,33 +63,84 @@
                 @Html.DisplayNameFor(model => model.AverageGrade):
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageGrade)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageGrade; i++)
+                {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageGrade + 1); i <= 5; i++)
+                {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                
+                            
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageDifficulty):
             </dt>
+            
             <dd>
-                @Html.DisplayFor(model => model.AverageDifficulty)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageDifficulty; i++)
+                {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageDifficulty + 1); i <= 5; i++)
+                {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                            
+ 
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageIngenuity):
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageIngenuity)
-            </dd>
+                <div class="row">
+
+              @for (var i = 1; i <= Model.AverageIngenuity; i++)
+                {
+                <span class="starGlow"></span>
+                }
+                @for (var i = (Model.AverageIngenuity + 1); i <= 5; i++)
+                {
+                <span class="starFade"></span>
+                }
+                </div>
+                
+                </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageUsefulness):
             </dt>
+            
             <dd>
-                @Html.DisplayFor(model => model.AverageUsefulness)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageUsefulness; i++)
+                {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageUsefulness + 1); i <= 5; i++)
+                {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                
+
             </dd>
         }
+        
         <dt>
             @Html.DisplayNameFor(model => model.Description):
         </dt>
+        
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
@@ -92,5 +148,5 @@
     </dl>
 
     @Html.ActionLink("Wróć", "AssignedProjects", "Projects", null,
-        new { @class = "btn btn-default" })
+        new { @class = "btn btn btn-primary" })
 </div>
