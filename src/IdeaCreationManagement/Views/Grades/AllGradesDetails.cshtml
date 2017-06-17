@@ -9,9 +9,7 @@
 
 <h2>Dokonane oceny</h2>
 
-<div>
-    <span class="starFadeN" id="sRate1"></span><span class="starFadeN" id="sRate2"></span><span class="starFadeN" id="sRate3"></span><span class="starFadeN" id="sRate4"></span><span class="starFadeN" id="sRate5"></span>
-</div>
+
 
 <table class="table">
 
@@ -47,47 +45,68 @@
                 @Html.DisplayFor(modelItem => item.Time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.UsefulnessValue)
+                <div class="row">
+                    
+                    @for (var i = 1; i <= item.UsefulnessValue; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (item.UsefulnessValue + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.DifficultyValue)
+                <div class="row">
+
+                    @for (var i = 1; i <= item.DifficultyValue; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (item.DifficultyValue + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Ingenuity)
-            </td>
+                <div class="row">
+
+                    @for (var i = 1; i <= item.Ingenuity; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (item.Ingenuity + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+           </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.AverageGrade)
+                <div class="row">
+
+
+                    @for (var i = 1; i <= item.AverageGrade; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (item.AverageGrade + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+             
             </td>
+
         </tr>
     }
     
-    </div>
-    @foreach (var item in Model)
-    {
-        <hr />
-        <div class="row">
-            <div class="col-md-3">
-                
-                <br />
-                @for (var i = 1; i <= item.AverageGrade; i++)
-                {
-                    <span class="starGlow"></span>
-                }
-                @for (var i = (item.AverageGrade+ 1); i <= 5; i++)
-                {
-                    <span class="starFade"></span>
-                }
-            </div>
-            <div class="col-md-9">
-                
-
-
-            </div>
-        </div>
-    }
-    <hr />
-   
-
 
 </table>
 
