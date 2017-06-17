@@ -339,8 +339,8 @@ namespace IdeaCreationManagement.Controllers
             var currentUserId = User.Identity.GetUserId();
             foreach (var project in projects)
             {
-                if (project.Grades.Any(x => x.RaterId == currentUserId) || project.AuthorId == currentUserId 
-                    || project.Type == ProjectType.Problem)
+                if (project.Grades.Any(x => x.RaterId == currentUserId ) || project.AuthorId == currentUserId 
+                    || project.Type == ProjectType.Problem || User.IsInRole("admin")==true)
                 {
                     dict.Add(project.Id, false);
                 }
