@@ -11,7 +11,7 @@ namespace IdeaCreationManagement.Models
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Time { get; set; }
 
-        [Display(Name = "Przydatnośc")]
+        [Display(Name = "Przydatność")]
         public int UsefulnessValue { get; set; }
 
         [Display(Name = "Poziom trudności")]
