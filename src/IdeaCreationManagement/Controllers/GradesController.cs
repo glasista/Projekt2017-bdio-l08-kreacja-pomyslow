@@ -33,7 +33,7 @@ namespace IdeaCreationManagement.Controllers
             var selected = db.Grades.
                 Include(c => c.Rater).
                 Where(c => c.ProjectId == projectId);
-              
+            ViewBag.AverageGrade = db.Projects.Find(projectId).AverageGrade;
             return View(selected.ToList());
         }
 

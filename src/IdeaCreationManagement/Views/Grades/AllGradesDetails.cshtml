@@ -3,13 +3,19 @@
 
 @{
     ViewBag.Title = "Dokonane oceny";
+    var totalRating = 5;
+
 }
 
 <h2>Dokonane oceny</h2>
 
+<div>
+    <span class="starFadeN" id="sRate1"></span><span class="starFadeN" id="sRate2"></span><span class="starFadeN" id="sRate3"></span><span class="starFadeN" id="sRate4"></span><span class="starFadeN" id="sRate5"></span>
+</div>
 
 <table class="table">
-    <tr>
+
+       <tr>
         <th>
             @Html.DisplayName("Oceniający")
         </th>
@@ -54,6 +60,51 @@
             </td>
         </tr>
     }
+    
+    </div>
+    @foreach (var item in Model)
+    {
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
+                
+                <br />
+                @for (var i = 1; i <= item.AverageGrade; i++)
+                {
+                    <span class="starGlow"></span>
+                }
+                @for (var i = (item.AverageGrade+ 1); i <= 5; i++)
+                {
+                    <span class="starFade"></span>
+                }
+            </div>
+            <div class="col-md-9">
+                
+
+
+            </div>
+        </div>
+    }
+    <hr />
+    @Html.Partial("_CommentBox")
+
+    <script>
+    function SCRate() {
+        for (var i = 1; i <= @totalRating; i++) {
+            $("#sRate" + i).attr('class', 'starGlowN');
+        }
+    }
+    $(function(){
+        SCRate();
+    });
+    </script>
+
+
+
+
+
+
+
 
 </table>
 
