@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using IdeaCreationManagement.Models;
 using IdeaCreationManagement.Services;
 using IdeaCreationManagement.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace IdeaCreationManagement.Controllers
 {
@@ -23,6 +24,10 @@ namespace IdeaCreationManagement.Controllers
             if (msg == "deleted")
             {
                 ViewBag.Message = "Użytkownik został usunięty";
+            }
+            else if (msg == "cannotdelete")
+            {
+                ViewBag.Message = "Nie możesz skasować własnego konta";
             }
             return View("Index", model);
         }
@@ -59,6 +64,10 @@ namespace IdeaCreationManagement.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Delete(string id)
         {
+            if (User.Identity.GetUserId() == id)
+            {
+                return RedirectToAction("Index", new {msg = "cannotdelete"});
+            }
             return Details(id, null);
         }
 
@@ -66,6 +75,10 @@ namespace IdeaCreationManagement.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirm(string id)
         {
+            if (User.Identity.GetUserId() == id)
+            {
+                return RedirectToAction("Index", new { msg = "cannotdelete" });
+            }
             string message = "";
             if (id != null)
             {
