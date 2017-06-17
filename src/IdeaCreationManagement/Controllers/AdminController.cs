@@ -75,7 +75,7 @@ namespace IdeaCreationManagement.Controllers
                 Where(p => p.Id == id_p).
                 First();
             project.AssigneeId = emp.Id;
-            project.State.Name = "przydzielony";
+            project.State = db.States.Single(x => x.Name == "przydzielony");
             Alert newalert = new Alert
             {
                 TimeOfChange = DateTime.Now,
@@ -117,7 +117,7 @@ namespace IdeaCreationManagement.Controllers
         public ActionResult RejectConfirmed(int? id)
         {
             Project project = db.Projects.Find(id);
-            project.State = new State() { Name = "odrzucony" };
+            project.State = db.States.Single(x => x.Name == "odrzucony");
             project.AssigneeId = null;
             db.SaveChanges();
             return RedirectToAction("ViewProjects");

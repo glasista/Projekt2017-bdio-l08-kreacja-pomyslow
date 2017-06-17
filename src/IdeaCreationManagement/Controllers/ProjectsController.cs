@@ -68,7 +68,6 @@ namespace IdeaCreationManagement.Controllers
                 List<HttpPostedFileBase> postedFiles = new List<HttpPostedFileBase>();
                 project.AuthorId = User.Identity.GetUserId();
                 project.Type = type == "Dodaj pomysł" ? ProjectType.Pomysł : ProjectType.Problem;
-                project.StateId = db.States.First(x => x.Name == "oczekujący").Id;
                 foreach (var upload in Request.Files.AllKeys)
                 {
                     var file = Request.Files[upload];
