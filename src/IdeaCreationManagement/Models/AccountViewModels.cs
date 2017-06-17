@@ -74,7 +74,6 @@ namespace IdeaCreationManagement.Models
         [Required(ErrorMessage = "Musisz wprowadzić email")]
         [EmailAddress]
         [Display(Name = "Email")]
-        [RegularExpression("^([\\w\\.\\-]+)@prz.edu.pl", ErrorMessage = "Wprowadź poprawny adres email, zawierający @prz.edu.pl")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Musisz wprowadzić hasło")]
