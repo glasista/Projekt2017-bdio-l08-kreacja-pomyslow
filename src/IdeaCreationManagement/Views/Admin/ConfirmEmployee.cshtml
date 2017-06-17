@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<IdeaCreationManagement.Models.User>
 @{
-    ViewBag.Title = "ConfirmEmployee";
-    
+    ViewBag.Title = "Niepotwierdzone konta pracowników";  
 }
+
 @if (Model == null || !Model.Any())
 {
     <h2>Brak użytkowników</h2>
 }
 else
 {
-    <h2>ConfirmEmployee</h2>
+    <h2>Niepotwierdzone konta pracowników :</h2>
     <table class="table">
 
         <tr>
@@ -36,10 +36,10 @@ else
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
+                    @Html.ActionLink("Potwierdź konto", "ConfirmEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-primary" })
                 </td>
                 <td>
-                    @Html.ActionLink("Odrzuć konto", "NegativeEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
+                    @Html.ActionLink("Odrzuć konto", "NegativeEmployeeAcc", new { id_e = item.Id }, new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

@@ -6,7 +6,7 @@
 <table class="table">
                 
                 <tr>
-                    <b>Kategorie</b>
+                        <b>Kategorie</b>
                 </tr>
                 @foreach (var item in ViewBag.categories)
                 {
@@ -14,9 +14,8 @@
                         <th>
                             @item.Name
                         </th>
-                       
                         <th>
-                            @Html.ActionLink("Dodaj kategorie", "AssignCategory", new {id_e=ViewBag.id_e, id_c = item.Id }, new { @class = "btn btn-block btn-default btn-md" })
+                            @Html.ActionLink("Dodaj kategorie", "AssignCategory", new {id_e=ViewBag.id_e, id_c = item.Id }, new { @class = "btn btn-primary" })
                         </th>
                     </tr>
                 }
