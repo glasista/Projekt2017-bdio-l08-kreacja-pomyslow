@@ -45,32 +45,79 @@
 
         @if (String.Compare(Model.Type.ToString(), "Pomysł") == 0)
         {
+            <br />
             <dt>
                 @Html.DisplayNameFor(model => model.AverageGrade)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageGrade)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageGrade; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageGrade + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                <br />                 
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageUsefulness)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageUsefulness)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageUsefulness; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageUsefulness + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                <br /> 
+              
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageDifficulty)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageDifficulty)
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageDifficulty; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageDifficulty + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                <br />
             </dd>
 
             <dt>
                 @Html.DisplayNameFor(model => model.AverageIngenuity)
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.AverageIngenuity)
+               
+                <div class="row">
+
+                    @for (var i = 1; i <= Model.AverageIngenuity; i++)
+                    {
+                        <span class="starGlow"></span>
+                    }
+                    @for (var i = (Model.AverageIngenuity + 1); i <= 5; i++)
+                    {
+                        <span class="starFade"></span>
+                    }
+                </div>
+                <br />
             </dd>
         }
 
@@ -84,8 +131,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Powrót", "AllProjects", null, new { @class = "btn btn-xs btn-default" }) 
-    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-default" })
+    @Html.ActionLink("Powrót", "AllProjects", null, new { @class = "btn btn-xs btn-primary" }) 
+    @Html.ActionLink("Pliki", "FileIndex", "Files", new { projectId = Model.Id }, new { @class = "btn btn-xs btn-primary" })
 </p>
 <p>
     @if (HttpContext.Current.User.Identity.IsAuthenticated)
@@ -93,7 +140,7 @@
         if (((Dictionary<int, bool>)ViewBag.Gradable)[Model.Id])
         {
 
-            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, new { @class = "btn btn-xs btn-default" })
+            @Html.ActionLink("Oceń", "Create", "Grades", new { Id = Model.Id }, new { @class = "btn btn-xs btn-success" })
         }
     }
 </p>
