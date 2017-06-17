@@ -3,25 +3,33 @@
 
 @{
     ViewBag.Title = "Przydzielone projekty";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    // Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Lista przydzielonych projektów</h2>
 
-<div class="row panel-body">
-    <table class="table table-hover table-bordered">
+
+@if (Model == null || Model.Count() <= 0)
+{
+    <h4>Brak projektów</h4>
+}
+else
+{
+    <table class="table">
         <tr>
-            <th class="col-md-3">@Html.DisplayNameFor(model => model.Title).ToString()</th>
-            <th class="col-md-3">@Html.DisplayNameFor(model => model.Author).ToString()</th>
-            <th class="col-md-2">@Html.DisplayNameFor(model => model.State).ToString()</th>
-            <th class="col-md-2">@Html.DisplayNameFor(model => model.Category.Name).ToString()</th>
-            <th class="col-md-2">@Html.DisplayNameFor(model => model.AverageGrade).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.Title).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.Author).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.State).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.Type).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.Category.Name).ToString()</th>
+            <th>@Html.DisplayNameFor(model => model.AverageGrade).ToString()</th>
 
         </tr>
+
         @foreach (var p in Model)
-            {
+        {
             <tr>
-                <td>@Html.ActionLink(p.Title, "AssignedProjectsDetails", new { projectId = p.Id})</td>
+                <td>@Html.ActionLink(p.Title, "AssignedProjectsDetails", new { projectId = p.Id })</td>
                 <td>
                     @if (p.Author != null)
                     {
@@ -29,9 +37,26 @@
                     }
                 </td>
                 <td>@p.State.Name </td>  
+                <td>@p.Type</td>
                 <td>@p.Category.Name</td>
-                <td>@p.AverageGrade </td>
+
+                <td>
+                @if (String.Compare(p.Type.ToString(), "Pomysł") == 0)
+                {
+                    <div class="row">
+
+                        @for (var i = 1; i <= @p.AverageGrade; i++)
+                        {
+                            <span class="starGlow"></span>
+                        }
+                        @for (var i = (@p.AverageGrade + 1); i <= 5; i++)
+                        {
+                            <span class="starFade"></span>
+                        }
+                    </div>
+                }
+
+                </td>
             </tr>
         }
-    </table>
-</div>
+    </table> }
