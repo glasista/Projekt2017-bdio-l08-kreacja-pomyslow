@@ -1,4 +1,5 @@
-﻿@model IEnumerable<IdeaCreationManagement.ViewModels.ListUser>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<IdeaCreationManagement.ViewModels.ListUser>
 
 @{
     ViewBag.Title = "Lista użytkowników";
@@ -68,8 +69,11 @@ else
                 </td>
                 <td>
                     @Html.ActionLink("Szczegóły", "Details", new { id = item.Id }, new { @class = "btn btn-xs btn-primary" }) |
-                    @Html.ActionLink("Edycja", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-warning" }) |
-                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id }, new { @class = "btn btn-xs btn-danger" })
+                    @Html.ActionLink("Edycja", "Edit", new { id = item.Id }, new { @class = "btn btn-xs btn-warning" })
+                    @if (User.Identity.GetUserId() != item.Id)
+                    {
+                       <text>|</text> @Html.ActionLink("Usuń", "Delete", new {id = item.Id}, new {@class = "btn btn-xs btn-danger"});
+                    }
                 </td>
             </tr>
         }
