@@ -28,6 +28,11 @@ namespace IdeaCreationManagement.Models
                 .WithMany(x => x.Projects)
                 .HasForeignKey(x => x.StateId)
                 .WillCascadeOnDelete(false);
+
+            builder.Entity<Alert>()
+                .HasRequired(x => x.AuthorOfChange)
+                .WithMany()
+                .WillCascadeOnDelete(true);
         }
 
         public static AppContext Create()
