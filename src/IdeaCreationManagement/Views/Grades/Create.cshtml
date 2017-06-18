@@ -1,8 +1,8 @@
 ﻿@model IdeaCreationManagement.Models.Grade
 
 @{
-    ViewBag.Title = "Oceń Projekt";
-}
+    ViewBag.Title = "Oceń Projekt"; }
+  
 
 <h2><h4>Oceń projekt</h4></h2>
 
@@ -10,44 +10,40 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Dokonaj oceny wybranego przez siebie pomysłu poprzez wybór odpowiedniej ilości gwiazdek przy każdym kryterium.</h4>
         <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.UsefulnessValue, "Przydatność", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Partial("_CommentBox")
+
+        </div>
         
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UsefulnessValue,"Przydatność", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UsefulnessValue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UsefulnessValue, "", new { @class = "text-danger" })
-            </div>
+            @Html.LabelFor(model => model.DifficultyValue, "Poziom Trudności", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Partial("_Star")
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DifficultyValue,"Poziom Trudności", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DifficultyValue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DifficultyValue, "", new { @class = "text-danger" })
-            </div>
+            @Html.LabelFor(model => model.Ingenuity, "Pomysłowość", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Partial("_Star3")
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Ingenuity,"Pomysłowość", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Ingenuity, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ingenuity, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Zatwierdź" class="btn btn-default" />
 
-       
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit"  value="Zatwierdź"class="btn btn-default" />
+                    </div>
+                </div>
+
             </div>
-        </div>
-    </div>
+
+ 
 }
+
+
 
 <div>
     @Html.ActionLink("Powrót", "AllProjects", "Projects")
@@ -55,4 +51,7 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+
 }

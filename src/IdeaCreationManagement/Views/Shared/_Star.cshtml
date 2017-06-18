@@ -1,0 +1,63 @@
+﻿
+<dl class="dl-horizontal">
+    <dd>
+        <div class="commentBox2">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <div onmouseout="CRateSelected2()">
+                            <span class="starFadeN" id="Rate21" onclick="CRate2(1)" onmouseover="CRateOver2(1)" onmouseout="CRateOut2(1)"></span>
+                            <span class="starFadeN" id="Rate22" onclick="CRate2(2)" onmouseover="CRateOver2(2)" onmouseout="CRateOut2(2)"></span>
+                            <span class="starFadeN" id="Rate23" onclick="CRate2(3)" onmouseover="CRateOver2(3)" onmouseout="CRateOut2(3)"></span>
+                            <span class="starFadeN" id="Rate24" onclick="CRate2(4)" onmouseover="CRateOver2(4)" onmouseout="CRateOut2(4)"></span>
+                            <span class="starFadeN" id="Rate25" onclick="CRate2(5)" onmouseover="CRateOver2(5)" onmouseout="CRateOut2(5)"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="hidden" name="Rating2" id="Rating2" value="0" />
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </dd>
+
+</dl>
+<script>
+       function CRate2(r) {
+        $("#Rating2").val(r);
+        for (var i = 1; i <= r; i++) {
+            $("#Rate2" + i).attr('class', 'starGlow');
+        }
+        // unselect remaining
+        for (var i = r + 1; i <= 5; i++) {
+            $("#Rate2" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateOver2(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate2" + i).attr('class', 'starGlow');
+        }
+    }
+
+    function CRateOut2(r) {
+        for (var i = 1; i <= r; i++) {
+            $("#Rate2" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateSelected2() {
+        var setRating = $("#Rating2").val();
+            for (var i = 1; i <= setRating; i++) {
+            $("#Rate2" + i).attr('class', 'starGlow');
+        }
+    }
+</script>

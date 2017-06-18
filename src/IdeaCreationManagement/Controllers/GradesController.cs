@@ -64,18 +64,23 @@ namespace IdeaCreationManagement.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id,[Bind(Include = "Time,UsefulnessValue,DifficultyValue,Ingenuity")] Grade grade)
+        public ActionResult Create(int id,[Bind(Include = "Time,UsefulnessValue,DifficultyValue,Ingenuity")] Grade grade, FormCollection form)
         {
             if (ModelState.IsValid)
-            {
+            { 
                 grade.ProjectId =id;
                 grade.RaterId = User.Identity.GetUserId();
+                var rating = int.Parse(form["Rating"]);
+                var rating2 = int.Parse(form["Rating2"]);
+                var rating3 = int.Parse(form["Rating2"]);
+                grade.UsefulnessValue=rating;
+                grade.DifficultyValue = rating2;
+                grade.Ingenuity = rating3;
                 grade.Time = DateTime.Now;
                 grade.AverageGrade = (grade.DifficultyValue + grade.Ingenuity + grade.UsefulnessValue) / 3;
                 db.Grades.Add(grade);
                 db.SaveChanges();
-
-               
+                              
                 var mediumgrade = db.Grades.Where(g => g.ProjectId == id).ToList();
 
                 db.Projects.Find(id).AverageIngenuity = mediumgrade.Sum(g => g.Ingenuity) / mediumgrade.Count;
@@ -88,9 +93,9 @@ namespace IdeaCreationManagement.Controllers
 
             return View(grade);
         }
-
-        // GET: Grades/Edit/5
-        public ActionResult Edit(int? id)
+       
+            // GET: Grades/Edit/5
+            public ActionResult Edit(int? id)
         {
             if (id == null)
             {

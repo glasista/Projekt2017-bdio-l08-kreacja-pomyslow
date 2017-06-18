@@ -353,6 +353,8 @@
     <Content Include="Views\Users\UserDetails2.cshtml" />
     <Content Include="Views\Users\DetailsOnly2.cshtml" />
     <Content Include="Views\Shared\_CommentBox.cshtml" />
+    <Content Include="Views\Shared\_Star.cshtml" />
+    <Content Include="Views\Shared\_Star3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -28,6 +28,11 @@ textarea {
     padding: 10px;
     border-radius: 10px;
 }
+.commentBox2 {
+    background-color: #efefef;
+    padding: 10px;
+    border-radius: 10px;
+}
 
 .starFade {
     background-image: url('/Content/Images/StarFade.gif');
