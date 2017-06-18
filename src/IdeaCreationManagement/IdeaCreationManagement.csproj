@@ -236,6 +236,8 @@
     <Content Include="Content\Images\logowydzialow.png" />
     <Content Include="Content\Images\logo_prz.png" />
     <Content Include="Content\Images\ludzik.jpg" />
+    <Content Include="Content\Images\StarFade.gif" />
+    <Content Include="Content\Images\StarGlow.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
